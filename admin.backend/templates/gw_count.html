@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	<!--{include file="head.html"}-->
+	</head>
+<body>
+    <style> ul{ list-style: none; } </style>
+	<!--{include file="loading.html"}-->
+	<!--{if $type eq 'list' && $flag eq 'vip_grow'}--><!--VIP成长值查询-->
+    <div class="page-body">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="widget">
+                    <div class="widget-header bordered-bottom bordered-yellow">
+                        <span class="widget-caption">VIP成长值查询</span>
+                        <a href="javascript:void(0);" onclick="showhelp();" style="font-weight:bold">显示功能帮助</a>
+                        <div class="widget-buttons">
+                            <a href="#" data-toggle="maximize">
+                                <i class="fa fa-expand"></i>
+                            </a>
+                            <a href="#" data-toggle="collapse">
+                                <i class="fa fa-minus"></i>
+                            </a>
+                            <a href="#" data-toggle="dispose">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="widget-body no-padding">
+                        <table class="table table-bordered table-hover table-striped table-hover" id="searchable">
+                            <thead class="bordered-darkorange">
+                                <br/>
+                                <div style="margin-left:10px;float:left;">开始时间：<input type="text" value="" style="width:200px" class="form-control date-picker" name="starttime2" id="starttime2" data-date-format="dd-mm-yyyy"></div>
+                                <div style="margin-left:10px;float:left;">结束时间：<input type="text" value="" style="width:200px;" class="form-control date-picker" name="endtime2" id="endtime2" data-date-format="dd-mm-yyyy"></div>
+                                <div style="margin-left:10px;float:left;">用户ID：
+                                    <div class="form-group">
+                                      <input type="text" class="form-control" id="uid" name="uid" placeholder="" value="<!--{$data.gfs_name}-->"/>
+                                    </div>
+                                </div>
+                                <div style="margin-left:10px;float:left;">用户名称：
+                                    <div class="form-group">
+                                      <input type="text" class="form-control" id="uname" name="uname" placeholder="" value="<!--{$data.gfs_name}-->"/>
+                                    </div>
+                                </div>
+                                <div style="margin-left:10px;float:left;">来源：
+                                    <div class="form-group">
+                                        <select name="source" id='source' style="width:100%;">
+                                            <option value="0">所有</option>
+                                            <option value="1">充值</option>
+                                            <option value="2">活动</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-left:10px;float:left;margin-top:20px;"><input type='button' id='getinfo' class="btn btn-blue" value="查询"/></div>
+                                <hr style="clear:both;border-bottom:3px solid red;margin-top:80px"/>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="templates/js/datatable/jquery.dataTables.min.js"></script>
+    <script src="templates/js/datatable/ZeroClipboard.js"></script>
+    <script src="templates/js/datatable/dataTables.tableTools.min.js"></script>
+    <script src="templates/js/datatable/dataTables.bootstrap.min.js"></script>
+    <script src="templates/js/datatable/datatables-init.js"></script>
+    <script>
+        InitiateSimpleDataTable.init();
+        InitiateEditableDataTable.init();
+        InitiateExpandableDataTable.init();
+        var data='';
+        $(document).ready(function() {
+               /*异步条件请求*/
+            $("#getinfo").bind("click",function(){
+                var starttime2  = $('#starttime2').val();
+                var endtime2    = $('#endtime2').val();
+                var uid         = $('#uid').val();
+                var uname       = $('#uname').val();
+                var source      = $('#source').val();
+                //异步请求数据
+                $.post("index.php?module=gw_count&method=vip_grow",{starttime: starttime2,endtime: endtime2,uid: uid,uname:uname,source:source,flag:'get_data'},
+                     function(data){
+                        data = eval("("+data+")");
+                        $('#searchable').dataTable({"bDestroy":true,"sScrollX": "100%",
+                            "bScrollCollapse": true,
+                            "searching":true,
+                            "aLengthMenu":false,
+                            "sDom": "Tflt<'row DTTTFooter'<'col-sm-6'i><'col-sm-6'p>>",
+                            "aaSorting": [[0, 'desc']],
+                            "aLengthMenu": [
+                               [5, 15, 20],
+                               [5, 15, 20]
+                            ],
+                            "iDisplayLength": 10,
+                            "oTableTools": {
+                                "aButtons": []
+                            },
+                            "language": {
+                                "search": "",
+                                "sLengthMenu": "显示 _MENU_ 项结果",
+                                "sProcessing": "处理中...",
+                                "oPaginate": {
+                                    "sFirst": "首页",
+                                    "sPrevious": "上页",
+                                    "sNext": "下页",
+                                    "sLast": "末页"
+                                },
+                                "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                                "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                                "infoFiltered":   "(总过滤_MAX_条)",
+                                "zeroRecords":    "没有匹配结果",
+                            },
+                            "data": data,
+                            "columns": [
+                                { "sTitle": "日期",class:'123'},
+                                { "sTitle": "用户ID"},
+                                { "sTitle": "用户名称"},
+                                { "sTitle": "成长值变化"},
+                                { "sTitle": "成长值总额"},
+                                { "sTitle": "来源"}
+                        ]});//重新调用插件
+                        $("thead input").keyup(function () {
+                            /* Filter on the column (the index) of this element */
+                            oTable.fnFilter(this.value, $("thead input").index(this));
+                        });
+
+                        $('#expandabledatatable_column_toggler input[type="checkbox"]').change(function () {
+                            var iCol = parseInt($(this).attr("data-column"));
+                            var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
+                            oTable.fnSetColumnVis(iCol, (bVis ? false : true));
+                        });
+
+                        $('body').on('click', '.dropdown-menu.hold-on-click', function (e) {
+                            e.stopPropagation();
+                        })
+                     }
+                 );
+            });
+        });
+    </script>
+	<!--{/if}-->
+
+    <!--{if $type eq 'list' && $flag eq 'user_integral'}--><!--账号积分查询-->
+    <div class="page-body">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="widget">
+                    <div class="widget-header bordered-bottom bordered-yellow">
+                        <span class="widget-caption">账号积分查询</span>
+                        <a href="javascript:void(0);" onclick="showhelp();" style="font-weight:bold">显示功能帮助</a>
+                        <div class="widget-buttons">
+                            <a href="#" data-toggle="maximize">
+                                <i class="fa fa-expand"></i>
+                            </a>
+                            <a href="#" data-toggle="collapse">
+                                <i class="fa fa-minus"></i>
+                            </a>
+                            <a href="#" data-toggle="dispose">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="widget-body no-padding">
+                        <table class="table table-bordered table-hover table-striped table-hover" id="searchable">
+                            <thead class="bordered-darkorange">
+                                <br/>
+                                <div style="margin-left:10px;float:left;">开始时间：<input type="text" value="" style="width:200px" class="form-control date-picker" name="starttime2" id="starttime2" data-date-format="dd-mm-yyyy"></div>
+                                <div style="margin-left:10px;float:left;">结束时间：<input type="text" value="" style="width:200px;" class="form-control date-picker" name="endtime2" id="endtime2" data-date-format="dd-mm-yyyy"></div>
+                                <div style="margin-left:10px;float:left;">用户ID：
+                                    <div class="form-group">
+                                      <input type="text" class="form-control" id="uid" name="uid" placeholder="" value="<!--{$data.gfs_name}-->"/>
+                                    </div>
+                                </div>
+                                <div style="margin-left:10px;float:left;">用户名称：
+                                    <div class="form-group">
+                                      <input type="text" class="form-control" id="uname" name="uname" placeholder="" value="<!--{$data.gfs_name}-->"/>
+                                    </div>
+                                </div>
+                                <div style="margin-left:10px;float:left;">来源：
+                                    <div class="form-group">
+                                        <select name="source" id='source' style="width:100%;">
+                                            <option value="0">所有</option>
+                                            <option value="5">签到</option>
+                                            <option value="1">充值</option>
+                                            <option value="3">任务</option>
+                                            <option value="2">活动</option>
+                                            <option value="4">礼包</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-left:10px;float:left;margin-top:20px;"><input type='button' id='getinfo' class="btn btn-blue" value="查询"/></div>
+                                <hr style="clear:both;border-bottom:3px solid red;margin-top:80px"/>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="templates/js/datatable/jquery.dataTables.min.js"></script>
+    <script src="templates/js/datatable/ZeroClipboard.js"></script>
+    <script src="templates/js/datatable/dataTables.tableTools.min.js"></script>
+    <script src="templates/js/datatable/dataTables.bootstrap.min.js"></script>
+    <script src="templates/js/datatable/datatables-init.js"></script>
+    <script>
+        InitiateSimpleDataTable.init();
+        InitiateEditableDataTable.init();
+        InitiateExpandableDataTable.init();
+        var data='';
+        $(document).ready(function() {
+               /*异步条件请求*/
+            $("#getinfo").bind("click",function(){
+                var starttime2  = $('#starttime2').val();
+                var endtime2    = $('#endtime2').val();
+                var uid         = $('#uid').val();
+                var uname       = $('#uname').val();
+                var source      = $('#source').val();
+                //异步请求数据
+                $.post("index.php?module=gw_count&method=user_integral",{starttime: starttime2,endtime: endtime2,uid: uid,uname:uname,source:source,flag:'get_data'},
+                     function(data){
+                        data = eval("("+data+")");
+                        $('#searchable').dataTable({"bDestroy":true,"sScrollX": "100%",
+                            "bScrollCollapse": true,
+                            "searching":true,
+                            "aLengthMenu":false,
+                            "sDom": "Tflt<'row DTTTFooter'<'col-sm-6'i><'col-sm-6'p>>",
+                            "aaSorting": [[0, 'desc']],
+                            "aLengthMenu": [
+                               [5, 15, 20],
+                               [5, 15, 20]
+                            ],
+                            "iDisplayLength": 10,
+                            "oTableTools": {
+                                "aButtons": []
+                            },
+                            "language": {
+                                "search": "",
+                                "sLengthMenu": "显示 _MENU_ 项结果",
+                                "sProcessing": "处理中...",
+                                "oPaginate": {
+                                    "sFirst": "首页",
+                                    "sPrevious": "上页",
+                                    "sNext": "下页",
+                                    "sLast": "末页"
+                                },
+                                "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                                "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                                "infoFiltered":   "(总过滤_MAX_条)",
+                                "zeroRecords":    "没有匹配结果",
+                            },
+                            "data": data,
+                            "columns": [
+                                { "sTitle": "日期",class:'123'},
+                                { "sTitle": "用户ID"},
+                                { "sTitle": "用户名称"},
+                                { "sTitle": "积分变化"},
+                                { "sTitle": "积分总额"},
+                                { "sTitle": "内容"},
+                                { "sTitle": "来源"}
+                        ]});//重新调用插件
+                        $("thead input").keyup(function () {
+                            /* Filter on the column (the index) of this element */
+                            oTable.fnFilter(this.value, $("thead input").index(this));
+                        });
+
+                        $('#expandabledatatable_column_toggler input[type="checkbox"]').change(function () {
+                            var iCol = parseInt($(this).attr("data-column"));
+                            var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
+                            oTable.fnSetColumnVis(iCol, (bVis ? false : true));
+                        });
+
+                        $('body').on('click', '.dropdown-menu.hold-on-click', function (e) {
+                            e.stopPropagation();
+                        })
+                     }
+                 );
+            });
+        });
+    </script>
+    <!--{/if}-->
+
+	<script>
+        function clean_error(name) {
+            $('#'+name).next().remove();
+            var names = $('#'+name).val();
+            if(names == "" || names == '0' || names == 'undefined'){
+                $('#'+name).parent().attr("class","has-error");
+                $('#'+name).focus();
+                $('#'+name).after('<small class="help-block" style="" data-bv-validator="notEmpty" data-bv-validator-for="address"></small>');
+                $('#'+name).next().html('内容填写有误！');
+                return false;
+            }else{
+                $('#'+name).parent().attr("class","form-group");
+                $('#'+name).next().html();
+                $('#'+name).next().remove();
+                return true;
+            }
+        }
+
+        function formaction(url,id,name) {
+            if(name==0){
+                document.myform.action = url;
+                $("#"+id).submit();
+            }else{
+                document.myform1.action = url;
+                $("#"+id).submit();
+            }
+        }
+    </script>
+	<script>
+        $(function(){
+            if('<!--{$meg}-->' !=''){
+                $("#toast-container").show();
+            }else{
+                $("#toast-container").hide();
+            }
+            $("#toast-container").bind('click',function(){
+                $("#toast-container").hide();
+            });
+        });
+        function showhelp(){
+            $("#toast-container").show();
+        }
+    </script>
+    <div id="toast-container" class="toast-bottom-right">
+    	<div class="toast fa-check toast-blue" >
+    		<button class="toast-close-button">×</button>
+    		<div class="toast-message"><!--{$meg}--></div>
+    	</div>
+    </div>
+</body>
+<script src="templates/js/bootstrap.min.js"></script>
+<script src="templates/js/beyond.min.js"></script>
+<!--Bootstrap Date Picker-->
+<script src="templates/js/datetime/bootstrap-datepicker.js"></script>
+<script type="text/javascript">        
+    //--Bootstrap Date Picker--
+    $('.date-picker').datepicker();
+</script>
+</html>

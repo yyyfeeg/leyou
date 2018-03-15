@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	<!--{include file="head.html"}-->
+	</head>
+<body>
+	<!--{include file="loading.html"}-->
+	<!--{if $type eq 'list'}--><!--物品发放地址列表-->
+	<style> ul{ list-style: none; } </style>
+    <div class="page-body">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="widget">
+                    <div class="widget-header bordered-bottom bordered-yellow">
+                        <span class="widget-caption">物品发放地址列表</span>
+                        <a href="javascript:void(0);" onclick="showhelp();" style="font-weight:bold">显示功能帮助</a>
+                        <div class="widget-buttons">
+                            <a href="#" data-toggle="maximize">
+                                <i class="fa fa-expand"></i>
+                            </a>
+                            <a href="#" data-toggle="collapse">
+                                <i class="fa fa-minus"></i>
+                            </a>
+                            <a href="#" data-toggle="dispose">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="widget-body no-padding">
+                        <table class="table table-bordered table-hover table-striped table-hover" id="searchable">
+                            <thead class="bordered-darkorange">
+                                <tr id='foot'>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_engine" placeholder="搜索系统ID" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_browser" placeholder="搜索游戏名称" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_platform" placeholder="" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_version" placeholder="" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_grade" placeholder="" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_grade" placeholder="" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_grade" placeholder="" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_grade" placeholder="" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_grade" placeholder="" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_grade" placeholder="" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_grade" placeholder="" class="form-control input-sm"></th>
+                                </tr>
+                                <tr role="row" id='test'>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="templates/js/datatable/jquery.dataTables.min.js"></script>
+    <script src="templates/js/datatable/ZeroClipboard.js"></script>
+    <script src="templates/js/datatable/dataTables.tableTools.min.js"></script>
+    <script src="templates/js/datatable/dataTables.bootstrap.min.js"></script>
+    <script src="templates/js/datatable/datatables-init.js"></script>
+    <script>
+        InitiateSimpleDataTable.init();
+        InitiateEditableDataTable.init();
+        InitiateExpandableDataTable.init();
+        $(document).ready(function() {
+                /*
+                 * Insert a 'details' column to the table
+                 */
+                var oTable = $('#searchable').dataTable({
+                "sScrollX": "100%",
+                "bScrollCollapse": true,
+                "sDom": "Tflt<'row DTTTFooter'<'col-sm-6'i><'col-sm-6'p>>",
+                "aaSorting": [[0, 'desc']],
+                "aLengthMenu": [
+                   [5, 15, 20],
+                   [5, 15, 20]
+                ],
+                "iDisplayLength": 10,
+                "oTableTools": {
+                    "aButtons": []
+                },
+                "language": {
+                    "search": "",
+                    "sLengthMenu": "显示 _MENU_ 项结果",
+                    "sProcessing": "处理中...",
+                    "oPaginate": {
+                        "sFirst": "首页",
+                        "sPrevious": "上页",
+                        "sNext": "下页",
+                        "sLast": "末页"
+                    },
+                    "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                    "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                    "infoFiltered":   "(总过滤_MAX_条)",
+                    "zeroRecords":    "没有匹配结果",
+                },
+                
+                "data": <!--{$data}-->,
+                "columns": [
+                    { "sTitle": "系统ID"},
+                    { "sTitle": "游戏名称" },
+                    { "sTitle": "加密KEY" },
+                    { "sTitle": "加密字串" },
+                    { "sTitle": "加密方式"},
+                    { "sTitle": "发放地址"},
+                    { "sTitle": "游戏服地址"},
+                    { "sTitle": "是否打开"},
+                    { "sTitle": "添加人"},
+                    { "sTitle": "添加时间"},
+                    { "sTitle": "操作"},
+                ]
+            });
+            $("thead input").keyup(function () {
+                /* Filter on the column (the index) of this element */
+                oTable.fnFilter(this.value, $("thead input").index(this));
+            });
+
+            $('#expandabledatatable_column_toggler input[type="checkbox"]').change(function () {
+                var iCol = parseInt($(this).attr("data-column"));
+                var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
+                oTable.fnSetColumnVis(iCol, (bVis ? false : true));
+            });
+
+            $('body').on('click', '.dropdown-menu.hold-on-click', function (e) {
+                e.stopPropagation();
+            })
+        } );
+    </script>
+	<!--{/if}-->
+
+	<!--{if $type eq 'add'}--><!--物品发放地址添加-->
+	<div class="col-lg-12 col-lg-offset-3 col-sm-12 col-xs-12" style="0 auto">
+        <h5 class="row-title before-pink"><i class="fa fa-expand pink"></i>发放地址添加</h5>
+        <div class="row">
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div class="widget">
+                    <div class="widget-header bordered-top bordered-palegreen">
+                        <span class="widget-caption">发放地址添加表单</span>
+                    </div>
+                    <div class="widget-body">
+                         <div class="form-group">
+                            <label for="definpu">变量说明：</label><br/>
+                            <table>
+                                <tr>
+                                    <td style="padding: 5px 20px;"><span style="color:red;font-weight: bold;">time：</span>时间戳</td>
+                                    <td style="padding: 5px 20px;"><span style="color:red;font-weight: bold;">time：</span>时间戳</td>
+                                    <td style="padding: 5px 20px;"><span style="color:red;font-weight: bold;">time：</span>时间戳</td>
+                                    <td style="padding: 5px 20px;"><span style="color:red;font-weight: bold;">time：</span>时间戳</td>
+                                    <td style="padding: 5px 20px;"><span style="color:red;font-weight: bold;">time：</span>时间戳</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px 20px;"><span style="color:red;font-weight: bold;">time：</span>时间戳</td>
+                                    <td style="padding: 5px 20px;"><span style="color:red;font-weight: bold;">time：</span>时间戳</td>
+                                    <td style="padding: 5px 20px;"><span style="color:red;font-weight: bold;">time：</span>时间戳</td>
+                                    <td style="padding: 5px 20px;"><span style="color:red;font-weight: bold;">time：</span>时间戳</td>
+                                    <td style="padding: 5px 20px;"><span style="color:red;font-weight: bold;">time：</span>时间戳</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5" style="padding: 5px 20px; color: red;font-weight: bold;">
+                                    调用例子：http://www.ttgfun.com?t={time}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="collapse in">
+                            <form enctype="multipart/form-data" action="index.php?module=goods&method=give_goods" method="post" id='myform' name='myform'>
+                                <input name="act" value="add" type="hidden"/>
+                                <div class="form-group">
+                                    <label for="definpu">游戏名称：</label><span style="color:red">*</span>
+                                    <select name="gid" id='gid' style="width:100%;" onblur="clean_error('gid')">
+                                        <option value="0" <!--{if $data.ggg_gid eq 0}-->selected="selected"<!--{/if}-->>请选择游戏</option>
+                                        <!--{foreach from=$gameArr key=sysid item=value}-->
+                                        <option value="<!--{$sysid}-->" <!--{if $data.ggg_gid eq $sysid}-->selected="selected"<!--{/if}-->><!--{$value}--></option>
+                                        <!--{/foreach}-->
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                   <label for="definpu">加密KEY：</label><span style="color:red">*</span>
+                                   <input type="text" class="form-control" id="key" name="key" placeholder="" value="<!--{$data.ggg_key}-->" onblur="clean_error('key')"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">加密字串：</label><span style="color:red">*</span>
+                                    <input type="text" class="form-control" id="str" name="str" placeholder="" value="<!--{$data.ggg_str}-->" onblur="clean_error('str')"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">加密方式：</label><span style="color:red">*</span>
+                                    <select name="encrypt" id='encrypt' style="width:100%;" onblur="clean_error('encrypt')">
+                                        <option value="1" <!--{if $data.ggg_encrypt eq 1}-->selected="selected"<!--{/if}-->>MD5</option>
+                                        <option value="2" <!--{if $data.ggg_encrypt eq 2}-->selected="selected"<!--{/if}-->>SHA1</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">发放地址：</label><span style="color:red">*</span>
+                                    <input type="text" class="form-control" id="giveurl" name="giveurl" placeholder="http://" value="<!--{$data.ggg_giveurl}-->" onblur="clean_error('giveurl')"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">游戏服地址：</label><span style="color:red">*</span>
+                                    <input type="text" class="form-control" id="getsid" name="getsid" placeholder="http://" value="<!--{$data.ggg_getsid}-->" onblur="clean_error('getsid')"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">是否开启：</label>
+                                    <label>
+                                        <input type="radio" value='1' name='open' <!--{if $data.ggg_open eq 1}-->checked="true"<!--{/if}-->>
+                                        <span class="text">是</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" value='2' name='open' <!--{if $data.ggg_open eq 2}-->checked="true"<!--{/if}-->>
+                                        <span class="text">否</span>
+                                    </label>
+                                </div>
+                                <button type="submit" class="btn btn-blue" onclick="return addGameCheck('index.php?module=goods&method=give_goods','myform',0);">添 加</button>
+                                <button type="submit" onClick="history.go(-1);return false;" value="取消" name="submit" class="btn btn-blue">取 消</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<!--{/if}-->
+
+	<!--{if $type eq 'edit'}--><!--物品发放地址修改-->
+	<div class="col-lg-12 col-lg-offset-3 col-sm-12 col-xs-12" style="0 auto">
+        <h5 class="row-title before-pink"><i class="fa fa-expand pink"></i>发放地址修改</h5>
+        <div class="row">
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div class="widget">
+                    <div class="widget-header bordered-top bordered-palegreen">
+                        <span class="widget-caption">发放地址修改表单</span>
+                    </div>
+                    <div class="widget-body">
+                        <div class="form-group">
+                            <label for="definpu">变量说明：</label><br/>
+                            <table>
+                                <tr>
+                                    <td style="padding: 5px 20px;"><span style="color:red;font-weight: bold;">time：</span>时间戳</td>
+                                    <td style="padding: 5px 20px;"><span style="color:red;font-weight: bold;">time：</span>时间戳</td>
+                                    <td style="padding: 5px 20px;"><span style="color:red;font-weight: bold;">time：</span>时间戳</td>
+                                    <td style="padding: 5px 20px;"><span style="color:red;font-weight: bold;">time：</span>时间戳</td>
+                                    <td style="padding: 5px 20px;"><span style="color:red;font-weight: bold;">time：</span>时间戳</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px 20px;"><span style="color:red;font-weight: bold;">time：</span>时间戳</td>
+                                    <td style="padding: 5px 20px;"><span style="color:red;font-weight: bold;">time：</span>时间戳</td>
+                                    <td style="padding: 5px 20px;"><span style="color:red;font-weight: bold;">time：</span>时间戳</td>
+                                    <td style="padding: 5px 20px;"><span style="color:red;font-weight: bold;">time：</span>时间戳</td>
+                                    <td style="padding: 5px 20px;"><span style="color:red;font-weight: bold;">time：</span>时间戳</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5" style="padding: 5px 20px; color: red;font-weight: bold;">
+                                    调用例子：http://www.ttgfun.com?t={time}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="collapse in">
+                            <form enctype="multipart/form-data" action="index.php?module=goods&method=give_goods_edit" method="post" id='myform' name='myform'>
+                                <input name="act" value="edit" type="hidden"/>
+                                <input name="id" value="<!--{$data.sysid}-->" type="hidden"/>
+                                <div class="form-group">
+                                    <label for="definpu">游戏名称：</label><span style="color:red">*</span>
+                                    <select name="gid" id='gid' style="width:100%;" onblur="clean_error('gid')">
+                                        <option value="0" <!--{if $data.ggg_gid eq 0}-->selected="selected"<!--{/if}-->>请选择游戏</option>
+                                        <!--{foreach from=$gameArr key=sysid item=value}-->
+                                        <option value="<!--{$sysid}-->" <!--{if $data.ggg_gid eq $sysid}-->selected="selected"<!--{/if}-->><!--{$value}--></option>
+                                        <!--{/foreach}-->
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                   <label for="definpu">加密KEY：</label><span style="color:red">*</span>
+                                   <input type="text" class="form-control" id="key" name="key" placeholder="" value="<!--{$data.ggg_key}-->" onblur="clean_error('key')"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">加密字串：</label><span style="color:red">*</span>
+                                    <input type="text" class="form-control" id="str" name="str" placeholder="" value="<!--{$data.ggg_str}-->" onblur="clean_error('str')"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">加密方式：</label><span style="color:red">*</span>
+                                    <select name="encrypt" id='encrypt' style="width:100%;" onblur="clean_error('encrypt')">
+                                        <option value="1" <!--{if $data.ggg_encrypt eq 1}-->selected="selected"<!--{/if}-->>MD5</option>
+                                        <option value="2" <!--{if $data.ggg_encrypt eq 2}-->selected="selected"<!--{/if}-->>SHA1</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">发放地址：</label><span style="color:red">*</span>
+                                    <input type="text" class="form-control" id="giveurl" name="giveurl" placeholder="http://" value="<!--{$data.ggg_giveurl}-->" onblur="clean_error('giveurl')"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">游戏服地址：</label><span style="color:red">*</span>
+                                    <input type="text" class="form-control" id="getsid" name="getsid" placeholder="http://" value="<!--{$data.ggg_getsid}-->" onblur="clean_error('getsid')"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">是否开启：</label>
+                                    <label>
+                                        <input type="radio" value='1' name='open' <!--{if $data.ggg_open eq 1}-->checked="true"<!--{/if}-->>
+                                        <span class="text">是</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" value='2' name='open' <!--{if $data.ggg_open eq 2}-->checked="true"<!--{/if}-->>
+                                        <span class="text">否</span>
+                                    </label>
+                                </div>
+                                <button type="submit" class="btn btn-blue" onclick="return addGameCheck('index.php?module=goods&method=give_goods_edit','myform',0);">修 改</button>
+                                <button type="submit" onClick="history.go(-1);return false;" value="取消" name="submit" class="btn btn-blue">取 消</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<!--{/if}-->
+
+    <!--{if $type eq 'logs_list'}--><!--物品领取日志列表-->
+   <style> ul{ list-style: none; } </style>
+    <div class="page-body">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="widget">
+                    <div class="widget-header bordered-bottom bordered-yellow">
+                        <span class="widget-caption">物品领取日志列表</span>
+                        <a href="javascript:void(0);" onclick="showhelp();" style="font-weight:bold">显示功能帮助</a>
+                        <div class="widget-buttons">
+                            <a href="#" data-toggle="maximize">
+                                <i class="fa fa-expand"></i>
+                            </a>
+                            <a href="#" data-toggle="collapse">
+                                <i class="fa fa-minus"></i>
+                            </a>
+                            <a href="#" data-toggle="dispose">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="widget-body no-padding">
+                        <table class="table table-bordered table-hover table-striped table-hover" id="searchable">
+                            <thead class="bordered-darkorange">
+                                <br/>
+                                <div style="margin-left:10px;float:left;">游戏：
+                                    <select name="gid" id='gid' style="width:100%;" style="width:200px;">
+                                        <option value="0">请选择游戏</option>
+                                        <!--{foreach from=$gameArr key=sysid item=value}-->
+                                        <option value="<!--{$sysid}-->" <!--{if $data.gci_gid eq $sysid}-->selected="selected"<!--{/if}-->><!--{$value}--></option>
+                                        <!--{/foreach}-->
+                                    </select>
+                                </div>
+                                <!-- <div style="margin-left:10px;float:left;">区服：
+                                    <div class="form-group">
+                                        <select name="sid" id='sid' style="width:100%;">
+                                            <option value="0">全区服</option>
+                                        </select>
+                                    </div>
+                                </div> -->
+                                <div style="margin-left:10px;float:left;">用户名：
+                                    <div class="form-group">
+                                        <input name="uname" id="uname" type="text" value="" style="width:200px" class="form-control date-picker"/>
+                                    </div>
+                                </div>
+                                <div style="margin-left:10px;float:left;">角色名：
+                                    <div class="form-group">
+                                        <input name="role" id="role" type="text" value="" style="width:200px" class="form-control date-picker"/>
+                                    </div>
+                                </div>
+                                <div style="margin-left:10px;float:left;">礼包名称：
+                                    <div class="form-group">
+                                        <select name="spree" id='spree' style="width:100%;">
+                                            <option value="0">请选择礼包名称</option>
+                                            <!--{foreach from=$spreeArr key=sysid item=value}-->
+                                            <option value="<!--{$sysid}-->" <!--{if $data.gci_ctypeid eq $sysid}-->selected="selected"<!--{/if}-->><!--{$value}--></option>
+                                            <!--{/foreach}-->
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-left:10px;float:left;margin-top:20px;"><input type='button' id='getinfo' class="btn btn-blue" value="查询"/></div>
+                                <hr style="clear:both;border-bottom:3px solid red;margin-top:80px"/>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="templates/js/datatable/jquery.dataTables.min.js"></script>
+    <script src="templates/js/datatable/ZeroClipboard.js"></script>
+    <script src="templates/js/datatable/dataTables.tableTools.min.js"></script>
+    <script src="templates/js/datatable/dataTables.bootstrap.min.js"></script>
+    <script src="templates/js/datatable/datatables-init.js"></script>
+    <script>
+        InitiateSimpleDataTable.init();
+        InitiateEditableDataTable.init();
+        InitiateExpandableDataTable.init();
+        var data='';
+        $(document).ready(function() {
+               /*异步条件请求*/
+            $("#getinfo").bind("click",function(){
+                var gid    = $('#gid').val();
+                var uname  = $('#uname').val();
+                var role   = $('#role').val();
+                var spree  = $('#spree').val();
+                //异步请求数据
+                $.post("index.php?module=goods&method=draw_goods",{gid: gid,uname: uname,role: role,spree: spree,flag: 'get_data'},
+                     function(data){
+                        data = eval("("+data+")");
+                        $('#searchable').dataTable({"bDestroy":true,"sScrollX": "100%",
+                            "bScrollCollapse": true,
+                            "searching":true,
+                            "aLengthMenu":false,
+                            "sDom": "Tflt<'row DTTTFooter'<'col-sm-6'i><'col-sm-6'p>>",
+                            "aaSorting": [[0, 'desc']],
+                            "aLengthMenu": [
+                               [5, 15, 20],
+                               [5, 15, 20]
+                            ],
+                            "iDisplayLength": 10,
+                            "oTableTools": {
+                                "aButtons": []
+                            },
+                            "language": {
+                                "search": "",
+                                "sLengthMenu": "显示 _MENU_ 项结果",
+                                "sProcessing": "处理中...",
+                                "oPaginate": {
+                                    "sFirst": "首页",
+                                    "sPrevious": "上页",
+                                    "sNext": "下页",
+                                    "sLast": "末页"
+                                },
+                                "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                                "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                                "infoFiltered":   "(总过滤_MAX_条)",
+                                "zeroRecords":    "没有匹配结果",
+                            },
+                            "data": data,
+                            "columns": [
+                                { "sTitle": "系统ID",class:'123'},
+                                { "sTitle": "游戏"},
+                                { "sTitle": "服务器ID"},
+                                { "sTitle": "用户ID"},
+                                { "sTitle": "用户名"},
+                                { "sTitle": "角色ID"},
+                                { "sTitle": "角色名"},
+                                { "sTitle": "礼包ID"},
+                                { "sTitle": "礼包名称"},
+                                { "sTitle": "物品ID"},
+                                { "sTitle": "物品名称"},
+                                { "sTitle": "物品数量"},
+                                { "sTitle": "领取时间"}
+                        ]});//重新调用插件
+                        $("thead input").keyup(function () {
+                            /* Filter on the column (the index) of this element */
+                            oTable.fnFilter(this.value, $("thead input").index(this));
+                        });
+
+                        $('#expandabledatatable_column_toggler input[type="checkbox"]').change(function () {
+                            var iCol = parseInt($(this).attr("data-column"));
+                            var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
+                            oTable.fnSetColumnVis(iCol, (bVis ? false : true));
+                        });
+
+                        $('body').on('click', '.dropdown-menu.hold-on-click', function (e) {
+                            e.stopPropagation();
+                        })
+                     }
+                 );
+            });
+        });
+    </script>
+    <!--{/if}-->
+
+	<script>
+        function addGameCheck(url,id,name) {
+            //检测数据
+            var gid = clean_error('gid');
+            var key = clean_error('key');
+            var str = clean_error('str');
+            var encrypt = clean_error('encrypt');
+            var giveurl = clean_error('giveurl');
+            var getsid = clean_error('getsid');
+            var open = clean_error('open');
+            if(gid&&key&&str&&encrypt&&giveurl&&getsid&&open){
+                formaction(url,id,name);
+            }else{
+                return false;
+            }
+        }
+
+        function clean_error(name) {
+            $('#'+name).next().remove();
+            var names = $('#'+name).val();
+            if(names == "" || names == '0' || names == 'undefined'){
+                $('#'+name).parent().attr("class","has-error");
+                $('#'+name).focus();
+                $('#'+name).after('<small class="help-block" style="" data-bv-validator="notEmpty" data-bv-validator-for="address"></small>');
+                $('#'+name).next().html('内容填写有误！');
+                return false;
+            }else{
+                $('#'+name).parent().attr("class","form-group");
+                $('#'+name).next().html();
+                $('#'+name).next().remove();
+                return true;
+            }
+        }
+
+        function formaction(url,id,name) {
+            if(name==0){
+                document.myform.action = url;
+                $("#"+id).submit();
+            }else{
+                document.myform1.action = url;
+                $("#"+id).submit();
+            }
+        }
+    </script>
+	<script>
+        $(function(){
+            if('<!--{$meg}-->' !=''){
+                $("#toast-container").show();
+            }else{
+                $("#toast-container").hide();
+            }
+            $("#toast-container").bind('click',function(){
+                $("#toast-container").hide();
+            });
+        });
+        function showhelp(){
+            $("#toast-container").show();
+        }
+    </script>
+    <div id="toast-container" class="toast-bottom-right">
+    	<div class="toast fa-check toast-blue" >
+    		<button class="toast-close-button">×</button>
+    		<div class="toast-message"><!--{$meg}--></div>
+    	</div>
+    </div>
+</body>
+<script src="templates/js/bootstrap.min.js"></script>
+<script src="templates/js/beyond.min.js"></script>
+</html>

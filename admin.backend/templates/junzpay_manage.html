@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- Head -->
+<head>
+<!--{include file="head.html"}-->
+</head>
+<!-- /Head -->
+<!-- Body -->
+<body>
+    <!-- Loading Container -->
+        <!--{include file="loading.html"}-->
+    <!--  /Loading Container -->
+    
+    <!-- Main Container -->
+    <!--{if "list" == $list}-->  <!--成功充值订单列表-->
+    <style>
+        ul{
+            list-style: none;
+        }
+    </style>
+    <div class="page-body">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="widget">
+                    <div class="widget-header bordered-bottom bordered-yellow">
+                        <span class="widget-caption">成功充值订单列表</span>
+                        <div class="widget-buttons">
+                            <a href="#" data-toggle="maximize">
+                                <i class="fa fa-expand"></i>
+                            </a>
+                            <a href="#" data-toggle="collapse">
+                                <i class="fa fa-minus"></i>
+                            </a>
+                            <a href="#" data-toggle="dispose">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="widget-body no-padding">
+                        <table class="table table-bordered table-hover table-striped table-hover" id="searchable">
+                            <thead class="bordered-darkorange">
+                                <tr id='foot'>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_engine" placeholder="搜索系统ID" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_engine" placeholder="搜索我方订单号" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_browser" placeholder="搜索第三方订单号" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_platform" placeholder="搜索充值账号" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_version" placeholder="搜索充值金额" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_version" placeholder="搜索游戏名称" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_version" placeholder="搜索区服ID" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_version" placeholder="搜索角色ID" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_version" placeholder="搜索付费时间" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_version" placeholder="搜索付费方式" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_version" placeholder="搜索发货结果" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_version" placeholder="搜索发货时间" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_version" placeholder="搜索发货数量" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_version" placeholder="搜索赠送数量" class="form-control input-sm"></th>
+                                </tr>
+                                <tr role="row" id='test'>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="templates/js/datatable/jquery.dataTables.min.js"></script>
+    <script src="templates/js/datatable/ZeroClipboard.js"></script>
+    <script src="templates/js/datatable/dataTables.tableTools.min.js"></script>
+    <script src="templates/js/datatable/dataTables.bootstrap.min.js"></script>
+    <script src="templates/js/datatable/datatables-init.js"></script>
+    <script>
+        InitiateSimpleDataTable.init();
+        InitiateEditableDataTable.init();
+        InitiateExpandableDataTable.init();
+        $(document).ready(function() {
+                /*
+                 * Insert a 'details' column to the table
+                 */
+                var oTable = $('#searchable').dataTable({
+                "bProcessing":true,
+                "bServerSide":true,
+                "sAjaxSource":"index.php?module=junzpay_manage&method=junzpay_success&type=json",
+                "sScrollX": "100%",
+                "bScrollCollapse": true,
+                "sDom": "Tflt<'row DTTTFooter'<'col-sm-6'i><'col-sm-6'p>>",
+                "aaSorting": [[1, 'desc']],
+                "aLengthMenu": [
+                   [5, 15, 20],
+                   [5, 15, 20]
+                ],
+                "iDisplayLength": 10,
+                "oTableTools": {
+                    "aButtons": []
+                },
+                "language": {
+                    "search": "",
+                    "sLengthMenu": "显示 _MENU_ 项结果",
+                    "sProcessing": "处理中...",
+                    "oPaginate": {
+                        "sFirst": "首页",
+                        "sPrevious": "上页",
+                        "sNext": "下页",
+                        "sLast": "末页"
+                    },
+                    "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                    "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                    "infoFiltered":   "(总过滤_MAX_条)",
+                    "zeroRecords":    "没有匹配结果",
+                },
+                "columns": [
+                    { "sTitle": "系统ID",class:'123'},
+                    { "sTitle": "我方订单号" },
+                    { "sTitle": "第三方订单号" },
+                    { "sTitle": "充值账号[uid]" },
+                    { "sTitle": "充值金额" },
+                    { "sTitle": "游戏名称" },
+                    { "sTitle": "区服名称[sid]" },
+                    { "sTitle": "角色名称[rid]" },
+                    { "sTitle": "付费时间" },
+                    { "sTitle": "付费方式" },
+                    { "sTitle": "发货结果" },
+                    { "sTitle": "发货时间" },
+                    { "sTitle": "发货数量" },
+                    { "sTitle": "赠送数量" }
+                ]
+            });
+            $("thead input").keyup(function () {
+                /* Filter on the column (the index) of this element */
+                oTable.fnFilter(this.value, $("thead input").index(this));
+            });
+
+            $('#expandabledatatable_column_toggler input[type="checkbox"]').change(function () {
+                var iCol = parseInt($(this).attr("data-column"));
+                var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
+                oTable.fnSetColumnVis(iCol, (bVis ? false : true));
+            });
+
+            $('body').on('click', '.dropdown-menu.hold-on-click', function (e) {
+                e.stopPropagation();
+            })
+        } );
+    </script>
+    <!--{/if}-->  <!--成功充值订单列表-->
+
+</body>
+<!--  /Body -->
+<script src="templates/js/bootstrap.min.js"></script>
+<!--Beyond Scripts-->
+<script src="templates/js/beyond.min.js"></script>
+<!--Page Related Scripts-->
+</html>

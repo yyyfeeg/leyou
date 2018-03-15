@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- Head -->
+<head>
+<!--{include file="head.html"}-->
+</head>
+<!-- /Head -->
+<!-- Body -->
+<body>
+    <!-- Loading Container -->
+        <!--{include file="loading.html"}-->
+    <!--  /Loading Container -->
+    <!-- Main Container -->
+    <!--{if "active" == $active}--><!--列表-->
+    <style>
+        ul{
+            list-style: none;
+        }
+    </style>
+    <div class="page-body">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="widget">
+                    <div class="widget-header bordered-bottom bordered-yellow">
+                        <span class="widget-caption">实时概况</span>
+                        <a href="javascript:void(0);" onclick="showhelp();" style="font-weight:bold">显示功能帮助</a>
+                        <div class="widget-buttons">
+                            <a href="#" data-toggle="maximize">
+                                <i class="fa fa-expand"></i>
+                            </a>
+                            <a href="#" data-toggle="collapse">
+                                <i class="fa fa-minus"></i>
+                            </a>
+                            <a href="#" data-toggle="dispose">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="widget-body no-padding">
+                        <table class="table table-bordered table-hover table-striped table-hover" id="searchable">
+                            <thead class="bordered-darkorange">
+                                <div style="margin-left:10px;float:left;margin-top:20px;font-size: 12px">
+                                    <b>实时数据：<div id="current-time"></div></b>
+                                </div>
+                                <hr style="clear:both;margin-top:70px;"/>
+                                <div style="margin-left:10px;float:left;margin-bottom:20px;">
+                                <strong>付费人数：</strong>统计所选时期内，每日成功充值的玩家数量，去重<br>
+                                <strong>收入金额：</strong>实时统计当日用户总付费金额<br/>
+                                <strong>新增玩家：</strong>实时统计当日新增玩家账号数量<br/>
+                                <strong>新增设备：</strong>实时统计当日激活的设备数量，如果已安装的游戏激活标识被移除的话，则设备激活不会被去重<br/>
+                                <strong>登录玩家：</strong>实时统计当日所有进行登录行为的玩家账号数量<br/>
+                                <strong>登录老玩家：</strong>实时统计当日有登陆过游戏的老玩家的账号数量<br/></div>
+                                <hr style="clear:both;border-bottom:3px solid red;margin-top:20px"/>
+                            </thead>
+                        </table>
+                        <table  class="table table-bordered table-hover table-striped table-hover" id="searchable">
+                        <thead class="bordered-darkorange">
+                        <tr role="row" id="test">
+                                    <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 201px;" ></th>
+                                    <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 201;" >付费人数</th>
+                                    <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 201;" >收入金额</th>
+                                    <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 201px;" >新增设备</th>
+                                    <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 201;" >登录玩家</th>
+                                    <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 201px;" >新增玩家</th>
+                                    <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 201;" >登录老玩家</th>
+                        </tr>            
+                        <tr>
+                        <td>今日实时</td>
+                        <td><!--{$arrs.today.paysum|default:0}--></td><td><!--{$arrs.today.total|default:0}--></td><td><!--{$arrs.today.devices|default:0}--></td><td><!--{$arrs.today.loginplay|default:0}--></td><td><!--{$arrs.today.newplay|default:0}--></td><td><!--{$arrs.today.oldplay|default:0}--></td>
+                        </tr><tr>
+                        <td>昨日</td>
+                        <td><!--{$arrs.yestoday.paysum|default:0}--></td><td><!--{$arrs.yestoday.total|default:0}--></td><td><!--{$arrs.yestoday.devices|default:0}--></td><td><!--{$arrs.yestoday.loginplay|default:0}--></td><td><!--{$arrs.yestoday.newplay|default:0}--></td><td><!--{$arrs[1].oldplay|default:0}--></td>
+                        </tr><tr>
+                        <td>当月累计</td>
+                         <td><!--{$arrs.total_paysum|default:0}--></td><td><!--{$arrs.totals|default:0}--></td><td><!--{$arrs.total_devices|default:0}--></td><td><!--{$arrs.total_loginplay|default:0}--></td><td><!--{$arrs.total_newplay|default:0}--></td><td><!--{$arrs.total_oldplay|default:0}--></td>
+                        </tr>
+                        </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="templates/js/datatable/jquery.dataTables.min.js"></script>
+    <script src="templates/js/datatable/ZeroClipboard.js"></script>
+    <script src="templates/js/datatable/dataTables.tableTools.min.js"></script>
+    <script src="templates/js/datatable/dataTables.bootstrap.min.js"></script>
+    <script src="templates/js/datatable/datatables-init.js"></script>
+    <script>
+        InitiateSimpleDataTable.init();
+        InitiateEditableDataTable.init();
+        InitiateExpandableDataTable.init();
+
+        //获取当前时间
+        setInterval(function() {
+            var now = (new Date()).toLocaleString();
+            $('#current-time').text(now);
+        }, 100);
+
+        //每5分钟刷新页面
+        // setInterval(function() {
+        //      window.location.reload();
+        // }, 60000*5);
+
+    </script>
+    <!--{/if}-->  
+    <script>
+        $(function(){
+            if('<!--{$meg}-->' !=''){
+                $("#toast-container").show();
+            }else{
+                $("#toast-container").hide();
+            }
+            $("#toast-container").bind('click',function(){
+                $("#toast-container").hide();
+            });
+        });
+        function showhelp(){
+            $("#toast-container").show();
+        }
+
+    </script>
+    <div id="toast-container" class="toast-bottom-right"><div class="toast fa-check toast-blue" ><button class="toast-close-button">×</button><div class="toast-message"><!--{$meg}--></div></div></div>
+        <!--显示主页信息-->
+    <!-- /Main Container -->
+    <!--消息提示-->
+</body>
+<!--  /Body -->
+<script src="templates/js/bootstrap.min.js"></script>
+<!--Beyond Scripts-->
+<script src="templates/js/beyond.min.js"></script>
+<!--Page Related Scripts-->
+
+<!--Bootstrap Date Picker-->
+<script src="templates/js/datetime/bootstrap-datepicker.js"></script>
+<script type="text/javascript">        
+    //--Bootstrap Date Picker--
+    $('.date-picker').datepicker();
+</script>
+</html>

@@ -1,0 +1,275 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- Head -->
+<head>
+<!--{include file="head.html"}-->
+</head>
+<!-- /Head -->
+<!-- Body -->
+<body>
+    <!-- Loading Container -->
+        <!--{include file="loading.html"}-->
+    <!--  /Loading Container -->
+    
+    <!-- Main Container -->
+    <!--{if "run_alldata" == $run_alldata}-->  <!--综合数据列表-->
+    <style>
+        ul{
+            list-style: none;
+        }
+    </style>
+    <div class="page-body">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <h5 class="row-title before-themesecondary">运营综合数据</h5>
+                <br/>
+                <div style="margin-left:10px;float:left;">时间：<input type="text" value="" style="width:200px" class="form-control date-picker" name="starttime1" id="starttime1" data-date-format="dd-mm-yyyy"></div>
+                <div style="margin-left:10px;float:left;" class="dtype1">对比选择：
+                    <select name="dtype" id='dtype' style="width:100%;">
+                        <option value="d">日</option>
+                        <option value="w">周</option>
+                        <option value="m">月</option>
+                    </select>
+                </div>
+                <div style="margin-left:10px;float:left;">请选择游戏：
+                    <select name="game1" id='game1' style="width:100%;" style="width:200px;">
+                        <option value="0">请选择游戏</option>
+                        <!--{$gamestr}-->
+                    </select>
+                </div>
+                <div style="margin-left:10px;margin-top:20px;"><input type='button' id='do1' class="btn btn-blue" value="查询" /></div>
+                <br/>
+                <div class="row well bg-themeprimary no-margin">
+                    <div style="margin:0 auto;width:1300px">
+                        <div class="col-lg-4 col-sm-2 col-xs-12">
+                            <div class="plan-circular animated bounce">
+                                <span class="plan-title" style='font-size:18px;'>新注册用户</span>
+                                <hr class="title-devider">
+                                <div class="plan-body">
+                                    <div class="plan-currency">人</div>
+                                    <div class="plan-price now0">0</div>
+                                </div>
+                                <hr class="title-devider">
+                                <div class="plan-title" style='font-size:14px'>同比：<span class="tb0">0</span>%<i class="fa fa-arrow-up green" style="margin-left:12px"></i></div>
+                                <div class="plan-title" style='font-size:14px'>环比：<span class="hb0">0</span>%<i class="fa fa-arrow-down red" style="margin-left:12px"></i></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-2 col-xs-12">
+                            <div class="plan-circular animated bounce">
+                                <span class="plan-title" style='font-size:18px;'>游戏总流水</span>
+                                <hr class="title-devider">
+                                <div class="plan-body">
+                                    <div class="plan-currency">￥</div>
+                                    <div class="plan-price now1">0</div>
+                                </div>
+                                <hr class="title-devider">
+                                <div class="plan-title" style='font-size:14px'>同比：<span class="tb1">0</span>%<i class="fa fa-arrow-up green" style="margin-left:12px"></i></div>
+                                <div class="plan-title" style='font-size:14px'>环比：<span class="hb1">0</span>%<i class="fa fa-arrow-down red" style="margin-left:12px"></i></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-2 col-xs-12">
+                            <div class="plan-circular animated flipInX">
+                                <span class="plan-title" style='font-size:18px;'>活跃用户数</span>
+                                <hr class="title-devider">
+                                <div class="plan-body">
+                                    <div class="plan-currency">人</div>
+                                    <div class="plan-price now2">0</div>
+                                </div>
+                                <hr class="title-devider">
+                                <div class="plan-title" style='font-size:14px'>同比：<span class="tb2">0</span>%<i class="fa fa-arrow-up green" style="margin-left:12px"></i></div>
+                                <div class="plan-title" style='font-size:14px'>环比：<span class="hb2">0</span>%<i class="fa fa-arrow-down red" style="margin-left:12px"></i></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-2 col-xs-12">
+                            <div class="plan-circular animated bounce">
+                                <span class="plan-title" style='font-size:18px;'>arpu值</span>
+                                <hr class="title-devider">
+                                <div class="plan-body">
+                                    <div class="plan-currency">%</div>
+                                    <div class="plan-price now3">0</div>
+                                </div>
+                                <hr class="title-devider">
+                                <div class="plan-title" style='font-size:14px'>同比：<span class="tb3">0</span>%<i class="fa fa-arrow-up green" style="margin-left:12px"></i></div>
+                                <div class="plan-title" style='font-size:14px'>环比：<span class="hb3">0</span>%<i class="fa fa-arrow-down red" style="margin-left:12px"></i></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-2 col-xs-12">
+                            <div class="plan-circular animated bounce">
+                                <span class="plan-title" style='font-size:18px;'>付费率</span>
+                                <hr class="title-devider">
+                                <div class="plan-body">
+                                    <div class="plan-currency">%</div>
+                                    <div class="plan-price now4">0</div>
+                                </div>
+                                <hr class="title-devider">
+                                <div class="plan-title" style='font-size:14px'>同比：<span class="tb4">0</span>%<i class="fa fa-arrow-up green" style="margin-left:12px"></i></div>
+                                <div class="plan-title" style='font-size:14px'>环比：<span class="hb4">0</span>%<i class="fa fa-arrow-down red" style="margin-left:12px"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h5 class="row-title before-themesecondary">综合数据图表</h5>
+                <div>暂无数据~</div>
+                <h5 class="row-title before-themesecondary">综合数据表格</h5>
+                <br/>
+                <div style="margin-left:10px;float:left;">开始时间：<input type="text" value="" style="width:200px" class="form-control date-picker" name="starttime2" id="starttime2" data-date-format="dd-mm-yyyy"></div>
+                <div style="margin-left:10px;float:left;">结束时间：<input type="text" value="" style="width:200px;" class="form-control date-picker" name="endtime2" id="endtime2" data-date-format="dd-mm-yyyy"></div>
+                <div style="margin-left:10px;float:left;">请选择游戏：
+                    <select name="game2" id='game2' style="width:100%;" style="width:200px;">
+                        <option value="0">请选择游戏</option>
+                        <!--{$gamestr}-->
+                    </select>
+                </div>
+                <div style="margin-left:10px;margin-top:20px;"><input type='button' id='getinfo' class="btn btn-blue" value="查询" /></div>
+                <br/>
+                <table class="table table-bordered table-hover table-striped table-hover" id="searchable">
+                </table>
+            </div>
+            </div>
+        </div>
+    </div>
+    <script src="templates/js/datatable/jquery.dataTables.min.js"></script>
+    <script src="templates/js/datatable/ZeroClipboard.js"></script>
+    <script src="templates/js/datatable/dataTables.tableTools.min.js"></script>
+    <script src="templates/js/datatable/dataTables.bootstrap.min.js"></script>
+    <script src="templates/js/datatable/datatables-init.js"></script>
+    <script>
+        InitiateSimpleDataTable.init();
+        InitiateEditableDataTable.init();
+        InitiateExpandableDataTable.init();
+        var data='';
+        $(document).ready(function() {
+            /*异步条件请求*/
+            $("#getinfo").bind("click",function(){
+                var starttime2     = $('#starttime2').val();
+                var endtime2       = $('#endtime2').val();
+                var game2          = $('#game2').val();
+
+                //异步请求数据
+                $.post("index.php?module=run_alldata&method=listinfo",{stime: starttime2,etime: endtime2,game: game2},
+                     function(data){
+                        data = eval("("+data+")");
+                        if(data.str ==1001){
+                            alert(data.meg);
+                        }
+                        $('#searchable').dataTable({"bDestroy":true,"sScrollX": "100%",
+                            "bScrollCollapse": true,
+                            "searching":true,
+                            "aLengthMenu":false,
+                            "sDom": "Tflt<'row DTTTFooter'<'col-sm-6'i><'col-sm-6'p>>",
+                            "aaSorting": [[1, 'asc']],
+                            "aLengthMenu": [
+                               [5, 15, 20],
+                               [5, 15, 20]
+                            ],
+                            "iDisplayLength": 10,
+                            "oTableTools": {
+                                "aButtons": []
+                            },
+                            "language": {
+                                "search": "",
+                                "sLengthMenu": "显示 _MENU_ 项结果",
+                                "sProcessing": "处理中...",
+                                "oPaginate": {
+                                    "sFirst": "首页",
+                                    "sPrevious": "上页",
+                                    "sNext": "下页",
+                                    "sLast": "末页"
+                                },
+                                "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                                "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                                "infoFiltered":   "(总过滤_MAX_条)",
+                                "zeroRecords":    "没有匹配结果",
+                            },
+                            "data": data,
+                            "columns": [
+                                { "sTitle": "时间",class:'123'},
+                                { "sTitle": "新增注册人数"},
+                                { "sTitle": "游戏总流水"},
+                                { "sTitle": "活跃用户数"},
+                                { "sTitle": "arpu"},
+                                { "sTitle": "付费率"},
+                        ]});//重新调用插件
+                        $("thead input").keyup(function () {
+                            /* Filter on the column (the index) of this element */
+                            oTable.fnFilter(this.value, $("thead input").index(this));
+                        });
+
+                        $('#expandabledatatable_column_toggler input[type="checkbox"]').change(function () {
+                            var iCol = parseInt($(this).attr("data-column"));
+                            var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
+                            oTable.fnSetColumnVis(iCol, (bVis ? false : true));
+                        });
+
+                        $('body').on('click', '.dropdown-menu.hold-on-click', function (e) {
+                            e.stopPropagation();
+                        })
+                     }
+                 );
+            });
+            /*绑定圈圈显示*/
+            $("#do1").bind("click",function(){
+                var dtype = $('#dtype').val();
+                var game = $('#game1').val();
+                var stime = $('#starttime1').val();
+                //异步请求数据
+                $.post("index.php?module=run_alldata&method=cdata",{dtype:dtype,game:game,stime:stime},
+                    function(data){
+                        data = eval("("+data+")");
+                        if(data.str == 1000){
+                            alert('数据获取成功！');
+                        }
+                        $.each(data.data, function(i,item){
+                            $(".now"+i).html(item['d1']?item['d1'] : 0);
+                            $(".tb"+i).html(item['d2']?item['d2'] : 0);
+                            $(".hb"+i).html(item['d3']?item['d3'] : 0);
+                        });
+                    }
+                 )
+            });
+        } );
+    </script>
+    <!--{/if}-->  <!--列表-->
+    <script>
+        $(function(){
+            if('<!--{$meg}-->' !=''){
+                $("#toast-container").show();
+            }else{
+                $("#toast-container").hide();
+            }
+            $("#toast-container").bind('click',function(){
+                $("#toast-container").hide();
+            });
+        });
+        function showhelp(){
+            $("#toast-container").show();
+        }
+        function update_url(){
+            var stime = (new Date($(".update_stime").val())).getTime();
+            var etime = (new Date($(".update_etime").val())).getTime();
+            //判断开始时间不能小于结束时间
+            if(etime-stime<0){
+                alert('结束时间需大于开始时间！');
+                return;
+            }
+            location.href="./update/update_remain.php?date1="+stime+"&date2="+etime;
+        }
+    </script>
+    <div id="toast-container" class="toast-bottom-right"><div class="toast fa-check toast-blue" ><button class="toast-close-button">×</button><div class="toast-message"><!--{$meg}--></div></div></div>
+        <!--显示主页信息-->
+    <!-- /Main Container -->
+    <!--消息提示-->
+</body>
+<!--  /Body -->
+<script src="templates/js/bootstrap.min.js"></script>
+<!--Beyond Scripts-->
+<script src="templates/js/beyond.min.js"></script>
+<!--Page Related Scripts-->
+<!--Bootstrap Date Picker-->
+<script src="templates/js/datetime/bootstrap-datepicker.js"></script>
+<script type="text/javascript">        
+    //--Bootstrap Date Picker--
+    $('.date-picker').datepicker();
+</script>
+</html>

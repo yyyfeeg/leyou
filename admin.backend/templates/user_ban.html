@@ -1,0 +1,347 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- Head -->
+<head>
+<!--{include file="head.html"}-->
+<link href="myeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" src="myeditor/umeditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="myeditor/umeditor.min.js"></script>
+<script type="text/javascript" src="myeditor/lang/zh-cn/zh-cn.js"></script>
+</head>
+<!-- /Head -->
+<!-- Body -->
+<body>
+    <!-- Loading Container -->
+        <!--{include file="loading.html"}-->
+    <!--  /Loading Container -->
+    
+    <!-- Main Container -->
+     <!--{if "listban" == $active}-->  <!--封禁列表-->
+    <style>
+        ul{
+            list-style: none;
+        }
+    </style>
+    <div class="page-body">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="widget">
+                    <div class="widget-header bordered-bottom bordered-yellow">
+                        <span class="widget-caption">封禁列表</span>
+                        <a href="javascript:void(0);" onclick="showhelp();" style="font-weight:bold">显示功能帮助</a>
+                        <div class="widget-buttons">
+                            <a href="#" data-toggle="maximize">
+                                <i class="fa fa-expand"></i>
+                            </a>
+                            <a href="#" data-toggle="collapse">
+                                <i class="fa fa-minus"></i>
+                            </a>
+                            <a href="#" data-toggle="dispose">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="widget-body no-padding">
+                        <form action="index.php" name="form1" id="form1" style="margin:0px;">
+                        <table class="table table-bordered table-hover table-striped table-hover" id="searchable">
+                            <thead class="bordered-darkorange">
+                                <br/>
+                                <input type='hidden' name="module" value='user_ban'/>
+                                <input type='hidden' name="method" value='listban'/>
+                                <div style="margin-left:10px;float:left;">生效时间：<input type="text" value="<!--{$starttime2}-->" style="width:200px" class="form-control date-picker" name="starttime2" id="starttime2" data-date-format="yyyy-mm-dd"></div>
+                                <div style="margin-left:10px;float:left;">请选择游戏：
+                                <select name="gid" id='gid' style="width:100%;" style="width:200px;">
+                                    <option value="0">请选择游戏</option>
+                                    <!--{$gamestr}-->
+                                </select>
+                                </div>
+                                <div style="margin-left:10px;float:left;">封禁类型：
+                                    <div class="form-group">
+                                        <select name="status" id='status' style="width:100%;">
+                                            <option value="0">请选择</option>
+                                            <option value="1" <!--{if $status eq 1}-->selected='selected'<!--{/if}-->>封禁账号</option>
+                                            <option value="2" <!--{if $status eq 2}-->selected='selected'<!--{/if}-->>封禁IP</option>
+                                            <option value="3" <!--{if $status eq 3}-->selected='selected'<!--{/if}-->>封禁设备号</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- <div style="margin-left:10px;float:left;">封禁时限：
+                                    <div class="form-group">
+                                        <select name="tid" id='tid' style="width:100%;">
+                                            <option value="30" <!--{if $tid eq 30}-->selected='selected'<!--{/if}-->>30分钟</option>
+                                            <option value="180" <!--{if $tid eq 180}-->selected='selected'<!--{/if}-->>3小时</option>
+                                            <option value="720" <!--{if $tid eq 720}-->selected='selected'<!--{/if}-->>12小时</option>
+                                            <option value="1440" <!--{if $tid eq 1440}-->selected='selected'<!--{/if}-->>1天</option>
+                                            <option value="4320" <!--{if $tid eq 4320}-->selected='selected'<!--{/if}-->>3天</option>
+                                            <option value="10080" <!--{if $tid eq 10080}-->selected='selected'<!--{/if}-->>7天</option>
+                                            <option value="43200" <!--{if $tid eq 43200}-->selected='selected'<!--{/if}-->>30天</option>
+                                            <option value="0" <!--{if $tid eq 0}-->selected='selected'<!--{/if}-->>永久</option>
+                                        </select>
+                                    </div>
+                                </div> -->
+                                <div style="margin-left:10px;float:left;margin-top:20px;"><input type='submit' id='getinfo2' class="btn btn-blue" value="查询" /></div>
+                                </thead>
+                        </table>
+                        </form>
+                        <hr style="clear:both;border-bottom:3px solid red;margin-top:10px"/>
+                        <table  class="table table-bordered table-hover table-striped table-hover" id="searchable">
+                        <thead class="bordered-darkorange">
+                        <tr role="row" id="test">
+                            <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 118px;" >系统ID</th>
+                            <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 118px;" >封禁所属游戏</th>
+                            <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 118px;" >封禁账号/IP/设备号</th>
+                            <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 118px;" >封禁类型</th>
+                            <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 118px;" >封禁状态</th>
+                            <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 118px;" >封禁时限</th>
+                            <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 118px;" >封禁理由</th>
+                            <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 118px;" >封禁开始时间</th>
+                            <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 118px;" >封禁人</th>
+                            <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 118px;" >操作</th>
+                        </tr>
+                        <!--{foreach from=$data item=v}-->
+                            <tr id="odd">
+                                <td><!--{$v.sysid}--></td>
+                                <td><!--{$v.uc_gid}--></td>
+                                <td><!--{$v.uc_uids}--></td>
+                                <td><!--{$v.uc_type}--></td>
+                                <td><!--{$v.uc_status}--></td>
+                                <td><!--{$v.uc_timelimit}--></td>
+                                <td><!--{$v.uc_reason}--></td>
+                                <td><!--{$v.uc_closetime}--></td>
+                                <td><!--{$v.uc_addname}--></td>
+                                <td><!--{$v.action}--></td>
+                            </tr>
+                        <!--{/foreach}-->
+                        <tr bgcolor="#FFFFFF">
+                            <td colspan="14"><div align="right">每页 <font color="#FF0000"><!--{$pageinfo.pagesize}--></font> 条 共 <font color="#FF0000"><!--{$pageinfo.totalpage}--></font> 页 共 <font color="#FF0000"><!--{$pageinfo.totalrecord}--></font> 条记录&nbsp;<!--{$pageinfo.multi}--></div></td>
+                        </tr>
+                        </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="templates/js/datatable/jquery.dataTables.min.js"></script>
+    <script src="templates/js/datatable/ZeroClipboard.js"></script>
+    <script src="templates/js/datatable/dataTables.tableTools.min.js"></script>
+    <script src="templates/js/datatable/dataTables.bootstrap.min.js"></script>
+    <script src="templates/js/datatable/datatables-init.js"></script>
+    <script>
+        InitiateSimpleDataTable.init();
+        InitiateEditableDataTable.init();
+        InitiateExpandableDataTable.init();
+    </script>
+    <!--{/if}-->  <!--封禁列表-->
+
+    <!--{if "addban" == $active}--> <!--批量封禁-->
+    <div class="col-lg-12 col-lg-offset-3 col-sm-12 col-xs-12" style="0 auto">
+        <h5 class="row-title before-pink"><i class="fa fa-expand pink"></i>批量封禁</h5>
+        <div class="row">
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div class="widget">
+                    <div class="widget-header bordered-top bordered-palegreen">
+                        <span class="widget-caption">批量封禁表单</span>
+                    </div>
+                    <div class="widget-body">
+                        <div class="collapse in">
+                            <form enctype="multipart/form-data" action="index.php?module=user_ban&method=addban" method="post" id='myform' name='myform'>
+                                <input name="act" value="addban" type="hidden">
+                                <input type='hidden' name="module" value='user_ban'/>
+                                <input type='hidden' name="method" value='addban'/>
+                                <div class="form-group">
+                                    <label for="definpu">封禁类型：</label>
+                                    <label>
+                                        <input type="radio" value='1' name='screen' id='screen' onclick="showdown(1)" checked="true">
+                                        <span class="text">封禁账号</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" value='2' name='screen' id='screen' onclick="showdown(2)" >
+                                        <span class="text">封禁IP</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" value='3' name='screen' id='screen' onclick="showdown(3)" >
+                                        <span class="text">封禁设备号</span>
+                                    </label> 
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">封禁游戏（不选为所有游戏封禁）：</label>
+                                    <select name="gid" id='gid' style="width:100%;" style="width:200px;">
+                                    <option value="0">请选择游戏</option>
+                                    <!--{$gamestr}-->
+                                </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">封禁时限：</label><span style="color:red">*</span>
+                                    <select name="tid" id='tid' style="width:100%;">
+                                        <option value="30" <!--{if $tid eq 30}-->selected='selected'<!--{/if}-->>30分钟</option>
+                                        <option value="180" <!--{if $tid eq 180}-->selected='selected'<!--{/if}-->>3小时</option>
+                                        <option value="720" <!--{if $tid eq 720}-->selected='selected'<!--{/if}-->>12小时</option>
+                                        <option value="1440" <!--{if $tid eq 1440}-->selected='selected'<!--{/if}-->>1天</option>
+                                        <option value="4320" <!--{if $tid eq 4320}-->selected='selected'<!--{/if}-->>3天</option>
+                                        <option value="10080" <!--{if $tid eq 10080}-->selected='selected'<!--{/if}-->>7天</option>
+                                        <option value="43200" <!--{if $tid eq 43200}-->selected='selected'<!--{/if}-->>30天</option>
+                                        <option value="0" <!--{if $tid eq 0}-->selected='selected'<!--{/if}-->>永久</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">封禁账号：</label><span style="color:red">*</span>
+                                    <textarea class="form-control" rows="3" placeholder="封禁账号多个用','号隔开" id='uids' name='uids' onblur="clean_error('uids')"><!--{$data.uc_uids}--></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">封禁理由：</label>
+                                    <input type="text" class="form-control" id="reason" name="reason" placeholder="封禁理由" value="<!--{$data.uc_reason}-->" ">
+                                </div>
+                                <button type="submit" class="btn btn-blue" onclick="return addGameCheck('index.php?module=user_ban&method=addban','myform',0);">添 加</button>
+                                <button type="submit" onClick="history.go(-1);return false;" value="取消" name="submit" class="btn btn-blue">取 消</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--{/if}-->  <!--编辑封禁-->
+
+    <!--{if "editban" == $active}--> <!--封禁修改-->
+    <div class="col-lg-12 col-lg-offset-3 col-sm-12 col-xs-12" style="0 auto">
+        <h5 class="row-title before-pink"><i class="fa fa-expand pink"></i>封禁修改</h5>
+        <div class="row">
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div class="widget">
+                    <div class="widget-header bordered-top bordered-palegreen">
+                        <span class="widget-caption">封禁修改表单</span>
+                    </div>
+                    <div class="widget-body">
+                        <div class="collapse in">
+                            <form enctype="multipart/form-data" action="index.php?module=user_ban&method=editban" method="post" id='myform' name='myform'>
+                                <input name="act" value="editban" type="hidden">
+                                <input type='hidden' name="module" value='user_ban'/>
+                                <input type='hidden' name="method" value='editban'/>
+                                <input type='hidden' name="id" value="<!--{$sysid}-->"/>
+                                <div class="form-group">
+                                    <label for="definpu">封禁类型：</label>
+                                    <label>
+                                        <input type="radio" value='1' name='screen' id='screen' onclick="showdown(1)" <!--{if $status eq 1}-->checked='true'<!--{/if}-->>
+                                        <span class="text">封禁账号</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" value='2' name='screen' id='screen' onclick="showdown(2)" <!--{if $status eq 2}-->checked='true'<!--{/if}-->>
+                                        <span class="text">封禁IP</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" value='3' name='screen' id='screen' onclick="showdown(3)" <!--{if $status eq 3}-->checked='true'<!--{/if}-->>
+                                        <span class="text">封禁设备号</span>
+                                    </label> 
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">封禁游戏（不选为所有游戏封禁）：</label>
+                                    <select name="gid" id='gid' style="width:100%;" style="width:200px;">
+                                    <option value="0">请选择游戏</option>
+                                    <!--{$gamestr}-->
+                                </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">封禁时限：</label><span style="color:red">*</span>
+                                    <select name="tid" id='tid' style="width:100%;">
+                                        <option value="30" <!--{if $tid eq 30}-->selected='selected'<!--{/if}-->>30分钟</option>
+                                        <option value="180" <!--{if $tid eq 180}-->selected='selected'<!--{/if}-->>3小时</option>
+                                        <option value="720" <!--{if $tid eq 720}-->selected='selected'<!--{/if}-->>12小时</option>
+                                        <option value="1440" <!--{if $tid eq 1440}-->selected='selected'<!--{/if}-->>1天</option>
+                                        <option value="4320" <!--{if $tid eq 4320}-->selected='selected'<!--{/if}-->>3天</option>
+                                        <option value="10080" <!--{if $tid eq 10080}-->selected='selected'<!--{/if}-->>7天</option>
+                                        <option value="43200" <!--{if $tid eq 43200}-->selected='selected'<!--{/if}-->>30天</option>
+                                        <option value="0" <!--{if $tid eq 0}-->selected='selected'<!--{/if}-->>永久</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">封禁账号：</label><span style="color:red">*</span>
+                                    <textarea class="form-control" rows="3" placeholder="封禁账号多个用','号隔开" id='uids' name='uids' onblur="clean_error('uids')"><!--{$data.uc_uids}--></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">封禁理由：</label>
+                                    <input type="text" class="form-control" id="reason" name="reason" placeholder="封禁理由" value="<!--{$data.uc_reason}-->" ">
+                                </div>
+                                <button type="submit" class="btn btn-blue" onclick="return addGameCheck('index.php?module=user_ban&method=editban','myform',0);">修 改</button>
+                                <button type="submit" onClick="history.go(-1);return false;" value="取消" name="submit" class="btn btn-blue">取 消</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--{/if}-->
+
+    <script type="text/javascript">
+    function addGameCheck(url,id,name)
+    {
+        //检测数据
+        var teamname = clean_error('teamname');
+        var teamdesc = clean_error('teamdesc');
+        if(teamname && teamdesc){
+            formaction(url,id,name);
+        }else{
+            return false;
+        }
+    }
+
+    function clean_error(name){
+        $('#'+name).next().remove();
+        var names = $('#'+name).val();
+        if(names == "" || names == '0' || names == 'undefined'){
+            $('#'+name).parent().attr("class","has-error");
+            $('#'+name).focus();
+            $('#'+name).after('<small class="help-block" style="" data-bv-validator="notEmpty" data-bv-validator-for="address"></small>');
+            $('#'+name).next().html('内容填写有误！');
+            return false;
+        }else{
+            $('#'+name).parent().attr("class","form-group");
+            $('#'+name).next().html();
+            $('#'+name).next().remove();
+            return true;
+        }
+    }
+
+    function formaction(url,id,name){
+        if(name==0){
+            document.myform.action = url;
+            $("#"+id).submit();
+        }else{
+            document.myform1.action = url;
+            $("#"+id).submit();
+        }
+    }
+    </script>
+    <script>
+        $(function(){
+            if('<!--{$meg}-->' !=''){
+                $("#toast-container").show();
+            }else{
+                $("#toast-container").hide();
+            }
+            $("#toast-container").bind('click',function(){
+                $("#toast-container").hide();
+            });
+        });
+        function showhelp(){
+            $("#toast-container").show();
+        }
+    </script>
+    <div id="toast-container" class="toast-bottom-right"><div class="toast fa-check toast-blue" ><button class="toast-close-button">×</button><div class="toast-message"><!--{$meg}--></div></div></div>
+        <!--显示主页信息-->
+    <!-- /Main Container -->
+    <!--消息提示-->
+</body>
+<!--  /Body -->
+<script src="templates/js/bootstrap.min.js"></script>
+<!--Beyond Scripts-->
+<script src="templates/js/beyond.min.js"></script>
+<script src="templates/js/datetime/bootstrap-datepicker.js"></script>
+<script src="templates/js/datetime/bootstrap-timepicker.js"></script>
+<!--Page Related Scripts-->
+<script>
+    $('.date-picker').datepicker();
+</script>
+</html>

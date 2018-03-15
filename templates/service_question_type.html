@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		<meta charset="utf-8" />
+
+		<meta http-equiv = "X-UA-Compatible" content ="IE=edge,chrome=1" />
+
+		<meta name="renderer" content="webkit"/>
+
+        <title>选择问题类型 - <!--{$webname}--></title>
+
+        <meta name="keywords" content="<!--{$keywords}-->" />
+
+		<meta name="description" content="<!--{$desc}-->" />
+
+	<link href="<!--{$web_url}-->/templates/css/base.css" rel="stylesheet" type="text/css">
+
+	<link href="<!--{$web_url}-->/templates/css/mian.css" rel="stylesheet" type="text/css">
+
+	</head>
+
+	<body>
+
+		<div class="wrap">
+
+			<!--{include file="service_header.html"}-->
+
+            <!--{include file="service_banner.html"}-->
+
+			<div class="mian">
+
+				<div class="box">
+
+					<div class="box_h">
+
+						<i></i>
+
+						请选择对应的问题类型
+
+					</div>
+
+					<ul class="box_cent_wt">
+
+						<li>
+
+							<div class="kf_yx">
+
+								<ul class="wtlx" id="wt_type">
+
+                                	<!--{foreach from=$onetype key=tk item=value }-->
+
+                                    <li<!--{$value.class}-->>
+
+                                    	<a href="<!--{$web_url}-->/index.php?mo=service&me=submission&type=<!--{$value.id}-->&tid=<!--{$value.tid}-->&gid=<!--{$value.gid}-->" class="wt_type_choice">
+
+										<h3>
+
+											<i></i>
+
+											<em><!--{$value.name}--></em>
+
+										</h3>
+
+                                        </a>
+
+										<dl>
+
+                                        	<!--{section max=4 name=k loop=$value.faq}-->
+
+											<dd><a href="<!--{$web_url}-->/index.php?mo=service&me=problems&type=<!--{$value.id}-->&tid=<!--{$value.tid}-->&gid=<!--{$value.gid}-->&id=<!--{$value.faq[k].id}-->"><!--{$value.faq[k].title}--></a></dd>
+
+                                            <!--{/section}-->
+
+										</dl>
+
+									</li>
+
+                                    <!--{/foreach}-->
+
+								</ul>
+
+							</div>
+
+						</li>
+
+					</ul>
+
+				</div>
+				</div>
+			</div>
+		</div>
+		<!-- 脚部 -->
+		<!--{include file="service_footer.html"}-->
+		<!-- 脚部 end -->
+	</body>
+</html>

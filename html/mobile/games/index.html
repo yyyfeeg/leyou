@@ -1,0 +1,334 @@
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta name="wap-font-scale" content="no" />
+    <!-- 禁止浏览器优化 -->
+    <meta name="full-screen" content="yes">
+    <!-- UC强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- QQ强制全屏 -->
+    <meta name="viewport" content="width=640, target-densitydpi=device-dpi, minimum-scale=0.5, maximum-scale=2, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>欢乐游戏 - 游戏中心</title>
+    <meta name="Keywords" content="" />
+    <meta name="Description" content="" />
+    <link href="http://localhost/game_count/templates/mobile/css/common.css" rel="stylesheet" type="text/css">
+    <link href="http://localhost/game_count/templates/mobile/css/index.css" rel="stylesheet" type="text/css">
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
+    <script src="http://localhost/game_count/templates/mobile/js/jquery.handle.js" type="text/javascript"></script>
+    <script src="http://localhost/game_count/templates/mobile/js/jquery.slider.js" type="text/javascript"></script>
+    <script src="http://localhost/game_count/templates/mobile/js/dropload.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <!-- 移动端 -->
+    <div class="wap">
+        <!--头部-->
+        <div class="head">
+            <!--返回-->
+            <div class="index">
+                <a href="http://localhost/game_count/html/mobile/index.html" title="返回"><img src="http://localhost/game_count/skin0/images/back.png" /></a>
+            </div>
+            <!--返回 end-->
+            <!--新闻资讯-->
+            <div class="headline">
+                <p>产品中心</p>
+            </div>
+            <!--新闻资讯 end-->
+            <!--导航-->
+            <div class="nav">
+                <!--导航按钮-->
+                <div class="nav_btn nav" style="height: 100px;">
+                    <button id="top_menu" class="btn-nav">
+                        <span class="icon-bar top"></span>
+                        <span class="icon-bar middle"></span>
+                        <span class="icon-bar bottom"></span>
+                    </button>
+                </div>
+                <!--导航按钮 end-->
+            </div>
+            <!--导航 end-->
+            <div class="nav-content hideNav hidden">
+                <!--导航内容-->
+                <div class="nav_content effect_1 ggg" id="lxt">
+                    <ul>
+                        <li class="nav_1"><a href="http://localhost/game_count/html/mobile/index.html" title="首页"><span><img src="http://localhost/game_count/skin0/images/首页.png" style="margin-top: 3px;" /></span><p>首页</p></a></li>
+                        <li class="nav_2"><a href="http://localhost/game_count/html/mobile/news/index.html" title="新闻"><span><img src="http://localhost/game_count/skin0/images/新闻.png" style="margin-top: 3px;" /></span><p>新闻</p></a></li>
+                        <li class="nav_3 "><a href="javascript:void(0)" onclick="show();" title="礼包"><span><img src="http://localhost/game_count/skin0/images/礼包.png" style="margin-top: 3px;" /></span><p>礼包</p></a></li>
+                        <li class="nav_4 on"><a href="http://localhost/game_count/html/mobile/games/index.html" title="游戏"><span><img src="http://localhost/game_count/skin0/images/游戏.png" style="margin-top: 3px;" /></span><p>游戏</p></a></li>
+                        <li class="nav_5 "><a href="javascript:void(0)" onclick="show();" title="用户"><span><img src="http://localhost/game_count/skin0/images/用户.png" style="margin-top: 3px;" /></span><p>用户</p></a></li>
+                        <li class="nav_6 "><a href="javascript:void(0)" onclick="show();" title="客服"><span><img src="http://localhost/game_count/skin0/images/客服.png" style="margin-top: 3px;" /></span><p>客服</p></a></li>
+                    </ul>
+                </div>
+                <!--导航内容 end-->
+            </div>
+        </div>
+        <!--头部 end-->
+        <!--内容-->
+        <div class="content">
+            <!--轮播图-->
+            <div class="banner banner_1">
+                <div class="flexslider banner_content">
+                    <ul class="slides">
+                                                <li><a href="#" title="出征吧！勇士" target="_blank"><img src="http://localhost/game_count/uploads/f_photos/2017/12/1512547248223390.jpg" width="600" height="252" alt="出征吧！勇士" /></a></li>
+                                                <li><a href="#" title="青龙偃月刀" target="_blank"><img src="http://localhost/game_count/uploads/f_photos/2018/01/1516240939300588.jpg" width="600" height="252" alt="青龙偃月刀" /></a></li>
+                                                <li><a href="#" title="神契幻奇谭" target="_blank"><img src="http://localhost/game_count/uploads/f_photos/2018/01/1516241075505392.jpg" width="600" height="252" alt="神契幻奇谭" /></a></li>
+                                            </ul>
+                </div>
+                <script type="text/javascript">
+                $(function() {
+                    $('.flexslider').flexslider({
+                        animation: "slide",
+                        directionNav: false,
+                        slideshowSpeed: 3000,
+                        start: function(slider) {}
+                    });
+                });
+                clearInterval(timer);
+                var timer = setInterval(function() {
+                    $('.flexslider').flexslider('play');
+                }, 3000);
+                </script>
+            </div>
+            <!--轮播图 end-->
+            <!--游戏-->
+            <div class="three_package lanren" style="margin-bottom: 6rem;">
+                <!--游戏内容-->
+                <div class="package_content hidden">
+                                        <div class="package_1">
+                        <span><a href="" target="_blank"><img src="http://localhost/game_count" width="177" /></a></span>
+                        <ul>
+                            <li class="big">
+                                <a href="" target="_blank">
+                                    
+                                </a>
+                            </li>
+                            <p>
+                                
+                            </p>
+                        </ul>
+                        <i><a href="">下载</a></i>
+                    </div>
+                                        <div class="package_1">
+                        <span><a href="javascript:alert('敬请期待！');" target="_blank"><img src="http://localhost/game_count/uploads/games/2017/12/1513329827876714.jpg" width="177" /></a></span>
+                        <ul>
+                            <li class="big">
+                                <a href="javascript:alert('敬请期待！');" target="_blank">
+                                    神契幻奇谭
+                                </a>
+                            </li>
+                            <p>
+                                一款3D玄幻手机网游，游戏以中西方相结合玄幻为背景，将东西方文化相结合，共同构建出了宏大的世界观
+                            </p>
+                        </ul>
+                        <i><a href="javascript:alert('敬请期待！');">下载</a></i>
+                    </div>
+                                        <div class="package_1">
+                        <span><a href="javascript:alert('敬请期待！');" target="_blank"><img src="http://localhost/game_count/uploads/games/2017/10/1508208220467312.jpg" width="177" /></a></span>
+                        <ul>
+                            <li class="big">
+                                <a href="javascript:alert('敬请期待！');" target="_blank">
+                                    青龙偃月刀
+                                </a>
+                            </li>
+                            <p>
+                                大型MMORPG手游《青龙偃月刀》威力加强版，传承经典RPG玩法，战、法、弓、剑四大职业全地图自由PK，100%10倍掉率，全身金装，超酷炫大翅膀。连续登录送V8+神兽坐骑，福利太多，怎一个爽字了得！祭出你的武器，披上你的铠甲，加入万人攻城大战，一起血战到底吧！
+                            </p>
+                        </ul>
+                        <i><a href="javascript:alert('敬请期待！');">下载</a></i>
+                    </div>
+                                        <div class="package_1">
+                        <span><a href="javascript:alert('敬请期待！');" target="_blank"><img src="http://localhost/game_count/uploads/games/2017/10/1508137715751096.jpg" width="177" /></a></span>
+                        <ul>
+                            <li class="big">
+                                <a href="javascript:alert('敬请期待！');" target="_blank">
+                                    卧龙天下
+                                </a>
+                            </li>
+                            <p>
+                                卧龙天下手游官网版是最新推出的经典三国风格的卡牌对战手游，游戏内容上完美还原了历史上三国著名人物，并以卡通形象呈现在大家面前，还有丰富的武将搭配系统，超多可供选择的武器装备，一起铸成这款具有划时代意义的三国卡牌对战手游！
+                            </p>
+                        </ul>
+                        <i><a href="javascript:alert('敬请期待！');">下载</a></i>
+                    </div>
+                                        <div class="package_1">
+                        <span><a href="javascript:alert('敬请期待！');" target="_blank"><img src="http://localhost/game_count/uploads/games/2017/10/1508137913721121.jpg" width="177" /></a></span>
+                        <ul>
+                            <li class="big">
+                                <a href="javascript:alert('敬请期待！');" target="_blank">
+                                    三国战起来
+                                </a>
+                            </li>
+                            <p>
+                                《三国战起来》万人国战手游iOS版已经正式上线，小伙伴们可以登录AppStore进行下载啦!游戏加入各种玩法让玩家体验更多精彩。特来约战各路英雄好汉，谱写动荡的乱世激情。上线还有多重豪礼拿到手软，更有超多给力活动等你来参与。挑战三国名将，成就乱世霸业，重燃激情，一触即发。
+                            </p>
+                        </ul>
+                        <i><a href="javascript:alert('敬请期待！');">下载</a></i>
+                    </div>
+                                        <div class="package_1">
+                        <span><a href="javascript:alert('敬请期待！');" target="_blank"><img src="http://localhost/game_count/uploads/games/2017/10/1508137950186624.jpg" width="177" /></a></span>
+                        <ul>
+                            <li class="big">
+                                <a href="javascript:alert('敬请期待！');" target="_blank">
+                                    战神天下
+                                </a>
+                            </li>
+                            <p>
+                                要玩《战神天下》是一款以上古神话为背景，以阵营战争、战斗力、养宠为核心玩法的ARPG网页游戏。游戏分为东胜神州、西牛贺洲、南瞻部洲三大阵营，以神将、琴圣、剑宗、道尊和飞羽为五大职业，玩家通过修炼渡劫成仙，打败群雄成就霸业，纵横天、地、人三界。九游战神天下游戏大全准备了海量的战神天下手机网游、战神天下手游、战神天下单机等免费下载资源，还有更多好玩的战神天下手机游戏在等着你哦，喜欢的小伙伴下载来体验一
+                            </p>
+                        </ul>
+                        <i><a href="javascript:alert('敬请期待！');">下载</a></i>
+                    </div>
+                                        <div class="package_1">
+                        <span><a href="javascript:alert('敬请期待！');" target="_blank"><img src="http://localhost/game_count/uploads/games/2017/10/1508137968906823.jpg" width="177" /></a></span>
+                        <ul>
+                            <li class="big">
+                                <a href="javascript:alert('敬请期待！');" target="_blank">
+                                    一统武林
+                                </a>
+                            </li>
+                            <p>
+                                一统武林手游是一款画风偏复古的趣味对决类手游，玩家在游戏中能够充分体验到武侠江湖的种种是非争端，学习至高武功参加武林大会角逐盟主之位，和红颜比翼双飞笑看风云红尘，多元化战斗对决副本体验，玩法丰富的pvp和pve模式等你来战！
+                            </p>
+                        </ul>
+                        <i><a href="javascript:alert('敬请期待！');">下载</a></i>
+                    </div>
+                                        <div class="package_1">
+                        <span><a href="javascript:alert('敬请期待！');" target="_blank"><img src="http://localhost/game_count/uploads/games/2017/10/1508137991188113.jpg" width="177" /></a></span>
+                        <ul>
+                            <li class="big">
+                                <a href="javascript:alert('敬请期待！');" target="_blank">
+                                    绝世剑神
+                                </a>
+                            </li>
+                            <p>
+                                绝世剑神手游是一款以经典同名小说绝世剑神为题材的战斗冒险RPG手游，激情刺激的冒险玩法，玩家可以感受到最劲爆的对决与最刺激的战斗，好玩程度绝对超乎你的想象！首创横版放置玩法，通过刷BOSS，挑战强大的怪兽！打造专属神器与法术！成为绝世剑神！
+                            </p>
+                        </ul>
+                        <i><a href="javascript:alert('敬请期待！');">下载</a></i>
+                    </div>
+                                        <!-- <div class="package_1">
+                    <span><a href="#" target="_blank"><img src="../skin0/images/tusw.png" width="177" /></a></span>
+                    <ul>
+                        <li class="big"><a href="#" target="_blank">《神契 幻奇谭》</a></li>
+                        <p>《神契》是漫画《神契 幻奇谭》改编动画作品,16年暑期各大网络平台播出。</p>
+                    </ul>
+                    <i><a href="#">下载</a></i>
+                </div> -->
+                </div>
+                <ul class="list">数据加载中，请稍后...</ul>
+                <div class="more" style="overflow: hidden;padding:10px;text-align: center;"><a style="display: block;width: 80px;padding:8px 0;color:#fff;margin:0 auto;background:#333;text-align:center;border-radius:3px;" href="javascript:;" onClick="lanren.loadMore();">加载更多</a></div>
+                <!--游戏内容-->
+            </div>
+            <script>
+            var _content = []; //临时存储li循环内容
+            var lanren = {
+                _default: 4, //默认显示图片个数
+                _loading: 2, //每次点击按钮后加载的个数
+                init: function() {
+                    var lis = $(".lanren .hidden div");
+                    $(".lanren ul.list").html("");
+                    for (var n = 0; n < lanren._default; n++) {
+                        lis.eq(n).appendTo(".lanren ul.list");
+                    }
+                    $(".lanren ul.list img").each(function() {
+                        $(this).attr('src', $(this).attr('realSrc'));
+                    })
+                    for (var i = lanren._default; i < lis.length; i++) {
+                        _content.push(lis.eq(i));
+                    }
+                    $(".lanren .hidden").html("");
+                },
+                loadMore: function() {
+                    var mLis = $(".lanren ul.list div").length;
+                    for (var i = 0; i < lanren._loading; i++) {
+                        var target = _content.shift();
+                        if (!target) {
+                            $('.lanren .more').html("<p>全部加载完毕...</p>");
+                            break;
+                        }
+                        $(".lanren ul.list").append(target);
+                        $(".lanren ul.list img").eq(mLis + i).each(function() {
+                            $(this).attr('src', $(this).attr('realSrc'));
+                        });
+                    }
+                }
+            }
+            lanren.init();
+            </script>
+            <!--游戏 end-->
+        </div>
+        <!--内容 end-->
+        <!-- 底部导航 -->
+        <!--底部-->
+        <div class="foot">
+            <ul>
+                <li class="home"><a href="http://localhost/game_count/html/mobile/index.html" title="首页"><span><img style="margin-top: 6px;" src="http://localhost/game_count/skin0/images/首页.png" /></span><p>首页</p></a></li>
+                <li class="news"><a href="http://localhost/game_count/html/mobile/news/index.html" title="新闻"><span><img style="margin-top: 6px;" src="http://localhost/game_count/skin0/images/新闻.png" /></span><p>新闻</p></a></li>
+                <li class="game on"><a href="http://localhost/game_count/html/mobile/games/index.html" title="游戏"><span><img style="margin-top: 6px;" src="http://localhost/game_count/skin0/images/游戏.png" /></span><p>游戏</p></a></li>
+                <li class="user"><a href="javascript:void(0)" onclick="show();" title="用户"><span><img style="margin-top: 6px;" src="http://localhost/game_count/skin0/images/用户.png" /></span><p>用户</p></a></li>
+            </ul>
+        </div>
+        <!--底部 end-->
+        <!--返回顶部-->
+        <div class="back_to_top" style="display:none">
+            <a id="gotop" href="javascript:;" title="返回顶部"></a>
+        </div>
+        <!--返回顶部 end-->
+        <!--弹出框-->
+        <div class="pop_up" style="display:none;">
+            <!--信息弹出窗-->
+            <div id="all_tips" class="pop_up_content" style="display:none;">
+                <div class="pop_up_title">
+                    <p>提 示</p>
+                    <span><a href="javascript:;" title="关闭" onclick="$('#all_tips').hide(300);$('.pop_up').hide();"></a></span>
+                </div>
+                <div class="pop_up_writing">
+                    <p></p>
+                </div>
+                <div class="pop_up_confirm">
+                    <p><a href="javascript:;" title="确认" onclick="$('#all_tips').hide(300);$('.pop_up').hide();">确认</a></p>
+                </div>
+            </div>
+            <!--信息弹出窗 end-->
+            <!--cdkey弹出窗-->
+            <div id="cdkey_tips" class="pop_up_content" style="display:none;">
+                <div class="pop_up_writing pop_up_writing_1">
+                    <p>您的礼包号是：</p>
+                    <span><a></a></span>
+                    <i>请长按序列号进行复制</i>
+                    <i>然后在游戏中输入兑换礼包</i>
+                </div>
+                <div class="pop_up_confirm pop_up_confirm1">
+                    <p><a href="javascript:;" title="关闭" onclick="$('#cdkey_tips').hide(300);$('.pop_up').hide();">关闭</a></p>
+                </div>
+            </div>
+            <!--cdkey弹出窗 end-->
+        </div>
+        <!--弹出框-->
+        <!-- 弹出下载提示 -->
+        <div class="popupbox_download" style="display:none">
+        </div>
+        <!-- 弹出下载提示 end -->
+        <!-- 底部导航 end-->
+    </div>
+    <!--DOM在CSS后避免reflow-->
+    <div id="orientLayer" class="mod-orient-layer">
+        <div class="mod-orient-layer__content">
+            <i class="icon mod-orient-layer__icon-orient"></i>
+            <div class="mod-orient-layer__desc">为了更好的体验，请使用竖屏浏览</div>
+        </div>
+    </div>
+    <div class="video-box" id="mod_player"></div>
+    <script>
+    //暂时屏蔽外连接
+    function show() {
+        alert('敬请期待！');
+    }
+    </script>
+</body>
+
+</html>
+

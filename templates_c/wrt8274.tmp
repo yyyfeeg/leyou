@@ -1,0 +1,116 @@
+<?php /* Smarty version 2.6.20, created on 2017-12-19 18:15:49
+         compiled from header.html */ ?>
+<div class="demo">
+    <nav class="main_nav">
+        <ul>
+            <li><a href="#0"><img src="<?php echo $this->_tpl_vars['web_url']; ?>
+/skin0/images/user.png" /></a></li>
+            <li><a href="#0"><img src="<?php echo $this->_tpl_vars['web_url']; ?>
+/skin0/images/enroll.png" /></a></li>
+        </ul>
+    </nav>
+</div>
+<div class="cd-user-modal"> 
+                <div class="cd-user-modal-container">
+                    <ul class="cd-switcher">
+                        <li class="on"><a href="#0">用户登录</a></li>
+                        <li><a href="#0">注册新用户</a></li>
+                    </ul>
+
+                    <div id="cd-login"> <!-- 登录表单 -->
+                        <form class="cd-form">
+                            <p class="fieldset">
+                                <label class="image-replace cd-username" for="signin-username">用户名</label>
+                                <input class="full-width has-padding has-border" id="signin-username" type="text" placeholder="输入用户名">
+                            </p>
+
+                            <p class="fieldset">
+                                <label class="image-replace cd-password" for="signin-password">密码</label>
+                                <input class="full-width has-padding has-border" id="signin-password" type="text"  placeholder="输入密码">
+                            </p>
+
+                            <p class="fieldset">
+                                <input type="checkbox" id="remember-me" checked>
+                                <span for="remember-me">记住登录状态</span>
+                            </p>
+
+                            <p class="fieldset" >
+                                <input class="full-width2" type="submit" value="登 录">
+                            </p>
+                        </form>
+                    </div>
+
+                    <div id="cd-signup"> <!-- 注册表单 -->
+                        <form class="cd-form">
+                            <p class="fieldset">
+                                <label class="image-replace cd-username" for="signup-username">用户名</label>
+                                <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="输入用户名">
+                            </p>
+
+                            <p class="fieldset">
+                                <label class="image-replace cd-email" for="signup-email">邮箱</label>
+                                <input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="输入mail">
+                            </p>
+
+                            <p class="fieldset">
+                                <label class="image-replace cd-password" for="signup-password">密码</label>
+                                <input class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="输入密码">
+                            </p>
+
+                            <p class="fieldset">
+                                <input type="checkbox" id="accept-terms">
+                                    <span for="accept-terms">我已阅读并同意 <a href="#0">用户协议</a></span>
+                            </p>
+
+                            <p class="fieldset">
+                                <input class="full-width2" type="submit" value="注册新用户">
+                            </p>
+                        </form>
+                    </div>
+
+                    <a href="#0" class="cd-close-form">关闭</a>
+                </div>
+</div>
+<div data-spm="2">
+	    <div class="ali-common-header">
+		    <div class="ali-common-header-inner common-header-clearfix">
+		        <!-- 运营专区 -->
+		        <div style="margin-right: 180px;" class="activity item pull-left">
+			        <div class="flash-wrap" id="J-ali-activity-img">
+			            <a href="#"><img src="<?php echo $this->_tpl_vars['web_url']; ?>
+/skin0/images/lylogo2.png" style="height: 75px;width: 95%;margin-top: 17.5px;"></a>
+			        </div>
+		        </div>
+		        <!-- 导航菜单 -->
+		        <ul  class="menu item pull-left" id="J_common_header_menu" data-spm="201">
+		            <li class="top-menu-item">
+		                <a class="menu-hd" href="<?php echo $this->_tpl_vars['web_url']; ?>
+">首页</a>
+		            </li>
+		            <li class="top-menu-item">
+		                <a class="menu-hd" href="javascript:void(0)" onclick="show()">新闻动态</a>
+		            </li>
+		            <li class="top-menu-item">
+		                <a target="_blank" class="menu-hd top-menu-item-link" href="<?php echo $this->_tpl_vars['web_url']; ?>
+/about.html">关于我们</a>
+		            </li>
+		            <li class="top-menu-item" has-dropdown="true" menu-type="dev" data-spm-click="">
+		                <a class="menu-hd" href="javascript:void(0)" onclick="show()" target="_blank">产品中心 </a>
+		            </li>
+		            <li class="top-menu-item">
+		                <a class="menu-hd" href="<?php echo $this->_tpl_vars['web_url']; ?>
+/joinus.html">人才招聘</a>
+		            </li>
+		            <li class="top-menu-item">
+		                <a class="menu-hd" href="javascript:void(0)" onclick="show()">公司动态</a>
+		            </li>
+		        </ul>
+		    </div>
+	    </div>
+</div>
+<script type="text/javascript">
+    //暂时屏蔽外连接
+    function show() {
+        alert('敬请期待！');
+    }
+</script>

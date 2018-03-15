@@ -1,0 +1,504 @@
+﻿
+
+/***************************************************
+
+
+此文件包括基础的建表语句及完后增加的字段的SQL语句
+
+说明要修改那张表，对数据表的操作及SQL语句
+
+
+
+*****************************************************/
+
+
+
+#后台管理员信息表
+
+create table if not exists gsys_admin (
+	sysid int(11) not null auto_increment comment '自动ID',
+	a_name varchar(20) not null comment '登录名称',
+	a_pwd varchar(32) not null comment '密码',
+	a_truename varchar(20) not null comment '真实名称',
+	a_tel char(12) not null default '' comment '联系电话',
+	a_email varchar(40) not null default '' comment '联系邮箱',
+	a_qq int(11) not null default 0 comment '联系QQ',
+	a_insertdate int(11) not null default 0 comment '添加时间',
+	a_userid int(11) not null default 0 comment '添加人ID',
+	a_lastdate int(11) not null default 0 comment '最后登录时间',
+	a_lastip int(11) not null default 0 comment '最后登录IP',
+	a_lognum int(5) not null default 0 comment '登录次数',
+	a_isadmin tinyint(2) not null default 2 comment '是否超级管理员，1是，2否',
+	a_groupid int(11) not null comment '权限组ID',
+	a_islock tinyint(2) not null default 2 comment '是否锁定，1是，2否',
+	a_failtimes tinyint(2) not null default 0 comment '登录失败次数，3-5次则锁定',
+	a_permission varchar(400) not null default '' comment '数据权限，以英文逗号分隔',
+	a_rightid text not null default '' comment '权限信息，以英文逗号分隔',
+	a_jmenu text not null default '' comment '菜单栏信息，json保存',
+	primary key(sysid,a_name) 
+) engine=myisam default charset=utf8 comment '后台管理员信息表';
+
+
+
+#后台权限信息表
+
+create table if not exists gsys_admin_right (
+	sysid int(11) not null auto_increment comment '自动ID',
+	ar_rightid varchar(20) not null comment '权限编号(英文)',
+	ar_rightname varchar(40) not null comment '权限名称',
+	ar_ismenu tinyint(2) not null default 1 comment '是否菜单功能，1是，2否',
+	ar_parentid int(5) not null default 0 comment '权限父ID，如果是功能菜单则需填写，0是顶级菜单',
+	ar_title varchar(40) not null default '' comment '功能名称，如果是功能菜单则需填写',
+	ar_url varchar(100) not null default '' comment '功能链接，如果是功能菜单则需填写',
+	ar_addtime int(11) not null default 0 comment '添加时间',
+	ar_userid int(11) not null default 0 comment '添加人ID',
+	ar_islock tinyint(2) not null default 2 comment '是否锁定，1是，2否',
+	ar_order int(11) not null default 0 comment '排序，默认为降序',
+	primary key (sysid)
+) engine=myisam default charset=utf8 comment '后台权限信息表';
+
+
+#后台管理员组信息表
+
+create table if not exists gsys_admin_group (
+	sysid int(11) not null auto_increment comment '自动ID',
+	ag_fid int(11) not null default 0 comment '父ID，0为超管组',
+	ag_groupname varchar(50) not null comment '权限组名称',
+	ag_rightid text not null default '' comment '权限信息,以英文逗号分隔',
+	ag_jmenu text not null default '' comment '菜单信息,json保存',
+	ag_uptime int(11) not null default 0 comment '修改时间',
+	ag_upid int(11) not null default 0 comment '修改人ID',
+	ag_addtime int(11) not null default 0 comment '添加时间',
+	ag_userid int(11) not null default 0 comment '添加人ID',
+	ag_content varchar(50) not null default '' comment '权限需说明',
+	primary key (sysid)
+) engine=myisam default charset=utf8 comment '后台管理员组信息表';
+
+
+
+#后台操作日志表
+
+create table if not exists gsys_admin_log (
+	sysid int(11) not null auto_increment comment '自动ID',
+	al_userid int(11) not null comment '操作人ID',
+	al_logname varchar(50) not null default '' comment '操作人登陆名称',
+	al_teamid int(11) not null default 0 comment '所属团队',
+	al_content varchar(200) not null comment '操作内容',
+	al_inserttime int(11) not null default 0 comment '操作时间',
+	al_ip varchar(15) not null default '' comment '操作IP',
+	al_gameid int(11) not null default 0 comment '操作游戏',
+	primary key (sysid)
+) engine=myisam default charset=utf8 comment '后台操作日志表';
+
+
+
+#游戏信息表
+
+create table if not exists gsys_game_info (
+	sysid int(11) not null auto_increment comment '自动ID',
+	gi_gid int(11) not null comment '游戏ID',
+	gi_gname varchar(50) not null comment '游戏名称',
+	gi_team int(11) not null comment '所属运营团队',
+	gi_status tinyint(2) not null default 1 comment '游戏状态，1开启，2关闭',
+	gi_screen tinyint(2) not null default 1 comment '横竖屏，1横屏，2竖屏',
+	gi_icon varchar(100) not null default '' comment '游戏icon，图片地址',
+	gi_description varchar(200) not null default '' comment '游戏说明',
+	gi_order int(11) not null default 0 comment '排序',
+	gi_addid int(11) not null default 0 comment '添加人ID',
+	gi_addtime int(11) not null default 0 comment '添加时间',
+	gi_upid int(11) not null default 0 comment '修改人ID',
+	gi_uptime int(11) not null default 0 comment '修改时间',
+	primary key (sysid,gi_gid)
+) engine=myisam default charset=utf8 comment '游戏信息表';
+
+
+
+#游戏服务器信息表
+
+create table if not exists gsys_game_server (
+	sysid int(11) not null auto_increment comment '自动ID',
+	gs_gid int(11) not null comment '游戏ID',
+	gs_sid varchar(40) not null comment '游戏服ID',
+	gs_sname varchar(40) not null comment '游戏服名称',
+	gs_starttime varchar(40) not null default '' comment '开服时间',
+	gs_stopoperation tinyint(2) not null default 1 comment '是否停运，1否，2是',
+	gs_endtime int(11) not null default 0 comment '停运时间',
+	gs_uptime int(11) not null default 0 comment '更新时间', 
+	primary key (sysid)
+) engine=myisam default charset=utf8 comment '游戏服务器信息表';
+
+
+
+#游戏渠道信息表
+
+create table if not exists gsys_game_channels (
+	sysid int(11) not null auto_increment comment '自动ID',
+	gc_gid int(11) not null comment '游戏ID',
+	gc_cname varchar(100) not null comment '渠道名称',
+	gc_cdescription varchar(200) not null default '' comment '渠道描述',
+	gc_packagename varchar(100) not null comment '渠道包名',
+	gc_appid varchar(100) not null comment 'appid',
+	gc_appkey varchar(100) not null comment 'appkey',
+	gc_appsecret varchar(100) not null comment 'app_secret',
+	gc_callback varchar(100) not null default '' comment '渠道回调地址',
+	gc_gname varchar(50) not null comment '渠道游戏名',
+	gc_icon varchar(100) not null comment '渠道游戏icon',
+	gc_splashscreen varchar(100) not null comment '闪屏图片地址',
+	gc_status tinyint(2) not null default 2 comment '状态，1完成，2否',
+	gc_addid int(11) not null default 0 comment '添加人ID',
+	gc_addtime int(11) not null default 0 comment '添加时间',
+	gc_upid int(11) not null default 0 comment '修改人ID',
+	gc_uptime int(11) not null default 0 comment '修改时间',
+	primary key (sysid,gc_gid)
+) engine=myisam default charset=utf8 comment '游戏渠道信息表';
+
+
+
+#团队信息表
+
+
+create table if not exists gsys_team_info (
+	sysid int(11) not null auto_increment comment '自动ID',
+	ti_teamname varchar(50) not null comment '团队名称',
+	ti_teamdesc varchar(100) not null default '' comment '团队描述',
+	ti_addid int(11) not null default 0 comment '添加人ID',
+	ti_addtime int(11) not null default 0 comment '添加时间',
+	ti_upid int(11) not null default 0 comment '修改人ID',
+	ti_uptime int(11) not null default 0 comment '修改时间',
+	primary key (sysid)
+) engine=myisam default charset=utf8 comment '团队信息表';
+
+
+#用户信息表(count_user_info)
+##增加了以下字段
+
+ALTER TABLE count_user_info ADD ui_year int(11) unsigned not null default 0 comment '出生年',ADD ui_month int(11) unsigned not null default 0 comment '出生月',ADD ui_day int(11) unsigned not null default 0 comment '出生日',ADD ui_marriage tinyint(2) unsigned not null default 3 comment '婚姻状况，1未婚2已婚3保密',ADD ui_job tinyint(2) unsigned not null default 0 comment '职业，具体选项根据前端',ADD ui_income tinyint(2) unsigned not null default 0 comment '月收入，具体选项根据前端',ADD ui_education tinyint(2) unsigned not null default 0 comment '学历,具体选项根据前端',ADD ui_address varchar(200) not null default '' comment '联系地址',ADD ui_zip int(11) unsigned not null default 0 comment '邮编',ADD ui_country tinyint(2) unsigned not null default 0 comment '国家,具体选项根据前端',ADD ui_province tinyint(2) unsigned not null default 0 comment '省份，具体选项根据前端',ADD ui_city tinyint(2) unsigned not null default 0 comment '市/区，具体选项根据前端',ADD ui_ssq1 tinyint(2) unsigned not null default 0 comment '密保1，具体选项根据前端',ADD ui_ans1 varchar(20) not null default '' comment '回答1',ADD ui_ssq2 tinyint(2) unsigned not null default 0 comment '密保2,具体选项根据前端',ADD ui_ans2 varchar(20) not null default '' comment '回答2',ADD ui_ssq3 tinyint(2) unsigned not null default 0 comment '密保3,具体选项根据前端',ADD ui_ans3 varchar(20) not null default '' comment '回答3',ADD ui_source tinyint(2) unsigned not null default 1 comment '来源,1天拓2QQ3新浪微博4微信5其他';
+
+#2015.11.03
+
+ALTER TABLE count_user_info ADD ui_mark varchar(100) not null default '' comment '第三方用户唯一标识';
+
+
+#手机认证日志表
+
+create table if not exists gsys_attest_tel(
+	sysid int(11) unsigned not null primary key auto_increment comment '自动ID',
+	at_tel char(12) not null default '' comment '手机号码',
+	at_contents varchar(100) not null default '' comment '内容',
+	at_uid int(11) not null default 0 comment '发送人ID',
+	at_time int(11) not null default 0 comment '发送时间',
+	at_status tinyint(2) not null default 0 comment '发送状态，0发送中1成功2失败',
+	at_bulk tinyint(2) not null default 1 comment '是否群发，1单发2群发',
+	at_verify tinyint(2) not null default 2 comment '是否验证，1已验证2未验证',
+	at_ip varchar(15) not null default '' comment '用户IP'
+) engine=myisam default charset=utf8 comment '手机认证日志表';
+
+
+#邮箱认证日志表
+
+create table if not exists gsys_attest_email(
+	sysid int(11) unsigned not null primary key auto_increment comment '自动ID',
+	ae_email varchar(50) not null default '' comment '手机号码',
+	ae_contents varchar(500) not null default '' comment '内容',
+	ae_uid int(11) not null default 0 comment '发送人ID',
+	ae_time int(11) not null default 0 comment '发送时间',
+	ae_status tinyint(2) not null default 0 comment '发送状态，0发送中1成功2失败',
+	ae_bulk tinyint(2) not null default 1 comment '是否群发，1单发2群发',
+	ae_verify tinyint(2) not null default 2 comment '是否验证，1已验证2未验证',
+	ae_ip varchar(15) not null default '' comment '用户IP'
+) engine=myisam default charset=utf8 comment '邮箱认证日志表';
+
+
+
+
+#游戏信息表(gsys_game_info)
+
+根据CRM系统的前端需求，增加以下字段
+
+alter table gsys_game_info add gi_virtue tinyint(2) unsigned not null default 0 comment '自定义属性1Hot2New3推荐',
+add gi_rating tinyint(2) unsigned not null default 0 comment '推荐等级1一星2二星3三星4四星5五星',
+add gi_photo varchar(100) not null default '' comment '游戏截图',
+add gi_azewm varchar(100) not null default '' comment '安卓下载二维码',
+add gi_iosewm varchar(100) not null default '' comment 'IOS下载二维码',
+add gi_yyewm varchar(100) not null default '' comment '越狱下载二维码',
+add gi_dlurl varchar(300) not null default '' comment '下载地址',
+add gi_gtype tinyint(2) unsigned not null default 2 comment '游戏类型1页游2手游3双端',
+add gi_azdlurl varchar(300) not null default '' comment '安卓下载地址',
+add gi_iosdlurl varchar(300) not null default '' comment 'IOS下载地址',
+add gi_yydlurl varchar(300) not null default '' comment '越狱下载地址';
+
+
+
+
+#添加前端整站信息表(gsys_frontend_info)
+
+create table if not exists gsys_frontend_info(
+	sysid int(11) unsigned not null primary key auto_increment comment '自动ID',
+	fi_basehost varchar(50) not null comment '站点根网址',
+	fi_webname varchar(50) not null comment '网站名称',
+	fi_arcdir varchar(20) not null default '/html' comment '文档html保存路径',
+	fi_upload_dir varchar(20) not null default '/uploads' comment '图片/文件上传路径',
+	fi_powerby varchar(300) not null default '' comment '网站版权信息',
+	fi_keywords varchar(300) not null default '' comment '站点默认关键字',
+	fi_desc varchar(300) not null default '' comment '站点描述',
+	fi_beian varchar(50) not null default '' comment '网站备案号'
+) engine=myisam default charset=utf8 comment '前端整站信息表';
+
+
+
+#添加前端栏目表(gsys_frontend_rubric)
+
+create table if not exists gsys_frontend_rubric(
+	sysid int(11) unsigned not null primary key auto_increment comment '自动ID',
+	fr_fid int(11) unsigned not null default 0 comment '父栏目ID,0为顶级栏目',
+	fr_name varchar(50) not null comment '栏目名称',
+	fr_order int(11) unsigned not null default 0 comment '排序号（升序）',
+	fr_dir varchar(50) not null comment '文件保存目录',
+	fr_template varchar(30) not null comment '模板名称',
+	fr_desc varchar(100) not null default '' comment '栏目描述',
+	fr_contribute tinyint(2) unsigned not null default 1 comment '支持投稿，默认1,1支持2不支持',
+	fr_hide tinyint(2) unsigned not null default 1 comment '隐藏，默认1,1显示2不显示'
+) engine=myisam default charset=utf8 comment '前端栏目表';
+
+
+#添加前端文章信息表(gsys_frontend_essay)
+
+create table if not exists gsys_frontend_essay(
+	sysid int(11) unsigned not null primary key auto_increment comment '自动ID',
+	fe_title varchar(50) not null comment '标题',
+	fe_virtue tinyint(2) unsigned not null default 0 comment '自定义属性1头条2推荐3跳转4幻灯片',
+	fe_jurl varchar(500) not null default '' comment '跳转地址',
+	fe_sphoto varchar(100) not null default '' comment '小缩略图',
+	fe_bphoto varchar(100) not null default '' comment '大缩略图',
+	fe_rubricid int(11) unsigned not null comment '栏目ID',
+	fe_gameid int(11) unsigned not null default 0 comment '相关游戏ID，0为天拓',
+	fe_keywords varchar(200) not null default '' comment '关键字',
+	fe_desc varchar(300) not null default '' comment '内容摘要',
+	fe_template varchar(10) not null comment '生成模板',
+	fe_order int(11) unsigned not null default 0 comment '排序（升序）',
+	fe_author varchar(50) not null default '' comment '作者',
+	fe_contents text not null default '' comment '内容',
+	fe_printtime int(11) unsigned not null default 0 comment '发布时间',
+	fe_timing tinyint(2) unsigned not null default 1 comment '定时发布1否2是',
+	fe_clicknum int(11) unsigned not null default 0 comment '点击次数',
+	fe_html tinyint(2) unsigned not null default 1 comment '生成html1未生成2已生成',
+	fe_showtype tinyint(2) unsigned not null default 3 comment '显示选项1手机端2PC端3双端',
+	fe_status tinyint(2) unsigned not null default 1 comment '状态1未发布2已发布3已下架',
+	fe_adduid int(11) unsigned not null default 0 comment '添加人ID',
+	fe_addtime int(11) unsigned not null default 0 comment '添加时间',
+	fe_upuid int(11) unsigned not null default 0 comment '修改人ID',
+	fe_uptime int(11) unsigned not null default 0 comment '修改时间'
+) engine=myisam default charset=utf8 comment '前端文章信息表';
+
+
+#添加前端图片分类表(gsys_frontend_phototype)
+
+create table if not exists gsys_frontend_phototype(
+	sysid int(11) unsigned not null primary key auto_increment comment '自动ID',
+	fp_name varchar(50) not null comment '分类名称',
+	fp_order int(11) unsigned not null default 0 comment '排序（升序）',
+	fp_adduid int(11) unsigned not null default 0 comment '添加人ID',
+	fp_addtime int(11) unsigned not null default 0 comment '添加时间',
+	fp_upuid int(11) unsigned not null default 0 comment '修改人ID',
+	fp_uptime int(11) unsigned not null default 0 comment '修改时间'
+) engine=myisam default charset=utf8 comment '前端图片分类表';
+
+
+#添加前端图片信息表(gsys_frontend_photos)
+
+create table if not exists gsys_frontend_photos(
+	sysid int(11) unsigned not null primary key auto_increment comment '自定ID',
+	fp_typeid int(11) unsigned not null comment '图片分类ID',
+	fp_title varchar(100) not null default '' comment '图片标题',
+	fp_url varchar(100) not null comment '图片地址',
+	fp_jurl varchar(200) not null default '' comment '跳转地址',
+	fp_order int(11) unsigned not null default 0 comment '排序（升序）',
+	fp_status tinyint(2) unsigned not null default 1 comment '状态1未发布2已发布3已下架',
+	fp_adduid int(11) unsigned not null default 0 comment '添加人ID',
+	fp_addtime int(11) unsigned not null default 0 comment '添加时间',
+	fp_upuid int(11) unsigned not null default 0 comment '修改人ID',
+	fp_uptime int(11) unsigned not null default 0 comment '修改时间'
+) engine=myisam default charset=utf8 comment '前端图片信息表';
+
+
+#添加退出登录提示信息表(gsys_logout_tips)
+
+create table if not exists gsys_logout_tips(
+	sysid int(11) unsigned not null primary key auto_increment comment '自动ID',
+	lt_gid int(11) unsigned not null comment '游戏ID',
+	lt_uaid int(11) unsigned not null default 0 comment '渠道ID',
+	lt_uwid int(11) unsigned not null default 0 comment '子渠道ID',
+	lt_picture varchar(50) not null comment '图片地址',
+	lt_url varchar(300) not null default '' comment '跳转地址',
+	lt_contents varchar(1000) not null default '' comment '内容',
+	lt_printtime int(11) unsigned not null default 0 comment '发布时间',
+	lt_timing tinyint(2) unsigned not null default 1 comment '定时发布1否2是',
+	lt_status tinyint(2) unsigned not null default 1 comment '状态1未发布2已发布3已下架',
+	lt_adduid int(11) unsigned not null default 0 comment '添加人ID',
+	lt_addtime int(11) unsigned not null default 0 comment '添加时间',
+	lt_upuid int(11) unsigned not  null default 0 comment '修改人ID',
+	lt_uptime int(11) unsigned not null default 0 comment '修改时间' 
+) engine=myisam default charset=utf8 comment '退出登录提示信息表';
+
+
+
+#手机短信信息表(gsys_attest_tel)
+增加 类型 字段
+
+alter table gsys_attest_tel add at_type tinyint(2) unsigned not null default 0 comment '短信类型1验证码';
+
+增加 游戏,事件 字段
+alter table gsys_attest_tel add at_gid int(11) unsigned not null default 0 comment '游戏ID，0平台',add at_event tinyint(2) unsigned not null default 0 comment '事件 1注册 2忘记密码 3绑定手机';
+
+#邮件认证信息表(gsys_attest_email)
+增加 活动类型 字段
+
+alter table gsys_attest_email add ae_type tinyint(2) unsigned not null default 0 comment '邮件类型0验证邮件';
+
+
+
+
+#前端文章信息表(gsys_frontend_essay)
+
+2015.11.25
+修改fe_virtue 自定义属性 字段类型 为 char(10)
+
+ ALTER TABLE `gsys_frontend_essay` CHANGE `fe_virtue` `fe_virtue` VARCHAR( 20 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '自定义属性1头条2推荐3跳转4幻灯片' 
+
+
+
+
+
+2015.12.03
+
+游戏信息表(gsys_game_info)
+
+gi_virtue 类型 改为 Varchar(20)
+
+ ALTER TABLE `gsys_game_info` CHANGE `gi_virtue` `gi_virtue` VARCHAR( 20 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '自定义属性1.Hot 2.New 3.推荐' 
+
+
+
+2015.12.04
+
+前端图片信息表(gsys_frontend_photos)
+
+增加 图片描述 字段
+
+alter table gsys_frontend_photos add fp_desc VARCHAR(500) not null default '' comment '图片描述';
+
+
+
+
+2015.12.10
+前端整站信息表(gsys_frontend_info)
+
+增加 生成首页地址 字段
+
+alter table gsys_frontend_info add fi_indexurl varchar(100) not null comment '生成首页链接地址';
+
+
+
+2015.12.21
+
+count_user_info
+
+alter table count_user_info add ui_idfa varchar(50) not null default '' comment 'idfa',add ui_imei varchar(50) not null default '' comment 'imei';
+
+
+2016.03.08
+
+count_create_role_log   增加idfa imei字段
+
+alter table count_create_role_log add dr_idfa varchar(50) not null default '' comment 'idfa',add dr_imei varchar(50) not null default '' comment 'imei';
+
+
+count_gamelogin_log 增加idfa imei字段
+
+alter table count_gamelogin_log add dg_idfa varchar(50) not null default '' comment 'idfa',add dg_imei varchar(50) not null default '' comment 'imei';
+
+
+count_gameopen_log 增加idfa imei字段
+
+alter table count_gameopen_log add dg_idfa varchar(50) not null default '' comment 'idfa',add dg_imei varchar(50) not null default '' comment 'imei';
+
+
+count_paylog_log 增加dp_rid,dp_rname,dp_roletime,dp_roledate,dp_idfa,dp_imei字段
+
+alter table count_paylog_log add dp_rid varchar(50) not null default '' comment '付费角色ID',add dp_rname varchar(50) not null default '' comment '付费角色名',add dp_roletime int(11) comment '创角时间',add dp_roledate int(11) comment '创角日期',add dp_idfa varchar(50) not null default '' comment 'idfa',add dp_imei varchar(50) not null default '' comment 'imei';
+
+
+count_gamereg_log 增加dl_idfa,dl_imei字段
+
+alter table count_gamereg_log add dl_idfa varchar(50) not null default '' comment 'idfa',add dl_imei  varchar(50) not null default '' comment 'imei';
+
+count_gamerrpay_outflow 增加字段
+
+alter table count_gamerrpay_outflow add go_paydate int(11) unsigned not null default 0 comment '充值日期',add go_regdate int(11) unsigned not null default 0 comment '注册日期',add go_money double(15,2) comment '每日充值金额',add go_uids int(11) unsigned not null default 0 comment '付费人uid',add go_type tinyint(2) unsigned not null default 0 comment '标识字段 1注册 2角色';
+
+
+用户表 count_user_info 增加字段
+
+alter table count_user_info add ui_integral double(15,2) not null default 0 comment '平台积分',add ui_currency double(15,2) not null default 0 comment '平台币';
+
+alter table count_user_info add ui_grow int(11) unsigned not null default 0 comment '成长值';
+
+alter table count_user_info add ui_vip int(11) unsigned not null default 0 comment 'VIP等级';
+
+alter table count_user_info add ui_nickname varchar(100) not null default '' comment '昵称';
+
+alter table count_user_info add ui_idnum varchar(50) not null default '' comment '身份证号码';
+
+
+
+游戏信息表(gsys_game_info) 增加 客服电话字段
+
+alter table gsys_game_info add gi_kfphone varchar(20) not null default '' comment '客服电话';
+
+
+20160620  增加count_filter_gameopen(过滤打开游戏数据表)
+
+create table if not exists count_filter_gameopen(
+	fg_gid int(11) unsigned not null comment '游戏ID',
+	fg_mark varchar(1000) not null default '' comment '用户设备唯一标识(gid uaid uwid mac idfa imei)'
+) engine = myisam default charset = utf8 comment '过滤打开游戏数据表' partition by hash(fg_gid) partitions 4;
+
+
+
+创建表 count_adinfo(广告点击表[去重])
+
+create table if not exists count_adinfo(
+	sysid int(11) unsigned not null primary key auto_increment comment '自增ID',
+	da_param text not null default '' comment '传递参数',
+	da_dev varchar(50) not null default '' comment '设备号',
+	da_ch int(11) unsigned not null default 0 comment '渠道/子渠道ID',
+	da_gid int(11) unsigned not null default 0 comment '游戏ID',
+	da_clickid varchar(50) not null default '' comment '点击广告ID',
+	da_adid varchar(50) not null default '' comment '广告主ID',
+	da_apptype varchar(20) not null default '' comment 'app类型',
+	da_appid varchar(50) not null default '' comment 'appid',
+	da_state tinyint(2) unsigned not null default 1 comment '状态 1未激活 2已激活',
+	da_time int(11) unsigned not null default 0 comment '点击时间',
+	da_date int(11) unsigned not null default 0 comment '点击日期',
+	da_act_time int(11) unsigned not null default 0 comment '激活时间',
+	da_act_date int(11) unsigned not null default 0 comment '激活日期',
+	da_os tinyint(2) unsigned not null default 0 comment '投放系统类型 1ios 2安卓'
+) engine = myisam default charset = utf8 comment '广告点击表(去重)';
+
+
+创建表 count_adinfo_log(广告点击日志表)
+
+create table if not exists count_adinfo_log(
+	sysid int(11) unsigned not null primary key auto_increment comment '自增ID',
+	da_param text not null default '' comment '传递参数',
+	da_dev varchar(50) not null default '' comment '设备号',
+	da_ch int(11) unsigned not null default 0 comment '渠道/子渠道ID',
+	da_gid int(11) unsigned not null default 0 comment '游戏ID',
+	da_clickid varchar(50) not null default '' comment '点击广告ID',
+	da_adid varchar(50) not null default '' comment '广告主ID',
+	da_apptype varchar(20) not null default '' comment 'app类型',
+	da_appid varchar(50) not null default '' comment 'appid',
+	da_time int(11) unsigned not null default 0 comment '点击时间',
+	da_date int(11) unsigned not null default 0 comment '点击日期',
+	da_os tinyint(2) unsigned not null default 0 comment '投放系统类型 1ios 2安卓'
+) engine = myisam default charset = utf8 comment '广告点击日志表';

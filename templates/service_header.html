@@ -1,0 +1,40 @@
+<div class="herder">
+	<div class="herder_box">
+		<div id="logo">
+			<h1 class="fl">
+				<a href="<!--{$web_url}-->/index.html" title="天拓游戏">
+					<img src="<!--{$web_url}-->/templates/images/logo.png"/>
+				</a>
+			</h1>
+			<em class="fl">客服中心</em>
+		</div>
+		<ul class="nav">
+			<li>
+				<div <!--{if $currnav eq "service_home"}--> class="on"<!--{/if}-->>
+					<a href="<!--{$web_url}-->/index.php?mo=service&me=index">
+						<em class="sy"></em><br>首页
+					</a>
+				</div>
+			</li>
+			<li>
+				<div<!--{if $currnav eq "service_qqverify"}--> class="on"<!--{/if}-->>
+					<a href="<!--{$web_url}-->/index.php?mo=service&me=qqverify">
+						<em class="gfqq"></em><br>官方QQ验证
+					</a>
+				</div>
+			</li>
+			<li style="width:10px;"></li>
+		</ul>
+		<div class="td">
+        	<!--{if $uid neq ""}-->
+            <div>
+                <a href="<!--{$web_url}-->/index.php?mo=service&me=mylading" id="mylading">我的提单</a>|
+                <a href="<!--{$web_url}-->/index.php?mo=user_center&me=index" target="_blank" id="top_user_name" title="<!--{$uname}-->"><!--{$uname}--></a>|
+                <a id="logout" href="javascript:void(0);" title="退出">退出</a>
+            </div>
+            <!--{else}-->
+            <a href="<!--{$web_url}-->/index.php?mo=service&me=mylading" id="mylading">登录</a>
+            <!--{/if}-->
+		</div>
+	</div>
+</div>

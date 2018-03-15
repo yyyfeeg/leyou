@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta charset="utf-8" />
+		<meta http-equiv = "X-UA-Compatible" content ="IE=edge,chrome=1" />
+		<meta name="renderer" content="webkit"/>
+		<title>常见问题 - <!--{$webname}--></title>
+        <meta name="keywords" content="<!--{$keywords}-->" />
+		<meta name="description" content="<!--{$desc}-->" />
+	<link href="<!--{$web_url}-->/templates/css/base.css" rel="stylesheet" type="text/css">
+	<link href="<!--{$web_url}-->/templates/css/mian.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<div class="wrap">
+			<!--{include file="service_header.html"}-->
+            <!--{include file="service_banner.html"}-->
+			<div class="mian">
+				<div class="td_box">
+					<div class="td_l fl">
+						<div class="td_box_bd_cent" id="sidelist">
+							<!--{foreach from=$onetype key=tk item=value }-->
+                            <dl>
+								<dt>
+									<i class="fl"></i>
+									<em class="fl"><!--{$value.name}--></em>
+								</dt>
+                                <!--{section max=4 name=k loop=$value.faq}-->
+								<dd><a href="<!--{$web_url}-->/index.php?mo=service&me=problems&tid=<!--{$value.tid}-->&gid=<!--{$value.gid}-->&id=<!--{$value.faq[k].id}-->"><!--{$value.faq[k].title}--></a></dd>
+                                <!--{/section}-->
+							</dl>
+                            <!--{/foreach}-->
+						</div>
+						<div class="td_box_bd_bottom">
+							
+						</div>
+					</div>
+					
+					<div class="td_r fr">
+						<div class="wt_head">
+                        	<form method="post" action="<!--{$web_url}-->/index.php?mo=service&me=problems&tid=<!--{$tid}-->&gid=<!--{$gid}-->">
+							<input class="fl" type="txt" name="str" id="str" value="" />
+							<button class="fl" type="submit"><em>搜索</em></button>
+                            </form>
+						</div>
+						<ul class="wt_txt" id="faqlist">
+							<!--{foreach from=$pblist key=list item=value }-->
+                            <li>
+								<h3><!--{$value.title}--></h3>
+								<p><!--{$value.content}--></p>
+							</li>
+                            <!--{/foreach}-->
+						</ul>
+                        <div class="next">
+                            <ul class="pagelist">
+                            <!--{if $totalpage > 1}-->
+                                <!--{if $currpage eq 1}-->
+                                <li><span>首页</span></li>
+                                <!--{else}-->
+                                <li><a href="<!--{$web_url}-->/index.php?mo=service&me=problems&tid=<!--{$tid}-->&gid=<!--{$gid}-->&page=1<!--{if $search neq ''}-->&str=<!--{$search}--><!--{/if}-->">首页</a></li>
+                                <li style="width:60px"><a href="<!--{$web_url}-->/index.php?mo=service&me=problems&tid=<!--{$tid}-->&gid=<!--{$gid}-->&page=<!--{$currpage-1}--><!--{if $search neq ''}-->&str=<!--{$search}--><!--{/if}-->">上一页</a></li>
+                                <!--{/if}-->
+                                <!--{section name="page" loop=$totalpage}-->
+                                <li>
+                                <!--{if ($smarty.section.page.index+1) neq $currpage}-->
+                                <a href="<!--{$web_url}-->/index.php?mo=service&me=problems&tid=<!--{$tid}-->&gid=<!--{$gid}-->&page=<!--{$smarty.section.page.index+1}--><!--{if $search neq ''}-->&str=<!--{$search}--><!--{/if}-->"><!--{$smarty.section.page.index+1}--></a>
+                                <!--{else}-->
+                                <!--{$smarty.section.page.index+1}-->
+                                <!--{/if}-->
+                                </li>
+                                <!--{/section}-->
+                                <!--{if $currpage eq $totalpage}-->
+                                <li><span>末页</span></li>
+                                <!--{else}-->
+                                <li style="width:60px"><a href="<!--{$web_url}-->/index.php?mo=service&me=problems&tid=<!--{$tid}-->&gid=<!--{$gid}-->&page=<!--{$currpage+1}--><!--{if $search neq ''}-->&str=<!--{$search}--><!--{/if}-->">下一页</a></li>
+                                <li><a href="<!--{$web_url}-->/index.php?mo=service&me=problems&tid=<!--{$tid}-->&gid=<!--{$gid}-->&page=<!--{$totalpage}--><!--{if $search neq ''}-->&str=<!--{$search}--><!--{/if}-->">末页</a></li>
+                                <!--{/if}-->
+                                <!--{/if}-->
+                                <li><span>共 <strong><!--{$totalpage}--></strong>页<strong><!--{$totalrecord}--></strong>条</span></li>
+                            </ul>
+                        </div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+
+		<!-- 脚部 -->
+		<!--{include file="service_footer.html"}-->
+		<!-- 脚部 end -->
+
+	</body>
+</html>

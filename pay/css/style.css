@@ -1,0 +1,12 @@
+body{margin:0;}
+#wrap{width: 100%;background-color: #000000;z-index: 1;background:rgba(128,128,128,0.9)}
+.zhe{width: 260px;height: 325px;top:50%;left:50%;margin:-190px 0 0 -130px;position:absolute;}
+.popup{position:absolute;top:50%;left:50%;margin:-135px 0 0 -130px;width:260px;height:310px;background-color: rgb(235,234,236);border-radius: 5px;box-shadow: 0px 25px 30px #030303;overflow: hidden;}
+.popup_top{width: 100%;height: 110px;overflow: hidden;}
+.popup_top p{font-size: 24px;text-align: center;padding-top: 15px;font-weight: 600;line-height: 30px;}
+.popup_top a{font-size: .25rem;text-align: center;margin-top: -2rem;}
+.top_icon{width:65px;height:65px;}
+
+
+.popup_body{width: 100%;height: 200px;background-color: rgb(247,244,250);border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;position: relative;overflow: hidden;}
+.button{width: 190px;height: 40px;margin-left: 35px;margin-top: 18px;border-radius: .1rem;background-color: rgb(79,194,185);}

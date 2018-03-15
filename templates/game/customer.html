@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="wap-font-scale"  content="no"/><!-- 禁止浏览器优化 -->
+    <meta name="full-screen" content="yes"><!-- UC强制全屏 -->
+    <meta name="x5-fullscreen" content="true"><!-- QQ强制全屏 -->
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="x-rim-auto-match" content="none">
+    <meta name="viewport" content="width=640, target-densitydpi=device-dpi, minimum-scale=0.5, maximum-scale=2, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><!--{$title}--> - <!--{$menu_title}--></title>
+    <link href="<!--{$web_url}-->/templates/game/css/common.css" rel="stylesheet" type="text/css">
+    <link href="<!--{$web_url}-->/templates/game/css/index.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<!-- 移动端 -->
+<div class="wap">
+    <!-- 头部 -->
+    <!--{include file="game/header.html"}-->
+    <!-- 头部 -->
+    <!--内容-->
+    <div class="content">
+    	<!--客服电话-->
+        <div class="telephone">
+            <ul>
+                <!--{section name=index loop=$data}-->
+                <li>
+                    <p><!--{$data[index].gname}--></p>
+                    <span><!--{$data[index].phone}--></span>
+                    <a href="tel:<!--{$data[index].phone}-->" title="拨打电话"><i></i></a>
+                </li>
+                <!--{/section}-->
+            </ul>
+        </div>
+        <!--客服电话 end-->
+    </div>
+    <!--内容 end-->
+</div>
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	<!--{include file="head.html"}-->
+	</head>
+<body>
+	<!--{include file="loading.html"}-->
+	<!--{if $type eq 'list'}--><!--礼包类型列表-->
+	<style> ul{ list-style: none; } </style>
+    <div class="page-body">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="widget">
+                    <div class="widget-header bordered-bottom bordered-yellow">
+                        <span class="widget-caption">礼包类型列表</span>
+                        <a href="javascript:void(0);" onclick="showhelp();" style="font-weight:bold">显示功能帮助</a>
+                        <div class="widget-buttons">
+                            <a href="#" data-toggle="maximize">
+                                <i class="fa fa-expand"></i>
+                            </a>
+                            <a href="#" data-toggle="collapse">
+                                <i class="fa fa-minus"></i>
+                            </a>
+                            <a href="#" data-toggle="dispose">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="widget-body no-padding">
+                        <table class="table table-bordered table-hover table-striped table-hover" id="searchable">
+                            <thead class="bordered-darkorange">
+                                <tr id='foot'>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_engine" placeholder="搜索系统ID" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_browser" placeholder="搜索类型名称" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_platform" placeholder="" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_version" placeholder="" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_grade" placeholder="" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_grade" placeholder="" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_grade" placeholder="" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_grade" placeholder="" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_grade" placeholder="" class="form-control input-sm"></th>
+                                </tr>
+                                <tr role="row" id='test'>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="templates/js/datatable/jquery.dataTables.min.js"></script>
+    <script src="templates/js/datatable/ZeroClipboard.js"></script>
+    <script src="templates/js/datatable/dataTables.tableTools.min.js"></script>
+    <script src="templates/js/datatable/dataTables.bootstrap.min.js"></script>
+    <script src="templates/js/datatable/datatables-init.js"></script>
+    <script>
+        InitiateSimpleDataTable.init();
+        InitiateEditableDataTable.init();
+        InitiateExpandableDataTable.init();
+        $(document).ready(function() {
+                /*
+                 * Insert a 'details' column to the table
+                 */
+                var oTable = $('#searchable').dataTable({
+                "sScrollX": "100%",
+                "bScrollCollapse": true,
+                "sDom": "Tflt<'row DTTTFooter'<'col-sm-6'i><'col-sm-6'p>>",
+                "aaSorting": [[0, 'desc']],
+                "aLengthMenu": [
+                   [5, 15, 20],
+                   [5, 15, 20]
+                ],
+                "iDisplayLength": 10,
+                "oTableTools": {
+                    "aButtons": []
+                },
+                "language": {
+                    "search": "",
+                    "sLengthMenu": "显示 _MENU_ 项结果",
+                    "sProcessing": "处理中...",
+                    "oPaginate": {
+                        "sFirst": "首页",
+                        "sPrevious": "上页",
+                        "sNext": "下页",
+                        "sLast": "末页"
+                    },
+                    "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                    "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                    "infoFiltered":   "(总过滤_MAX_条)",
+                    "zeroRecords":    "没有匹配结果",
+                },
+                
+                "data": <!--{$data}-->,
+                "columns": [
+                    { "sTitle": "系统ID",class:'123'},
+                    { "sTitle": "类型名称" },
+                    { "sTitle": "描述" },
+                    { "sTitle": "允许领取次数" },
+                    { "sTitle": "领取间隔天数"},
+                    { "sTitle": "是否开启"},
+                    { "sTitle": "平台展示"},
+                    { "sTitle": "添加时间"},
+                    { "sTitle": "操作"},
+                ]
+            });
+            $("thead input").keyup(function () {
+                /* Filter on the column (the index) of this element */
+                oTable.fnFilter(this.value, $("thead input").index(this));
+            });
+
+            $('#expandabledatatable_column_toggler input[type="checkbox"]').change(function () {
+                var iCol = parseInt($(this).attr("data-column"));
+                var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
+                oTable.fnSetColumnVis(iCol, (bVis ? false : true));
+            });
+
+            $('body').on('click', '.dropdown-menu.hold-on-click', function (e) {
+                e.stopPropagation();
+            })
+        } );
+    </script>
+	<!--{/if}-->
+
+	<!--{if $type eq 'add'}--><!--礼包类型添加-->
+	<div class="col-lg-12 col-lg-offset-3 col-sm-12 col-xs-12" style="0 auto">
+        <h5 class="row-title before-pink"><i class="fa fa-expand pink"></i>礼包类型添加</h5>
+        <div class="row">
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div class="widget">
+                    <div class="widget-header bordered-top bordered-palegreen">
+                        <span class="widget-caption">礼包类型添加表单</span>
+                    </div>
+                    <div class="widget-body">
+                        <div class="collapse in">
+                            <form enctype="multipart/form-data" action="index.php?module=spree_type&method=add_stype" method="post" id='myform' name='myform'>
+                                <input name="act" value="add" type="hidden"/>
+                                <div class="form-group">
+                                   <label for="definpu">类型名称：</label><span style="color:red">*</span>
+                                    <input type="text" class="form-control" id="gst_name" name="gst_name" placeholder="例如：VIP礼包" value="<!--{$data.gst_name}-->" onblur="clean_error('gst_name')"/>
+                                </div>
+                                <div class="form-group">
+                                   <label for="definpu">描述：</label>
+                                   <textarea class="form-control" rows="3" placeholder="" id='gst_desc' name='gst_desc'><!--{$data.gst_desc}--></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">允许领取次数：</label><span style="color:red">(用于游戏官网或活动的礼包)</span>
+                                    <input type="text" class="form-control" id="gst_allownum" name="gst_allownum" placeholder="默认为 0 " value="<!--{$data.gst_allownum}-->"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">领取间隔天数：</label><span style="color:red">(用于游戏官网或活动的礼包)</span>
+                                    <input type="text" class="form-control" id="gst_allowday" name="gst_allowday" placeholder="默认为 0 " value="<!--{$data.gst_allowday}-->"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">是否开启：</label>
+                                    <label>
+                                        <input type="radio" value='1' name='gst_open' <!--{if $data.gst_open eq 1}-->checked="true"<!--{/if}-->>
+                                        <span class="text">开启</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" value='2' name='gst_open' <!--{if $data.gst_open eq 2}-->checked="true"<!--{/if}-->>
+                                        <span class="text">关闭</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">平台展示：</label>
+                                    <label>
+                                        <input type="radio" value='1' name='gst_platform' <!--{if $data.gst_platform eq 1}-->checked="true"<!--{/if}-->>
+                                        <span class="text">是</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" value='2' name='gst_platform' <!--{if $data.gst_platform eq 2}-->checked="true"<!--{/if}-->>
+                                        <span class="text">否</span>
+                                    </label>
+                                </div>
+                                <button type="submit" class="btn btn-blue" onclick="return addGameCheck('index.php?module=spree_type&method=add_stype','myform',0);">添 加</button>
+                                <button type="submit" onClick="history.go(-1);return false;" value="取消" name="submit" class="btn btn-blue">取 消</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<!--{/if}-->
+
+	<!--{if $type eq 'edit'}--><!--礼包类型修改-->
+	<div class="col-lg-12 col-lg-offset-3 col-sm-12 col-xs-12" style="0 auto">
+        <h5 class="row-title before-pink"><i class="fa fa-expand pink"></i>礼包类型修改</h5>
+        <div class="row">
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div class="widget">
+                    <div class="widget-header bordered-top bordered-palegreen">
+                        <span class="widget-caption">礼包类型修改表单</span>
+                    </div>
+                    <div class="widget-body">
+                        <div class="collapse in">
+                            <form enctype="multipart/form-data" action="index.php?module=spree_type&method=edit_stype" method="post" id='myform' name='myform'>
+                                <input name="act" value="edit" type="hidden"/>
+                                <input name="id" value="<!--{$data.sysid}-->" type="hidden"/>
+                               <div class="form-group">
+                                   <label for="definpu">类型名称：</label><span style="color:red">*</span>
+                                    <input type="text" class="form-control" id="gst_name" name="gst_name" placeholder="例如：VIP礼包" value="<!--{$data.gst_name}-->" onblur="clean_error('gst_name')"/>
+                                </div>
+                                <div class="form-group">
+                                   <label for="definpu">描述：</label>
+                                   <textarea class="form-control" rows="3" placeholder="" id='gst_desc' name='gst_desc'><!--{$data.gst_desc}--></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">允许领取次数：</label>
+                                    <input type="text" class="form-control" id="gst_allownum" name="gst_allownum" placeholder="默认为 0 " value="<!--{$data.gst_allownum}-->"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">领取间隔天数：</label>
+                                    <input type="text" class="form-control" id="gst_allowday" name="gst_allowday" placeholder="默认为 0 " value="<!--{$data.gst_allowday}-->"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">是否开启：</label>
+                                    <label>
+                                        <input type="radio" value='1' name='gst_open' <!--{if $data.gst_open eq 1}-->checked="true"<!--{/if}-->>
+                                        <span class="text">开启</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" value='2' name='gst_open' <!--{if $data.gst_open eq 2}-->checked="true"<!--{/if}-->>
+                                        <span class="text">关闭</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">平台展示：</label>
+                                    <label>
+                                        <input type="radio" value='1' name='gst_platform' <!--{if $data.gst_platform eq 1}-->checked="true"<!--{/if}-->>
+                                        <span class="text">是</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" value='2' name='gst_platform' <!--{if $data.gst_platform eq 2}-->checked="true"<!--{/if}-->>
+                                        <span class="text">否</span>
+                                    </label>
+                                </div>
+                                <button type="submit" class="btn btn-blue" onclick="return addGameCheck('index.php?module=spree_type&method=edit_stype','myform',0);">修 改</button>
+                                <button type="submit" onClick="history.go(-1);return false;" value="取消" name="submit" class="btn btn-blue">取 消</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<!--{/if}-->
+	<script>
+        function addGameCheck(url,id,name) {
+            //检测数据
+            var name = clean_error('gst_name');
+            if(name){
+                formaction(url,id,name);
+            }else{
+                return false;
+            }
+        }
+
+        function clean_error(name) {
+            $('#'+name).next().remove();
+            var names = $('#'+name).val();
+            if(names == "" || names == '0' || names == 'undefined'){
+                $('#'+name).parent().attr("class","has-error");
+                $('#'+name).focus();
+                $('#'+name).after('<small class="help-block" style="" data-bv-validator="notEmpty" data-bv-validator-for="address"></small>');
+                $('#'+name).next().html('内容填写有误！');
+                return false;
+            }else{
+                $('#'+name).parent().attr("class","form-group");
+                $('#'+name).next().html();
+                $('#'+name).next().remove();
+                return true;
+            }
+        }
+
+        function formaction(url,id,name) {
+            if(name==0){
+                document.myform.action = url;
+                $("#"+id).submit();
+            }else{
+                document.myform1.action = url;
+                $("#"+id).submit();
+            }
+        }
+    </script>
+	<script>
+        $(function(){
+            if('<!--{$meg}-->' !=''){
+                $("#toast-container").show();
+            }else{
+                $("#toast-container").hide();
+            }
+            $("#toast-container").bind('click',function(){
+                $("#toast-container").hide();
+            });
+        });
+        function showhelp(){
+            $("#toast-container").show();
+        }
+    </script>
+    <div id="toast-container" class="toast-bottom-right">
+    	<div class="toast fa-check toast-blue" >
+    		<button class="toast-close-button">×</button>
+    		<div class="toast-message"><!--{$meg}--></div>
+    	</div>
+    </div>
+</body>
+<script src="templates/js/bootstrap.min.js"></script>
+<script src="templates/js/beyond.min.js"></script>
+</html>

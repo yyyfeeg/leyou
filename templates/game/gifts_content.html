@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="wap-font-scale"  content="no"/><!-- 禁止浏览器优化 -->
+    <meta name="viewport" content="width=640, target-densitydpi=device-dpi, minimum-scale=0.5, maximum-scale=2, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><!--{$title}--> - <!--{$menu_title}--></title>
+    <link href="<!--{$web_url}-->/templates/game/css/common.css" rel="stylesheet" type="text/css">
+    <link href="<!--{$web_url}-->/templates/game/css/index.css" rel="stylesheet" type="text/css">
+    <link href="<!--{$web_url}-->/templates/game/css/dropload.css" rel="stylesheet" type="text/css">
+    <script src="<!--{$web_url}-->/templates/game/js/jquery.min.js" type="text/javascript"></script>
+    <script src="<!--{$web_url}-->/templates/game/js/jquery.handle.js" type="text/javascript"></script>
+    <script src="<!--{$web_url}-->/templates/game/js/dropload.min.js" type="text/javascript"></script>
+    <script> var url = "<!--{$data.ajax}-->";var URL = "<!--{$web_url}-->";</script>
+</head>
+<body>
+<!-- 移动端 -->
+<div class="wap">
+	<!--头部-->
+    <!--{include file="game/header.html"}-->
+    <!--头部 end-->
+    <!--内容-->
+    <div class="content">
+    	<!--礼包名称-->
+        <div class="package_1 package_2">
+            <span><a><img src="<!--{$data.photo}-->" width="280" height="158" alt="<!--{$data.gift}-->" /></a></span>
+            <ul>
+                <li class="big big_1"><!--{$data.gift}--></li>
+                <li class="identical">兑换积分：<em><!--{$data.inte}--></em></li>
+                <li class="identical">领取VIP等级：<em>VIP<!--{$data.vip}--></em></li>
+            </ul>
+            <!--{if $data.draw == true}-->
+            <i><a href="javascript:;" onclick="give_gifts(<!--{$data.id}-->,<!--{$data.gid}-->,'<!--{$data.gurl}-->');" title="领取">领取</a></i>
+            <!--{else}-->
+            <i style="background: #787878;"><a href="javascript:;" title="已领">已领</a></i>
+            <!--{/if}-->
+        </div>
+        <!--礼包名称 end-->
+        <!--礼包内容-->
+        <div class="pack_content">
+        	<h6><em><i class="pack_1"></i>礼包内容</em></h6>
+            <p>
+            	<!--{$data.content}-->
+            </p>
+        </div>
+        <!--礼包内容 end-->
+        <!--相关礼包-->
+        <div class="related_gifts">
+        	<h6><em><i class="pack_1"></i>相关礼包</em></h6>
+            <div class="package_content package_content_1">
+
+            	<!--一个礼包-->
+            	<!-- <div class="package_1">
+                	<span><a href="information_packs.html" title=""><img src="images/package.png" width="117" alt="" /></a></span>
+                    <ul>
+                    	<li class="big">礼包名称</li>
+                        <li class="small"><a href="information_packs.html">礼包内容礼包内容礼包内容</a></li>
+                        <li class="identical">兑换积分：<em>c</em></li>
+                        <li class="identical">领取VIP等级：<em>VIP1</em></li>
+                    </ul>
+                    <i><a href="" title="">领取</a></i>
+                </div> -->
+                <!--一个礼包 end-->
+
+        	</div>
+        </div>
+        <!--相关礼包 end-->
+    </div>
+    <!--内容 end-->
+    <!-- 底部 -->
+    <!--{include file="game/footer.html"}-->
+    <!-- 底部 end-->
+</div>
+<script>
+    $(function(){
+        var counter = 0;
+        var num = 5;
+        var pageStart = 0;
+        var pageEnd = 0;
+
+        $('.content').dropload({
+            scrollArea : window,
+            loadDownFn : function(me) {
+                $.ajax({
+                    type : 'POST',
+                    url  : url,
+                    dataType : 'json',
+                    success : function(data) {
+                        if (data.data != null) {
+                            var result = '';
+                            counter++;
+                            pageEnd = num * counter;
+                            pageStart = pageEnd - num;
+                            for (var i = pageStart; i < pageEnd; i++) {
+                                result +=   '<div class="package_1">'
+                                                +'<span><a href="'+data.data.lists[i].curl+'" title=""><img src="'+data.data.lists[i].icon+'" width="117" alt="'+data.data.lists[i].gift+'" /></a></span>'
+                                                +'<ul>'
+                                                    +'<li class="big"><a href="'+data.data.lists[i].curl+'">'+data.data.lists[i].gift+'</a></li>'
+                                                    +'<li class="small">'+data.data.lists[i].desc+'</li>'
+                                                    +'<li class="identical">兑换积分：<em>'+data.data.lists[i].inte+'</em></li>'
+                                                    +'<li class="identical">领取VIP等级：<em>VIP'+data.data.lists[i].vip+'</em></li>'
+                                                +'</ul>';
+                                                if (data.data.lists[i].draw) {
+                                                  result += '<i><a href="javascript:;" onclick="give_gifts('+data.data.lists[i].id+','+data.data.lists[i].gid+',\''+data.data.lists[i].gurl+'\');" title="领取">领取</a></i>';
+                                                } else {
+                                                    result += '<i style="background: #787878;"><a href="javascript:;" title="已领">已领</a></i>';
+                                                }
+                                                result += '</div>';
+                                if ( (i+1) >= data.data.lists.length ) {
+                                    me.lock();
+                                    setTimeout("$('.dropload-down').fadeOut(300);",300);
+                                    me.noData();
+                                    break;
+                                }
+                            }
+                            // setTimeout(function(){
+                                $('.package_content').append(result);
+                                me.resetload();
+                            // },500);
+
+                        } else {
+                            setTimeout(function(){
+                                $('.dropload-down').hide();
+                                $('.package_content').html('<div style="text-align:center;height:50px;line-height:50px;">暂无数据</div>');
+                            },500);
+                        }
+                    },
+                    error : function() {
+                        $('.dropload-down').show();
+                        $('.dropload-down').html('<div class="dropload-noData">哦~~加载出错了!</div>');
+                        return false;
+                        // me.resetload();
+                    }
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>

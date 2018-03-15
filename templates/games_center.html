@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="wap-font-scale" content="no" />
+    <!-- 禁止浏览器优化 -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>游戏中心 -
+        <!--{$title}-->
+    </title>
+    <meta name="Keywords" content="<!--{$keywords}-->" />
+    <meta name="Description" content="<!--{$description}-->" />
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link href="<!--{$web_url}-->/templates/css/game_list.css" rel="stylesheet" type="text/css">
+    <link href="<!--{$web_url}-->/templates/css/index.css" rel="stylesheet" type="text/css">
+    <link href="<!--{$web_url}-->/templates/css/common.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="<!--{$web_url}-->/skin0/css/index_c510ece.css">
+    <link rel="stylesheet" href="<!--{$web_url}-->/skin0/css/global.css">
+    <!-- 头部 -->
+    <link rel="stylesheet" href="<!--{$web_url}-->/skin0/css/common-header9.css">
+    <!-- 头部 -->
+    <script type="text/javascript" src="<!--{$web_url}-->/skin0/js/common-header.js"></script>
+    <!-- 头部 -->
+    <script type="text/javascript" src="<!--{$web_url}-->/m/js/main.js"></script>
+    <!-- 登陆弹出框 -->
+    <link rel="stylesheet" type="text/css" href="<!--{$web_url}-->/m/css/style.css" />
+    <!-- 登陆弹出框 -->
+</head>
+
+<body>
+    <!--  PC端 -->
+    <div class="wrap">
+        <!--菜单-->
+        <!--{include file="header.html"}-->
+        <!--菜单 end-->
+        <!-- 轮播图 -->
+        <!-- 头部 -->
+        <!--{include file='list_header.html'}-->
+        <!-- 头部 end -->
+        <!-- 游戏列表 内容 -->
+        <div class="gamelist_content">
+            <!-- 游戏列表 -->
+            <div class="gl_list">
+                <div class="gl_list_title">
+                    <em></em>
+                    <h4>游戏列表</h4>
+                </div>
+                <div class="gl_list_content">
+                    <div id="wrap">
+                        <ul>
+                            <!--{section name=index loop=$games_list}-->
+                            <li>
+                                <a href="<!--{$games_list[index].url}-->" class="a1">
+									<img src="<!--{$web_url}--><!--{$games_list[index].photo}-->">
+									<div class ="divA">
+										<p class="p1"><!--{$games_list[index].gname}--></p>
+										<p class="p2"><!--{$games_list[index].desc}--></p>
+									</div>
+						        </a>
+                                <a href="<!--{$games_list[index].url}-->" class="a2">
+                                    <p class="p4">
+                                        <!--{$games_list[index].gname}-->
+                                    </p>
+                                    <p class="p5">游戏类型：
+                                        <!--{$games_list[index].gtype}-->
+                                        </br>玩家评分：
+                                        <!--{$games_list[index].rating}-->
+                                      </br>玩家下载：火爆公测中</p>
+                                    <p class="p7">点击下载></p>
+                                </a>
+                            </li>
+                            <!--{/section}-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- 游戏列表 end -->
+        </div>
+        <!-- 新闻页列表页数 -->
+        <!--{if $page_flag eq 'true'}-->
+        <div class="gl_list_page" style="margin-bottom: 20px;">
+            <ul>
+                <li <!--{if $page eq 0}-->class="on"
+                    <!--{/if}-->><a href="<!--{$index_page}-->" title="首页">首页</a></li>
+                <!--{foreach from=$page_menu key=k item=v}-->
+                <li <!--{if $page eq $k+1}-->class="on"
+                    <!--{/if}-->>
+                    <a href="<!--{$v}-->" title="<!--{$k+1}-->">
+                        <!--{$k+1}-->
+                    </a>
+                </li>
+                <!--{/foreach}-->
+                <li <!--{if $page eq $last_page_flag}-->class="on"
+                    <!--{/if}-->><a href="<!--{$last_page}-->" title="尾页">尾页</a></li>
+            </ul>
+        </div>
+        <!--{/if}-->
+        <!-- 新闻页列表页数 end -->
+        <!-- 内容 end -->
+        <!-- 脚部 -->
+        <!--{include file="footer.html"}-->
+        <!-- 脚部 end -->
+    </div>
+    <script type="text/javascript" src="<!--{$web_url}-->/templates/js/jquery.SuperSlide.js"></script>
+    <script>
+    jQuery(".slideBox").slide({ mainCell: ".bd ul", effect: "left", autoPlay: true, trigger: "click" });
+    </script>
+    <script type="text/javascript">
+    $('li').mouseenter(function() {
+        $(this).find('.divA').stop().animate({ bottom: '-66px' });
+        $(this).find('.a2').css({ left: '0' })
+        $(this).children('.a2').find('.p4').css({ left: '0' })
+        $(this).children('.a2').find('.p5').css({ left: '0' })
+        $(this).children('.a2').find('.p6').css({ transform: 'scale(1)' })
+        $(this).children('.a2').find('.p7').css({ bottom: '25px' })
+    })
+    $('li').mouseleave(function() {
+        $(this).find('.divA').stop().animate({ bottom: '0px' });
+        $(this).find('.a2').css({ left: -$(this).width() })
+        $(this).children('.a2').find('.p4').css({ left: -$(this).width() })
+        $(this).children('.a2').find('.p5').css({ left: -$(this).width() })
+        $(this).children('.a2').find('.p6').css({ transform: 'scale(1.3)' })
+        $(this).children('.a2').find('.p7').css({ bottom: '-50px' })
+    })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- Head -->
+<head>
+<!--{include file="head.html"}-->
+</head>
+<!-- /Head -->
+<!-- Body -->
+<body>
+    <!-- Loading Container -->
+        <!--{include file="loading.html"}-->
+    <!--  /Loading Container -->
+    <!-- Main Container -->
+    <!--{if "active" == $active}--><!--列表-->
+    <style>
+        ul{
+            list-style: none;
+        }
+    </style>
+    <div class="page-body">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="widget">
+                    <div class="widget-header bordered-bottom bordered-yellow">
+                        <span class="widget-caption">活跃列表</span>
+                        <a href="javascript:void(0);" onclick="showhelp();" style="font-weight:bold">显示功能帮助</a>
+                        <div class="widget-buttons">
+                            <a href="#" data-toggle="maximize">
+                                <i class="fa fa-expand"></i>
+                            </a>
+                            <a href="#" data-toggle="collapse">
+                                <i class="fa fa-minus"></i>
+                            </a>
+                            <a href="#" data-toggle="dispose">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="widget-body no-padding">
+                        <form action="index.php" name="form1" id="form1" style="margin:0px;">
+                        <table class="table table-bordered table-hover table-striped table-hover" id="searchable">
+                            <thead class="bordered-darkorange">
+                                <br/>
+                                <input type='hidden' name="module" value='re_updata'/>
+                                <input type='hidden' name="method" value='updata'/>
+                                <div style="margin-left:10px;float:left;">开始时间：<input type="text" value="<!--{$starttime2}-->" style="width:200px" class="form-control date-picker" name="starttime2" id="starttime2" data-date-format="dd-mm-yyyy"></div>
+                                <div style="margin-left:10px;float:left;">结束时间：<input type="text" value="<!--{$endtime2}-->" style="width:200px;" class="form-control date-picker" name="endtime2" id="endtime2" data-date-format="dd-mm-yyyy"></div>
+                                <div style="margin-left:10px;float:left;">请选择游戏：
+                                <select name="gid" id='gid' style="width:100%;" style="width:200px;">
+                                    <option value="0">请选择游戏</option>
+                                    <!--{$gamestr}-->
+                                </select>
+                                </div>
+                                <div style="margin-left:10px;float:left;">渠道选择：
+                                    <div class="form-group">
+                                        <select name="tid" id='tid' style="width:100%;" onchange="select_ad()">
+                                            <option value="0" <!--{if $tid eq 0}-->selected='selected'<!--{/if}-->>渠道选择</option>
+                                            <option value="1" <!--{if $tid eq 1}-->selected='selected'<!--{/if}-->>安卓</option>
+                                            <option value="2" <!--{if $tid eq 2}-->selected='selected'<!--{/if}-->>ios</option>
+                                            <option value="3" <!--{if $tid eq 3}-->selected='selected'<!--{/if}-->>ios越狱</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-left:10px;float:left;">主广告选择：
+                                    <div class="form-group">
+                                        <select name="aid" id='aid' style="width:100%;" onchange="select_adsons()">
+                                            <option value="0">主广告选择</option>
+                                            <!--{foreach from=$gp_aids key=k item=v}-->
+                                                <option value="<!--{$k}-->" <!--{if $aid eq $k}-->selected="selected"<!--{/if}-->><!--{$v}--></option>
+                                            <!--{/foreach}-->
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-left:10px;float:left;">子广告选择：
+                                    <div class="form-group">
+                                        <select name="adsons" id='adsons' style="width:100%;">
+                                            <option value="0">子广告选择</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-left:10px;float:left;margin-top:20px;"><input type='submit' id='getinfo2' class="btn btn-blue" value="查询" /></div>
+                                <hr style="clear:both;margin-top:70px;"/>
+                                <hr style="clear:both;border-bottom:3px solid red;margin-top:80px"/>
+                            </thead>
+                        </table>
+                        </form>
+                        <table  class="table table-bordered table-hover table-striped table-hover" id="searchable">
+                        <tr role="row" id="test">
+                                    <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 206px;" >日期</th>
+                                    <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 222px;" >游戏</th>
+                                    <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 159px;" >广告渠道</th>
+                                    <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 149px;" >子渠道</th>
+                                    <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 302px;" >充值人数</th>
+                                    <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 118px;" >充值金额</th></tr>
+                        <tr id="odd"><!--{$str}--></tr> 
+                        <tr bgcolor="#FFFFFF">
+                            <td colspan="14"><div align="right">每页 <font color="#FF0000"><!--{$pageinfo.pagesize}--></font> 条 共 <font color="#FF0000"><!--{$pageinfo.totalpage}--></font> 页 共 <font color="#FF0000"><!--{$pageinfo.totalrecord}--></font> 条记录&nbsp;<!--{$pageinfo.multi}--></div></td>
+                        </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="templates/js/datatable/jquery.dataTables.min.js"></script>
+    <script src="templates/js/datatable/ZeroClipboard.js"></script>
+    <script src="templates/js/datatable/dataTables.tableTools.min.js"></script>
+    <script src="templates/js/datatable/dataTables.bootstrap.min.js"></script>
+    <script src="templates/js/datatable/datatables-init.js"></script>
+    <script>
+        InitiateSimpleDataTable.init();
+        InitiateEditableDataTable.init();
+        InitiateExpandableDataTable.init();
+        function select_ad(){
+            //清空数据
+            $("#aid").find("option").remove();
+            //获取子分类数据
+            var tids = $("#tid").val();
+             $.post("index.php?module=count_outflow&method=getadson",{tid:tids},
+                 function(data){
+                    data = eval("("+data+")");
+                    //处理子展示
+                    $("#aid").append('<option value="0">广告选择</option>');
+                    $.each(data,function(i,item){
+                        $("#aid").append('<option value="'+i+'" <!--{if $aid eq "'+i+'"}-->selected="selected"<!--{/if}-->>'+item+'</option>');
+                    });
+                 }
+             ); 
+        }
+
+        function select_adsons(){
+            //清空数据
+            $("#adsons").find("option").remove();
+            //获取子分类数据
+            var ids  = $("#aid").val();
+             $.post("index.php?module=count_outflow&method=getadson",{aid: ids},
+                 function(data){
+                    data = eval("("+data+")");
+                    //处理子展示
+                    $("#adsons").append('<option value="0">子广告选择</option>');
+                    $.each(data,function(i,item){
+                        $("#adsons").append('<option value="'+i+'" <!--{if $aid eq "'+i+'"}-->selected="selected"<!--{/if}-->>'+item+'</option>');
+                    });
+                 }
+             );
+        }
+    </script>
+    <!--{/if}-->  
+    <script>
+        $(function(){
+            if('<!--{$meg}-->' !=''){
+                $("#toast-container").show();
+            }else{
+                $("#toast-container").hide();
+            }
+            $("#toast-container").bind('click',function(){
+                $("#toast-container").hide();
+            });
+        });
+        function showhelp(){
+            $("#toast-container").show();
+        }
+        function update_url(){
+            var stime = (new Date($(".update_stime").val())).getTime();
+            var etime = (new Date($(".update_etime").val())).getTime();
+            //判断开始时间不能小于结束时间
+            if(etime-stime<0){
+                alert('结束时间需大于开始时间！');
+                return;
+            }
+            stime = $(".update_stime").val();
+            etime = $(".update_etime").val();
+            location.href="./update/update_game_active.php?date1="+stime+"&date2="+etime;
+        }
+    </script>
+    <div id="toast-container" class="toast-bottom-right"><div class="toast fa-check toast-blue" ><button class="toast-close-button">×</button><div class="toast-message"><!--{$meg}--></div></div></div>
+        <!--显示主页信息-->
+    <!-- /Main Container -->
+    <!--消息提示-->
+</body>
+<!--  /Body -->
+<script src="templates/js/bootstrap.min.js"></script>
+<!--Beyond Scripts-->
+<script src="templates/js/beyond.min.js"></script>
+<!--Page Related Scripts-->
+
+<!--Bootstrap Date Picker-->
+<script src="templates/js/datetime/bootstrap-datepicker.js"></script>
+<script type="text/javascript">        
+    //--Bootstrap Date Picker--
+    $('.date-picker').datepicker();
+</script>
+</html>

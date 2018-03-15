@@ -1,0 +1,322 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="wap-font-scale"  content="no"/><!-- 禁止浏览器优化 -->
+	<meta name="viewport" content="width=device-width; initial-scale=1.0">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+	<title>用户注册 - <!--{$title}--></title>
+	<meta name="Keywords" content="<!--{$keywords}-->"/> 
+	<meta name="Description" content="<!--{$description}-->"/>
+	<link href="<!--{$web_url}-->/templates/css/user_login.css" rel="stylesheet" type="text/css">
+	<link href="<!--{$web_url}-->/templates/css/common.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="<!--{$web_url}-->/templates/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="<!--{$web_url}-->/templates/js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="<!--{$web_url}-->/templates/js/jquery.base.js"></script>
+	<script type="text/javascript" src="<!--{$web_url}-->/templates/js/jquery.handle.js"></script>
+	<script>
+		var PL = window.location.protocol;
+		var HT = window.location.host;
+		var URL = PL+'//'+HT;
+		var divArr = ['popupbox_wrap','popupbox_login','fast_reg','phone_reg','tel_reg_pass','reg_success'];
+		if ($.cookie('UN') != null) { $('#username').attr('value',$.cookie('UN')); }
+	</script>
+</head>
+<body>
+<!--  PC端 -->
+<div class="user_wrap">
+	<!--顶部导航-->
+	<div class="user_top">
+		<div class="user_top_content">
+			<div class="user_top_logo">
+				<a href="<!--{$web_url}-->/index.html" title="天拓游戏">
+					<img src="<!--{$web_url}-->/templates/images/logo_teamtopgame.png" width="165"  />
+				</a>
+			</div>
+			<div class="user_top_title">
+				<span>天拓用户中心</span>
+				<span>注册</span>
+			</div>
+			<div class="user_top_nav">
+				<p id="top_login">已有账号？马上<a href="<!--{$web_url}-->/index.php?mo=login&me=index" title="登录"> [登录]</a></p>
+			</div>
+		</div>
+	</div>
+	<!--顶部导航 end-->
+
+	<!-- 用户中心 内容 -->
+	<div class="useraccount_content" >
+		<!-- 注册类型菜单 -->
+		<div class="ua_c_nav">
+			<ul>
+				<li <!--{if $type == 'mobile'}-->class="on"<!--{/if}-->><a href="<!--{$web_url}-->/index.php?mo=register&me=index&t=mobile&s=1" title="手机注册">手机注册</a></li>
+				<li <!--{if $type == 'email'}-->class="on"<!--{/if}-->><a href="<!--{$web_url}-->/index.php?mo=register&me=index&t=email&s=1" title="邮箱注册">邮箱注册</a></li>
+				<li <!--{if $type == 'custom'}-->class="on"<!--{/if}-->><a href="<!--{$web_url}-->/index.php?mo=register&me=index&t=custom" title="个性注册">个性注册</a></li>
+			</ul>
+		</div>
+		<!-- 注册类型菜单end -->
+
+		<!--{if $type == 'mobile' && $step == 1}-->
+		<!-- 手机注册 -->
+		<div class="ua_c_content">
+			<form id="tel_reg">
+				<input id="treg_flag" name="flag" type="hidden" value="mobile"/>
+    			<input id="treg_step" name="step" type="hidden" value="1"/>
+    			<input id="treg_type" name="step" type="hidden" value="page"/>
+				<div class="ua_c_content_input">
+					<ul>
+						<li class="ua_c_text">
+							<p>手机号码：</p>
+							<input id="phone" name="phone"  placeholder="请输入手机号" type="text" >
+						</li>
+						<li class="ua_c_scode">
+							<p>验证码：</p>
+							<input id="treg_code" name="treg_code"  placeholder="请输入验证码" type="text" >
+							<a id="get_code" href="javascript:void(0);" onclick="sendcode();" title="获取验证码">获取验证码</a>
+						</li>
+					</ul>
+				</div>
+				<div class="ua_c_content_btn">
+					<input type="submit" value="下&nbsp;&nbsp;一&nbsp;&nbsp;步" class="reg_btn" />
+				</div>
+			</form>
+			<div class="reg_tips"><p id="treg_tips"></p></div>
+		</div>
+		<!-- 手机注册 end -->
+		<!--{/if}-->
+		
+		<!--{if $type == 'mobile' && $step == 2 && $name != ''}-->
+		<!-- 手机注册2 -->
+		<form id="set_pwd">
+			<input id="setpwd_flag" type="hidden" name="flag" value="mobile"/>
+        	<input id="setpwd_step" type="hidden" name="step" value="2"/>
+        	<input id="setpwd_phone" type="hidden" name="phone" value="<!--{$name}-->" />
+        	<input id="treg_type" name="step" type="hidden" value="page"/>
+			<div class="ua_c_content">
+				<div class="ua_c_content_input">
+					<p style="font-size: 20px; margin-bottom: 30px;">请为您的账号：<em id="phone_ac" style="color: red;"><!--{$name}--></em>，设置密码哟！</p>
+					<ul>
+						<li class="ua_c_password">
+							<p>设置密码：</p>
+							<input id="user_pass" name="user_pass"  placeholder="请设置密码" type="password" >
+						</li>
+						<li class="ua_c_password">
+							<p>确认密码：</p>
+							<input id="user_repass" name="user_repass"  placeholder="请确认密码" type="password" >
+						</li>
+					</ul>
+				</div>
+				<div class="ua_c_content_btn">
+					<input type="submit" value="注&nbsp;&nbsp;册" class="reg_btn" />
+				</div>
+				<div class="reg_tips"><p id="pass_tips"></p></div>
+			</div>
+		</form>
+		<!-- 手机注册2 end-->
+		<!--{/if}-->
+		
+		<!--{if $type == 'email' && $step == 1}-->
+		<!-- 邮箱注册 -->
+		<form id="mail_reg">
+			<input id="mail_flag" type="hidden" name="flag" value="email"/>
+			<input id="mail_step" type="hidden" name="step" value="1" />
+			<div class="ua_c_content">
+				<div class="ua_c_content_input">
+					<ul>
+						<li class="ua_c_text">
+							<p>邮箱地址：</p>
+							<input id="email" name="email"  placeholder="请输入邮箱" type="text" >
+						</li>
+						<li class="ua_c_scode">
+							<p>验证码：</p>
+							<input id="mail_code" name="mail_code"  placeholder="请输入验证码" type="text" >
+							<img class="yzm_code" src="<!--{$web_url}-->/lyinclude/reg_code.php" width="140" height="40" alt="点击再刷新换一个" style="background-color: #000000;" onClick="javascript:this.src='<!--{$web_url}-->/lyinclude/reg_code.php?id='+Math.random();"/>
+						</li>
+					</ul>
+				</div>
+				<div class="ua_c_content_btn">
+					<input type="submit" value="下&nbsp;&nbsp;一&nbsp;&nbsp;步" class="reg_btn" />
+				</div>
+				<div class="reg_tips"><p id="mail_tips"></p></div>
+			</div>
+		</form>
+		<!-- 邮箱注册end -->
+		<!--{/if}-->
+		<!--{if $type == 'email' && $result == 'ok'}-->
+		<!-- 邮件已发送 -->
+		<div class="ua_c_content ua_c_prompt">
+			<div class="ua_c_content_prompt">
+				<span class="ua_c_p_right"></span>
+				<span class="ua_c_p_left" style="display:none"></span>
+				<p>只差一步就完成注册啦！<br>
+					<em>亲，已发送验证邮件到您的邮箱，请注意查收哦！</em>
+				</p>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<!-- 邮件已发送 end-->
+		<!--{/if}-->
+		<!-- 邮箱注册 end-->
+		
+		<!--{if $type == 'email' && $step == 2}-->
+		<!-- 邮箱注册设置密码 -->
+		<form id="mset_pwd">
+			<input id="mset_flag" type="hidden" name="flag" value="email"/>
+			<input id="mset_step" type="hidden" name="step" value="3" />
+			<input id="mset_name" type="hidden" name="step" value="<!--{$name}-->" />
+			<div class="ua_c_content">
+				<div class="ua_c_content_input">
+					<p style="font-size: 20px; margin-bottom: 30px;">请为您的账号：<em id="your_name" style="color: red;"><!--{$name}--></em>，设置密码哟！</p>
+					<ul>
+						<li class="ua_c_password">
+							<p>设置密码：</p>
+							<input id="imset_pwd" name="pwd"  placeholder="请设置密码" type="password" >
+						</li>
+						<li class="ua_c_password">
+							<p>确认密码：</p>
+							<input id="mset_repwd" name="repwd"  placeholder="请确认密码" type="password" >
+						</li>
+					</ul>
+				</div>
+				<div class="ua_c_content_btn">
+					<input type="submit" value="注&nbsp;&nbsp;册" class="reg_btn" />
+				</div>
+				<div class="reg_tips"><p id="mset_tips"></p></div>
+			</div>
+		</form>
+		<!-- 邮箱注册设置密码 end-->
+		<!--{/if}-->
+		
+		<!--{if $type == 'custom' && $result != 'success'}-->
+		<!-- 个性注册 -->
+		<div class="ua_c_content">
+			<form id="custom_reg">
+				<input id="creg_flag" name="flag" type="hidden" value="custom"/>
+				<input id="creg_type" name="flag" type="hidden" value="page"/>
+				<div class="ua_c_content_input">
+					<ul>
+						<li class="ua_c_text">
+							<p>用户名：</p>
+							<input id="reg_name" name="name" placeholder="请输入用户名" type="text" >
+						</li>
+						<li class="ua_c_password">
+							<p>设置密码：</p>
+							<input id="reg_pwd" name="my_pwd" placeholder="请设置密码" type="password" >
+						</li>
+						<li class="ua_c_password">
+							<p>确认密码：</p>
+							<input id="reg_repwd" name="my_repwd" placeholder="请输入确认密码" type="password" >
+						</li>
+						<li class="ua_c_scode">
+							<p>验证码：</p>
+							<input name="checkcode" id="creg_code" placeholder="输入验证码" type="text" >
+							<img class="yzm_code" src="<!--{$web_url}-->/lyinclude/reg_code.php" width="140" height="40" alt="点击再刷新换一个" style="background-color: #000000;" onClick="javascript:this.src='<!--{$web_url}-->/lyinclude/reg_code.php?id='+Math.random();"/>
+						</li>
+					</ul>
+				</div>
+				<div class="ua_c_content_btn">
+					<input type="submit" value="注&nbsp;&nbsp;册" class="reg_btn" />
+				</div>
+			</form>
+			<div class="reg_tips"><p id="creg_tips"></p></div>
+		</div>
+		<!-- 个性注册end -->
+		<!--{/if}-->
+
+		<!--{if $result == 'success'}-->
+		<!-- 注册成功 -->
+		<div class="ua_c_content ua_c_prompt">
+			<div class="ua_c_content_prompt">
+				<span class="ua_c_p_right"></span>
+				<span class="ua_c_p_left" style="display:none"></span>
+				<p>注册成功，请尽快补全您的个人资料</p>
+				<div><p>5秒后自动跳转...</p></div>
+				<div class="clear"></div>
+			</div>
+			<div class="ua_c_content_btn2">
+				<ul>
+					<li class="on"><a href="javascript:void(0);" title="补全信息">补全信息</a></li>
+					<li><a href="<!--{$web_url}-->/index.php?mo=user_center&me=index" title="用户中心">用户中心</a></li>
+				</ul>
+			</div>
+		</div>
+		<script>setTimeout("window.location.href ='<!--{$web_url}-->/index.html'",5000);</script>
+		<!-- 注册成功 end-->
+		<!--{/if}-->
+	</div>
+	<!-- 用户中心 内容 end -->
+	<!-- 脚部 -->
+	<div class="foot">
+		<div class="foot_logo">
+			<a href="<!--{$web_url}-->/index.html" title="天拓游戏">
+				<img src="<!--{$web_url}-->/templates/images/logo_teamtopgame_2.png" width="150" height="">
+			</a>
+		</div>
+		<div class="foot_content">
+			<script type="text/javascript" src="https://www.hlwy.com/js/footer.js"></script>
+		</div>
+	</div>
+	<!-- 脚部 end -->
+</div>
+<script>
+	function sendcode() {
+		var phone = $('#phone').val();
+		if (!phone || phone == 'undefined') {
+			$('#treg_tips').text('请输入手机号码！');
+			return false;
+		}
+		if (!/1[34578]{1}\d{9}$/.test(phone) || phone.length < 11 || phone.length > 11) {
+			$('#treg_tips').text('手机号码格式不正确，请重新输入！');
+			return false;
+		}
+		$('#treg_tips').text('');
+		$.cookie('tel', phone, { expires: 10, path: '/' });
+		$.getJSON(URL+'/index.php?mo=register&me=mobile_reg',{flag:'sendsms',phone:phone},function(data){
+			if (data.code == 1005) {
+				time();
+			} else {
+				alert(data.msg);
+				return false;
+			}
+		});
+	}
+
+	// 预约倒计时
+	if ($.cookie('wait') == null || $.cookie('wait') <= 0) {
+		$.cookie('wait', 60, { expires: 10, path: '/' });
+	}
+
+	function time() {
+	    if ($.cookie('wait') == 0) {
+	        $('#get_code').attr('onClick',"sendcode();");
+	        $('#get_code').attr('style','');
+	        $('#get_code').html('获取验证码');
+	        $.cookie('wait', 60, { expires: 10, path: '/' });
+	    } else {
+	    	var wait = $.cookie('wait');
+	    	$('#get_code').attr('onClick','');
+	    	$('#get_code').attr('style','background: none repeat scroll 0 0 #C1C1C1;');
+	        $('#get_code').html("重新获取(" + wait + ")");
+	        wait--;
+	        $.cookie('wait', wait, { expires: 10, path: '/' });
+	        setTimeout(function() {
+	            time();
+	        },
+	        1000);
+	    }
+	}
+
+	// 记住时间
+	$(function(){
+		if ($.cookie('wait') < 60 && $.cookie('wait')> 0) {
+			time();
+		}
+		if ($.cookie('tel') != '') {
+			$('#phone').val($.cookie('tel'));
+		}
+	});
+</script>
+</body>
+</html>

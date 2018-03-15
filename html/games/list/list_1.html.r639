@@ -1,0 +1,456 @@
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="wap-font-scale" content="no" />
+    <!-- 禁止浏览器优化 -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>游戏中心 -
+        欢乐游戏
+    </title>
+    <meta name="Keywords" content="欢乐游戏,3737,游戏,3737.com,手游,热门手游,倚天" />
+    <meta name="Description" content="欢乐游戏" />
+    <script src="http://192.168.1.164/game_count/skin0/js/jquery.min.js"></script>
+    <link href="http://192.168.1.164/game_count/templates/css/game_list.css" rel="stylesheet" type="text/css">
+    <link href="http://192.168.1.164/game_count/templates/css/index.css" rel="stylesheet" type="text/css">
+    <link href="http://192.168.1.164/game_count/templates/css/common.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="http://192.168.1.164/game_count/skin0/css/index_c510ece.css">
+    <link rel="stylesheet" href="http://192.168.1.164/game_count/skin0/css/global.css">
+    <!-- 头部 -->
+    <link rel="stylesheet" href="http://192.168.1.164/game_count/skin0/css/common-header9.css">
+    <!-- 头部 -->
+    <script type="text/javascript" src="http://192.168.1.164/game_count/skin0/js/common-header.js"></script>
+    <!-- 头部 -->
+    <script type="text/javascript" src="http://192.168.1.164/game_count/m/js/main.js"></script>
+    <!-- 登陆弹出框 -->
+    <link rel="stylesheet" type="text/css" href="http://192.168.1.164/game_count/m/css/style.css" />
+    <!-- 登陆弹出框 -->
+</head>
+
+<body>
+    <!--  PC端 -->
+    <div class="wrap">
+        <!--菜单-->
+        <div class="demo">
+    <nav class="main_nav">
+        <ul>
+            <li><a href="#0"><img src="http://192.168.1.164/game_count/skin0/images/user.png" /></a></li>
+            <li><a href="#0"><img src="http://192.168.1.164/game_count/skin0/images/enroll.png" /></a></li>
+        </ul>
+    </nav>
+</div>
+<div class="cd-user-modal">
+    <div class="cd-user-modal-container">
+        <ul class="cd-switcher">
+            <li class="on"><a href="#0">用户登录</a></li>
+            <li><a href="#0">注册新用户</a></li>
+        </ul>
+        <div id="cd-login">
+            <!-- 登录表单 -->
+            <form class="cd-form">
+                <p class="fieldset">
+                    <label class="image-replace cd-username" for="signin-username">用户名</label>
+                    <input class="full-width has-padding has-border" id="signin-username" type="text" placeholder="输入用户名">
+                </p>
+                <p class="fieldset">
+                    <label class="image-replace cd-password" for="signin-password">密码</label>
+                    <input class="full-width has-padding has-border" id="signin-password" type="text" placeholder="输入密码">
+                </p>
+                <p class="fieldset">
+                    <input type="checkbox" id="remember-me" checked>
+                    <span for="remember-me">记住登录状态</span>
+                </p>
+                <p class="fieldset">
+                    <input class="full-width2" type="submit" value="登 录">
+                </p>
+            </form>
+        </div>
+        <div id="cd-signup">
+            <!-- 注册表单 -->
+            <form class="cd-form">
+                <p class="fieldset">
+                    <label class="image-replace cd-username" for="signup-username">用户名</label>
+                    <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="输入用户名">
+                </p>
+                <p class="fieldset">
+                    <label class="image-replace cd-email" for="signup-email">邮箱</label>
+                    <input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="输入mail">
+                </p>
+                <p class="fieldset">
+                    <label class="image-replace cd-password" for="signup-password">密码</label>
+                    <input class="full-width has-padding has-border" id="signup-password" type="text" placeholder="输入密码">
+                </p>
+                <p class="fieldset">
+                    <input type="checkbox" id="accept-terms">
+                    <span for="accept-terms">我已阅读并同意 <a href="#0">用户协议</a></span>
+                </p>
+                <p class="fieldset">
+                    <input class="full-width2" type="submit" value="注册新用户">
+                </p>
+            </form>
+        </div>
+        <a href="#" class="cd-close-form">关闭</a>
+    </div>
+</div>
+<div data-spm="2">
+    <div class="ali-common-header0">
+        <div class="ali-common-header-inner common-header-clearfix">
+            <!-- 运营专区 -->
+            <div style="margin-right: 180px;" class="activity item pull-left">
+                <div class="flash-wrap" id="J-ali-activity-img">
+                    <a href="#"><img src="http://192.168.1.164/game_count/skin0/images/lylogo2.png" style="height: 75px;width: 95%;margin-top: 17.5px;"></a>
+                </div>
+            </div>
+            <!-- 导航菜单 -->
+            <ul class="menu item pull-left" id="J_common_header_menu" data-spm="201">
+                <li class="top-menu-item">
+                    <a class="menu-hd" href="http://192.168.1.164/game_count">首页</a>
+                </li>
+                <li class="top-menu-item">
+                    <a class="menu-hd" href="http://192.168.1.164/game_count/html/news/yxxw/index.html">新闻动态</a>
+                </li>
+                <li class="top-menu-item">
+                    <a target="_blank" class="menu-hd top-menu-item-link" href="http://192.168.1.164/game_count/about.html">关于我们</a>
+                </li>
+                <li class="top-menu-item" has-dropdown="true" menu-type="dev" data-spm-click="">
+                    <a class="menu-hd" href="http://192.168.1.164/game_count/html/games/index.html" target="_blank">产品中心 </a>
+                </li>
+                <li class="top-menu-item">
+                    <a class="menu-hd" href="http://192.168.1.164/game_count/joinus.html">人才招聘</a>
+                </li>
+                <li class="top-menu-item">
+                    <a class="menu-hd" href="http://192.168.1.164/game_count/html/news/ttdt/index.html">公司动态</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+//暂时屏蔽外连接
+function show() {
+    alert('敬请期待！');
+}
+</script>        <!--菜单 end-->
+        <!-- 轮播图 -->
+        <!-- 头部 -->
+        <!-- 头部 -->
+<div class="newslist_head">
+	<!-- 新闻页大轮播 -->
+	<div class="newslist_head_pic slideBox">
+		<div class="nl_head_pic_img bd">
+			<ul>
+							<li>
+					<a href="#" title="秦时明月" target="_blank">
+						<img src="http://192.168.1.164/game_count/uploads/games/2018/01/1515219677560536.jpg" alt="秦时明月" width="100%" height="560">
+					</a>
+				</li>
+							<li>
+					<a href="#" title="神契幻奇谭" target="_blank">
+						<img src="http://192.168.1.164/game_count/uploads/games/2017/12/1513579567363227.jpg" alt="神契幻奇谭" width="100%" height="560">
+					</a>
+				</li>
+						</ul>
+		</div>
+		<div class="nl_head_pic_nav hd">
+			<ul>
+							<li><a href="javascript:void(0);"></a></li>
+							<li><a href="javascript:void(0);"></a></li>
+						</ul>
+		</div>
+	</div>
+	<!-- 新闻页大轮播 end -->
+
+
+</div>
+<!-- 头部 end -->        <!-- 头部 end -->
+        <!-- 游戏列表 内容 -->
+        <div class="gamelist_content">
+            <!-- 热门推荐 -->
+            <div class="gl_hotoffers">
+	<div class="gl_hotoffers_title">
+		<em></em>
+		<h4>热门动态</h4>
+	</div>
+	<div class="gl_hotoffers_list">
+		<ul>
+					<li>
+				<div class="gl_hotoffers_icon">
+					<a href="#" title="秦时明月" target="_blank" >
+						<img src="http://192.168.1.164/game_count/uploads/games/2017/12/1513579515936700.jpg" width="50" height="50" alt="秦时明月" >
+					</a>
+				</div>
+				<div class="gl_hotoffers_content">
+					<a href="#" title="秦时明月" target="_blank">
+						<h5>秦时明月</h5>
+					</a>
+					<div class="gl_hotoffers_star">
+						<ul>
+							<li class="on"><a></a></li>
+							<li class="on"><a></a></li>
+							<li class="on"><a></a></li>
+							<li class="on"><a></a></li>
+							<li class="on"><a></a></li>
+						</ul>
+					</div>
+				</div>
+			</li>
+					<li>
+				<div class="gl_hotoffers_icon">
+					<a href="#" title="神契幻奇谭" target="_blank" >
+						<img src="http://192.168.1.164/game_count/uploads/games/2017/12/1513579560925786.jpg" width="50" height="50" alt="神契幻奇谭" >
+					</a>
+				</div>
+				<div class="gl_hotoffers_content">
+					<a href="#" title="神契幻奇谭" target="_blank">
+						<h5>神契幻奇谭</h5>
+					</a>
+					<div class="gl_hotoffers_star">
+						<ul>
+							<li class="on"><a></a></li>
+							<li class="on"><a></a></li>
+							<li class="on"><a></a></li>
+							<li class="on"><a></a></li>
+							<li class="on"><a></a></li>
+						</ul>
+					</div>
+				</div>
+			</li>
+					<li>
+				<div class="gl_hotoffers_icon">
+					<a href="#" title="卧龙天下" target="_blank" >
+						<img src="http://192.168.1.164/game_count/uploads/games/2017/10/1508137715751096.jpg" width="50" height="50" alt="卧龙天下" >
+					</a>
+				</div>
+				<div class="gl_hotoffers_content">
+					<a href="#" title="卧龙天下" target="_blank">
+						<h5>卧龙天下</h5>
+					</a>
+					<div class="gl_hotoffers_star">
+						<ul>
+							<li class="on"><a></a></li>
+							<li class="on"><a></a></li>
+							<li class="on"><a></a></li>
+							<li class="on"><a></a></li>
+							<li class="on"><a></a></li>
+						</ul>
+					</div>
+				</div>
+			</li>
+					<li>
+				<div class="gl_hotoffers_icon">
+					<a href="#" title="三国战起来" target="_blank" >
+						<img src="http://192.168.1.164/game_count/uploads/games/2017/10/1508137913721121.jpg" width="50" height="50" alt="三国战起来" >
+					</a>
+				</div>
+				<div class="gl_hotoffers_content">
+					<a href="#" title="三国战起来" target="_blank">
+						<h5>三国战起来</h5>
+					</a>
+					<div class="gl_hotoffers_star">
+						<ul>
+							<li class="on"><a></a></li>
+							<li class="on"><a></a></li>
+							<li class="on"><a></a></li>
+							<li class="on"><a></a></li>
+							<li class="on"><a></a></li>
+						</ul>
+					</div>
+				</div>
+			</li>
+					<li>
+				<div class="gl_hotoffers_icon">
+					<a href="#" title="战神天下" target="_blank" >
+						<img src="http://192.168.1.164/game_count/uploads/games/2017/10/1508137950186624.jpg" width="50" height="50" alt="战神天下" >
+					</a>
+				</div>
+				<div class="gl_hotoffers_content">
+					<a href="#" title="战神天下" target="_blank">
+						<h5>战神天下</h5>
+					</a>
+					<div class="gl_hotoffers_star">
+						<ul>
+							<li class="on"><a></a></li>
+							<li class="on"><a></a></li>
+							<li class="on"><a></a></li>
+							<li class="on"><a></a></li>
+							<li class="on"><a></a></li>
+						</ul>
+					</div>
+				</div>
+			</li>
+					<li>
+				<div class="gl_hotoffers_icon">
+					<a href="#" title="一统武林" target="_blank" >
+						<img src="http://192.168.1.164/game_count/uploads/games/2017/10/1508137968906823.jpg" width="50" height="50" alt="一统武林" >
+					</a>
+				</div>
+				<div class="gl_hotoffers_content">
+					<a href="#" title="一统武林" target="_blank">
+						<h5>一统武林</h5>
+					</a>
+					<div class="gl_hotoffers_star">
+						<ul>
+							<li class="on"><a></a></li>
+							<li class="on"><a></a></li>
+							<li class="on"><a></a></li>
+							<li class="on"><a></a></li>
+							<li ><a></a></li>
+						</ul>
+					</div>
+				</div>
+			</li>
+					<li>
+				<div class="gl_hotoffers_icon">
+					<a href="#" title="绝世剑神" target="_blank" >
+						<img src="http://192.168.1.164/game_count/uploads/games/2017/10/1508137991188113.jpg" width="50" height="50" alt="绝世剑神" >
+					</a>
+				</div>
+				<div class="gl_hotoffers_content">
+					<a href="#" title="绝世剑神" target="_blank">
+						<h5>绝世剑神</h5>
+					</a>
+					<div class="gl_hotoffers_star">
+						<ul>
+							<li class="on"><a></a></li>
+							<li class="on"><a></a></li>
+							<li class="on"><a></a></li>
+							<li ><a></a></li>
+							<li ><a></a></li>
+						</ul>
+					</div>
+				</div>
+			</li>
+			
+		</ul>
+	</div>
+</div>            <!-- 热门推荐 end -->
+            <!-- 游戏列表 -->
+            <div class="gl_list">
+                <div class="gl_list_title">
+                    <em></em>
+                    <h4>游戏列表</h4>
+                </div>
+                <div class="gl_list_content">
+                    <div id="wrap">
+                        <ul>
+                                                        <li>
+                                <a href="#" class="a1">
+							<img src="http://192.168.1.164/game_count/uploads/games/2017/10/1508137974201050.jpg">
+							<div class ="divA">
+								<p class="p1">一统武林</p>
+								<p class="p2">一统武林手游是一款画风偏复古的趣味对决类手游，玩家在游戏中能够充分体验到武侠江湖的种种是非争端，学习至高武功参加武林大会角逐盟主之位，和红颜比翼双飞笑看风云红尘，多元化战斗对决副本体验，玩法丰富的pvp和pve模式等你来战！</p>
+								<p class="p3"><span>进入官网>></span></p>
+							</div>
+						</a>
+                                <a href="#" class="a2">
+                                    <p class="p4">
+                                        一统武林
+                                    </p>
+                                    <p class="p5">游戏类型：
+                                        手机游戏
+                                        </br>玩家评分：
+                                        ★★★★
+                                        </br>玩家下载：火爆公测中</p>
+                                    <p class="p6"><span>进入官网</span></p>
+                                    <p class="p7">点击下载></p>
+                                </a>
+                            </li>
+                                                        <li>
+                                <a href="#" class="a1">
+							<img src="http://192.168.1.164/game_count/uploads/games/2017/10/1508137995495407.jpg">
+							<div class ="divA">
+								<p class="p1">绝世剑神</p>
+								<p class="p2">绝世剑神手游是一款以经典同名小说绝世剑神为题材的战斗冒险RPG手游，激情刺激的冒险玩法，玩家可以感受到最劲爆的对决与最刺激的战斗，好玩程度绝对超乎你的想象！首创横版放置玩法，通过刷BOSS，挑战强大的怪兽！打造专属神器与法术！成为绝世剑神！</p>
+								<p class="p3"><span>进入官网>></span></p>
+							</div>
+						</a>
+                                <a href="#" class="a2">
+                                    <p class="p4">
+                                        绝世剑神
+                                    </p>
+                                    <p class="p5">游戏类型：
+                                        手机游戏
+                                        </br>玩家评分：
+                                        ★★★
+                                        </br>玩家下载：火爆公测中</p>
+                                    <p class="p6"><span>进入官网</span></p>
+                                    <p class="p7">点击下载></p>
+                                </a>
+                            </li>
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- 游戏列表 end -->
+        </div>
+        <!-- 新闻页列表页数 -->
+                <div class="gl_list_page">
+            <ul>
+                <li ><a href="http://192.168.1.164/game_count/html/games/index.html" title="首页">首页</a></li>
+                                <li class="on"
+                    ><a href="http://192.168.1.164/game_count/html/games/list/list_1.html" title="尾页">尾页</a></li>
+            </ul>
+        </div>
+                <!-- 新闻页列表页数 end -->
+        <!-- 内容 end -->
+        <!-- 脚部 -->
+        <style>
+.foot{ width: 100%; height: 150px; margin: 0 auto;line-height: 20px; background-color: #2B2B2B;position: relative;}
+.foot_logo{ width: 165px; height: 63px; overflow: hidden; margin: 38px 24px 38px 450px; float: left;}
+.foot_logo a{ width: 100%; height: 100%; display: block;  }
+.foot_content{ width: 780px; height: 85%; float: left; text-align: left;  color: #FFFFFF;position: absolute;bottom: 0;left: 700px;font-family: 'Lato', sans-serif; font-size:12px;}
+.foot_content a{ color: #FFFFFF; padding: 0 6px; }
+.foot_content:hover a{ color: #000; }
+</style>		
+		
+		<div class="foot" >
+		<div class="foot_logo">
+			<a href="http://www.hlwy.com/" title="" target="_blank">
+				<img src="http://192.168.1.164/game_count/skin0/images/lylogofont2.png" width="100%" height="65">
+			</a>
+		</div>
+		<div class="foot_content">
+			<div class="tsy">健康游戏忠告：抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活 </div>
+			<div id="footer_logo_h"></div>
+			<ul id="footer_ul">
+				<li>
+					<a title="关于本站" href="http://192.168.1.164/game_count/html/leyou/about.html" target="_blank">关于本站</a><span>|</span>
+					<a title="联系我们" href="http://192.168.1.164/game_count/html/leyou/joinus.html" target="_blank">联系我们</a><span>|</span>
+					<a title="商务合作" href="http://192.168.1.164/game_count/html/leyou/business.html" target="_blank">商务合作</a><span>|</span>
+					<a title="服务条款" href="http://192.168.1.164/game_count/html/leyou/term.html" target="_blank">服务条款</a>
+				</li>
+				<li class="copyright">Copyright 2017 &copy;广州乐游.All Rights Reserved<a href="http://www.miibeian.gov.cn/" title="网站备案" target="_blank"> icp备案号：粤ICP备17102407号</a>
+				</li>
+				<li><a href="" target="_blank">粤网文[2017]9540-2374号</a></li>
+	            <li>广东乐游互联网科技有限公司</li>
+			</ul>
+		</div>
+   </div>        <!-- 脚部 end -->
+    </div>
+    <script type="text/javascript" src="http://192.168.1.164/game_count/templates/js/jquery.SuperSlide.js"></script>
+    <script>
+    jQuery(".slideBox").slide({ mainCell: ".bd ul", effect: "left", autoPlay: true, trigger: "click" });
+    </script>
+    <script type="text/javascript">
+    $('li').mouseenter(function() {
+        $(this).find('.divA').stop().animate({ bottom: '-66px' });
+        $(this).find('.a2').css({ left: '0' })
+        $(this).children('.a2').find('.p4').css({ left: '0' })
+        $(this).children('.a2').find('.p5').css({ left: '0' })
+        $(this).children('.a2').find('.p6').css({ transform: 'scale(1)' })
+        $(this).children('.a2').find('.p7').css({ bottom: '25px' })
+    })
+    $('li').mouseleave(function() {
+        $(this).find('.divA').stop().animate({ bottom: '0px' });
+        $(this).find('.a2').css({ left: -$(this).width() })
+        $(this).children('.a2').find('.p4').css({ left: -$(this).width() })
+        $(this).children('.a2').find('.p5').css({ left: -$(this).width() })
+        $(this).children('.a2').find('.p6').css({ transform: 'scale(1.3)' })
+        $(this).children('.a2').find('.p7').css({ bottom: '-50px' })
+    })
+    </script>
+</body>
+
+</html>

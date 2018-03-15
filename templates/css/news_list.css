@@ -1,0 +1,71 @@
+/*------------------头部------------------*/
+.newslist_head{ width: 100%; height: 560px; overflow: hidden; margin: 0 auto 0 auto; }
+
+
+
+
+/*新闻页大轮播*/
+.newslist_head_pic{ width: 100%; height: 100%; margin-right: 12px; float: left; position: relative; }
+.nl_head_pic_img{ width: 100%; height: 100%; }
+.nl_head_pic_img ul{ width: 100%; height: 100%; }
+.nl_head_pic_img ul li{ width: 100%; height: 100%; overflow: hidden; }
+.nl_head_pic_img ul li a{ width: 100%; height: 100%; display: block; }
+.nl_head_pic_nav{ width: 150px; height: 13px; position: absolute; bottom: 12px; right: 12px;  }
+.nl_head_pic_nav ul{ width: 100%; height: 100%; }
+.nl_head_pic_nav ul li{ height: 13px; float: left; margin-left: 10px; }
+.nl_head_pic_nav ul li a{ width: 13px; height: 100%; display: block; background: url(../images/index_banner_nav.png) no-repeat ; background-size: contain;
+	transition:width 0.4s, background 0.4s;
+	-moz-transition:width .4s, background 0.4s; /* Firefox 4 */
+	-webkit-transition:width 0.4s, background 0.4s; /* Safari and Chrome */
+	-o-transition:width .4s, background 0.4s; /* Opera */  }
+/*.nl_head_pic_nav ul li a:hover ,*/.nl_head_pic_nav ul li.on a{ width: 39px; background: url(../images/index_banner_nav_on.png) no-repeat ; background-size: contain; }
+
+
+/*新闻页热点*/
+.newslist_head_hot{ width: 548px; height: 300px; float: left; overflow: hidden; }
+.newslist_head_hot ul{ width: 100%; height: 100%; }
+.newslist_head_hot ul li{ width: 100%; height: 150px; overflow: hidden; margin-bottom: 10px; }
+.nl_head_hot_pic{ width: 147px; height: 140px; margin: 0 14px 0 0; float: left; }
+.nl_head_hot_pic a{ width: 100%; height: 100%; display: block; }
+.nl_head_hot_pic a img{}
+.nl_head_hot_content{ width: 380px; height: 149px; float: left; border-bottom: 1px dashed #676767;   }
+.nl_head_hot_content h5{ width: 100%; height: 30px; line-height: 30px; color: #e78f14; font-size: 18px;  font-weight: bolder; text-decoration:none; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.nl_head_hot_content p{ width: 100%; height: 118px; line-height: 20px; color: #5d5d5d; font-size: 14px; }
+
+
+
+/*新闻页内容*/
+.newslist_content{ width: 1120px; min-height: auto; margin: 24px auto 0 auto; overflow: hidden;  }
+
+.newslist_content_nav{ width: 100%; height: 53px; line-height: 53px; text-align: center; background: url(../images/newslist_content_nav.png) no-repeat center;  }
+.newslist_content_nav ul{ width: 800px; height: 100%; overflow: hidden; }
+.newslist_content_nav ul li{ width: 178px; height: 53px; float: left; margin-right: 116px;  }
+.newslist_content_nav ul li a{ width: 100%; height: 100%; display: block; color: #fff; font-size: 24px; font-weight: bolder; background: url(../images/newslist_content_nav_on.png) no-repeat ;  }
+.newslist_content_nav ul li.on a ,.newslist_content_nav ul li a:hover{ background-position: 0 -53px; }
+
+
+
+.newslist_content_list{ width: 100%; min-height: auto; overflow: hidden; }
+.newslist_content_list ul{ width: 100%; height: auto; }
+.newslist_content_list ul li{ width: 100%; height: 200px; border-bottom: 1px dashed #676767; overflow: hidden;}
+.newslist_content_list ul li .nl_ct_list_pic{ width: 230px; height: 130px; float: left; margin: 30px 35px 40px 4px;   }
+.newslist_content_list ul li .nl_ct_list_pic a{ }
+.newslist_content_list ul li .nl_ct_list_pic a img{ }
+.newslist_content_list ul li .nl_ct_list_content{ width: 850px; height: 130px;margin: 30px 0 40px 0; float: left;  }
+.newslist_content_list ul li .nl_ct_list_content h5{ width: 100%; height: 30px;  line-height: 30px; font-size: 24px; color: #E78F14; font-weight: normal; text-decoration:none; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.newslist_content_list ul li .nl_ct_list_content p{ width: 100%; height: 100px; line-height: 24px; font-size: 14px; color: #5d5d5d; padding-top: 8px;  }
+
+
+
+.newslist_content_page{ width: 100%; height: 40px; text-align: center; margin-top: 30px; }
+.newslist_content_page ul{ height: 40px; margin: 0 auto; display: inline-block; *display: inline; }
+.newslist_content_page ul li{ float: left; margin: 0 8px; overflow: hidden; line-height: 40px;	}
+.newslist_content_page ul li a{ padding: 0 6px; font-size: 14px; color: #fff; background: #a3a3a3; 
+	-moz-border-radius: 4px;      
+    -webkit-border-radius: 4px;   
+    border-radius: 4px; }
+.newslist_content_page ul li a:hover ,.newslist_content_page ul li.on a{ background: #E78F14;  }
+
+
+
+

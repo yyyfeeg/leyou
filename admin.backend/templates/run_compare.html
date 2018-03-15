@@ -1,0 +1,258 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- Head -->
+<head>
+<!--{include file="head.html"}-->
+</head>
+<!-- /Head -->
+<!-- Body -->
+<body>
+    <!-- Loading Container -->
+        <!--{include file="loading.html"}-->
+    <!--  /Loading Container -->
+    
+    <!-- Main Container -->
+    <!--{if "run_compare" == $run_compare}-->  <!--综合数据列表-->
+    <style>
+        ul{
+            list-style: none;
+        }
+    </style>
+    <div class="page-body">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <h5 class="row-title before-themesecondary">综合概况</h5>
+                <br/>
+                <div style="margin-left:10px;float:left;">开始时间：<input type="text" value="" style="width:200px" class="form-control date-picker" name="starttime1" id="starttime1" data-date-format="dd-mm-yyyy"></div>
+                <div style="margin-left:10px;float:left;">结束时间：<input type="text" value="" style="width:200px" class="form-control date-picker" name="starttime1" id="endtime1" data-date-format="dd-mm-yyyy"></div>
+                <div style="margin-left:10px;margin-top:20px;"><input type='button' id='do1' class="btn btn-blue" value="查询" /></div>
+                <br/>
+                <table class="table table-bordered table-hover table-striped table-hover" id="searchable1">
+                </table>
+                <h5 class="row-title before-themesecondary">数据图表</h5>
+                <div>暂无数据~</div>
+                <h5 class="row-title before-themesecondary">对比数据</h5>
+                <br/>
+
+                <div style="margin-left:10px;float:left;">开始时间：<input type="text" value="" style="width:200px" class="form-control date-picker" name="starttime2" id="starttime2" data-date-format="dd-mm-yyyy"></div>
+                <div style="margin-left:10px;float:left;">结束时间：<input type="text" value="" style="width:200px;" class="form-control date-picker" name="endtime2" id="endtime2" data-date-format="dd-mm-yyyy"></div>
+                <div style="margin-left:10px;float:left;">请选择游戏：
+                    <select name="type" id='type' style="width:100%;" style="width:200px;">
+                        <option value="1">新增注册用户</option>
+                        <option value="2">活跃用户</option>
+                        <option value="3">总收入</option>
+                        <option value="4">LTV</option>
+                        <option value="5">回款率</option>
+                        <option value="6">付费渗透率</option>
+                        <option value="7">arpu</option>
+                    </select>
+                </div>
+                <div style="margin-left:10px;float:left;">请选择游戏：
+                    <!--{foreach from=$games key=k item=v}-->
+                        <label>
+                            <input type="checkbox" value="<!--{$k}-->" name="virtue" id="virtue">
+                            <span class="text"><!--{$v}--></span>
+                        </label>
+                    <!--{/foreach}-->
+                </div>
+                <div style="margin-left:10px;margin-top:20px;"><input type='button' id='do2' class="btn btn-blue" value="查询" /></div>
+                <br/>
+                <table class="table table-bordered table-hover table-striped table-hover" id="searchable2">
+                </table>
+            </div>
+            </div>
+        </div>
+    </div>
+    <script src="templates/js/datatable/jquery.dataTables.min.js"></script>
+    <script src="templates/js/datatable/ZeroClipboard.js"></script>
+    <script src="templates/js/datatable/dataTables.tableTools.min.js"></script>
+    <script src="templates/js/datatable/dataTables.bootstrap.min.js"></script>
+    <script src="templates/js/datatable/datatables-init.js"></script>
+    <script>
+        InitiateSimpleDataTable.init();
+        InitiateEditableDataTable.init();
+        InitiateExpandableDataTable.init();
+        var data='';
+        $(document).ready(function() {
+            /*异步条件请求*/
+            $("#do1").bind("click",function(){
+                var starttime1     = $('#starttime1').val();
+                var endtime1       = $('#endtime1').val();
+
+                //异步请求数据
+                $.post("index.php?module=run_compare&method=listdata",{stime: starttime1,etime: endtime1},
+                     function(data){
+                        data = eval("("+data+")");
+                        if(data.str ==1001){
+                            alert(data.meg);
+                        }
+                        $('#searchable1').dataTable({"bDestroy":true,"sScrollX": "100%",
+                            "bScrollCollapse": true,
+                            "searching":true,
+                            "aLengthMenu":false,
+                            "sDom": "Tflt<'row DTTTFooter'<'col-sm-6'i><'col-sm-6'p>>",
+                            "aaSorting": [[1, 'asc']],
+                            "aLengthMenu": [
+                               [5, 15, 20],
+                               [5, 15, 20]
+                            ],
+                            "iDisplayLength": 10,
+                            "oTableTools": {
+                                "aButtons": []
+                            },
+                            "language": {
+                                "search": "",
+                                "sLengthMenu": "显示 _MENU_ 项结果",
+                                "sProcessing": "处理中...",
+                                "oPaginate": {
+                                    "sFirst": "首页",
+                                    "sPrevious": "上页",
+                                    "sNext": "下页",
+                                    "sLast": "末页"
+                                },
+                                "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                                "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                                "infoFiltered":   "(总过滤_MAX_条)",
+                                "zeroRecords":    "没有匹配结果",
+                            },
+                            "data": data,
+                            "columns": [
+                                { "sTitle": "游戏名称",class:'123'},
+                                { "sTitle": "回款率"},
+                                { "sTitle": "活跃用户数"},
+                                { "sTitle": "LTV"},
+                                { "sTitle": "总注册人数"},
+                                { "sTitle": "总收入"},
+                                { "sTitle": "总收入占比"},
+                        ]});//重新调用插件
+                        $("thead input").keyup(function () {
+                            /* Filter on the column (the index) of this element */
+                            oTable.fnFilter(this.value, $("thead input").index(this));
+                        });
+
+                        $('#expandabledatatable_column_toggler input[type="checkbox"]').change(function () {
+                            var iCol = parseInt($(this).attr("data-column"));
+                            var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
+                            oTable.fnSetColumnVis(iCol, (bVis ? false : true));
+                        });
+
+                        $('body').on('click', '.dropdown-menu.hold-on-click', function (e) {
+                            e.stopPropagation();
+                        })
+                     }
+                 );
+            });
+            /*异步条件请求*/
+            $("#do2").bind("click",function(){
+                var starttime2     = $('#starttime2').val();
+                var endtime2       = $('#endtime2').val();
+                var type           = $('#type').val();
+                var games          = $("*[name='virtue']:checked").map(function(){return $(this).val()}).get().join(",");//游戏值
+                //异步请求数据
+                $.post("index.php?module=run_compare&method=listinfo",{stime: starttime2,etime: endtime2,game: games,type:type},
+                     function(data){
+                        data = eval("("+data+")");
+                        if(data.str ==1001){
+                            alert(data.meg);
+                        }
+                        $('#searchable2').dataTable({"bDestroy":true,"sScrollX": "100%",
+                            "bScrollCollapse": true,
+                            "searching":true,
+                            "aLengthMenu":false,
+                            "sDom": "Tflt<'row DTTTFooter'<'col-sm-6'i><'col-sm-6'p>>",
+                            "aaSorting": [[1, 'asc']],
+                            "aLengthMenu": [
+                               [5, 15, 20],
+                               [5, 15, 20]
+                            ],
+                            "iDisplayLength": 10,
+                            "oTableTools": {
+                                "aButtons": []
+                            },
+                            "language": {
+                                "search": "",
+                                "sLengthMenu": "显示 _MENU_ 项结果",
+                                "sProcessing": "处理中...",
+                                "oPaginate": {
+                                    "sFirst": "首页",
+                                    "sPrevious": "上页",
+                                    "sNext": "下页",
+                                    "sLast": "末页"
+                                },
+                                "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                                "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                                "infoFiltered":   "(总过滤_MAX_条)",
+                                "zeroRecords":    "没有匹配结果",
+                            },
+                            "aaSorting":[0,'asc'],
+                            "data": data,
+                            "columns": [
+                                { "sTitle": "日期",class:'123'},
+                                { "sTitle": "游戏1"},
+                                { "sTitle": "游戏2"},
+                                { "sTitle": "游戏3"},
+                                { "sTitle": "游戏4"},
+                        ]});//重新调用插件
+                        $("thead input").keyup(function () {
+                            /* Filter on the column (the index) of this element */
+                            oTable.fnFilter(this.value, $("thead input").index(this));
+                        });
+
+                        $('#expandabledatatable_column_toggler input[type="checkbox"]').change(function () {
+                            var iCol = parseInt($(this).attr("data-column"));
+                            var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
+                            oTable.fnSetColumnVis(iCol, (bVis ? false : true));
+                        });
+
+                        $('body').on('click', '.dropdown-menu.hold-on-click', function (e) {
+                            e.stopPropagation();
+                        })
+                     }
+                 );
+            });
+        } );
+    </script>
+    <!--{/if}-->  <!--列表-->
+    <script>
+        $(function(){
+            if('<!--{$meg}-->' !=''){
+                $("#toast-container").show();
+            }else{
+                $("#toast-container").hide();
+            }
+            $("#toast-container").bind('click',function(){
+                $("#toast-container").hide();
+            });
+        });
+        function showhelp(){
+            $("#toast-container").show();
+        }
+        function update_url(){
+            var stime = (new Date($(".update_stime").val())).getTime();
+            var etime = (new Date($(".update_etime").val())).getTime();
+            //判断开始时间不能小于结束时间
+            if(etime-stime<0){
+                alert('结束时间需大于开始时间！');
+                return;
+            }
+            location.href="./update/update_remain.php?date1="+stime+"&date2="+etime;
+        }
+    </script>
+    <div id="toast-container" class="toast-bottom-right"><div class="toast fa-check toast-blue" ><button class="toast-close-button">×</button><div class="toast-message"><!--{$meg}--></div></div></div>
+        <!--显示主页信息-->
+    <!-- /Main Container -->
+    <!--消息提示-->
+</body>
+<!--  /Body -->
+<script src="templates/js/bootstrap.min.js"></script>
+<!--Beyond Scripts-->
+<script src="templates/js/beyond.min.js"></script>
+<!--Page Related Scripts-->
+<!--Bootstrap Date Picker-->
+<script src="templates/js/datetime/bootstrap-datepicker.js"></script>
+<script type="text/javascript">        
+    //--Bootstrap Date Picker--
+    $('.date-picker').datepicker();
+</script>
+</html>

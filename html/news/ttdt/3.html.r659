@@ -1,0 +1,309 @@
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="wap-font-scale"  content="no"/><!-- 禁止浏览器优化 -->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>公司动态 - 欢乐游戏</title>
+	<meta name="Keywords" content="欢乐游戏,3737,游戏,3737.com,手游,热门手游,倚天"/> 
+	<meta name="Description" content="欢乐游戏"/>
+	<link href="http://localhost/game_count/templates/css/news_content.css" rel="stylesheet" type="text/css">
+	<link href="http://localhost/game_count/templates/css/common.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="http://localhost/game_count/m/js/main.js"></script> <!-- 登陆弹出框 -->
+    <link rel="stylesheet" type="text/css" href="http://localhost/game_count/m/css/style.css" /><!-- 登陆弹出框 -->
+    <link rel="stylesheet" href="http://localhost/game_count/skin0/css/global.css"><!-- 头部 -->
+	<link rel="stylesheet" href="http://localhost/game_count/skin0/css/common-header9.css"><!-- 头部 -->
+	<script type="text/javascript" src="http://localhost/game_count/skin0/js/common-header.js"></script><!-- 头部 -->
+</head>
+<body>
+<!--  PC端 -->
+<div class="index_wrap">
+	<!--菜单-->
+	<div class="demo">
+    <nav class="main_nav">
+        <ul>
+            <li><a href="#0"><img src="http://localhost/game_count/skin0/images/user.png" /></a></li>
+            <li><a href="#0"><img src="http://localhost/game_count/skin0/images/enroll.png" /></a></li>
+        </ul>
+    </nav>
+</div>
+<div class="cd-user-modal">
+    <div class="cd-user-modal-container">
+        <ul class="cd-switcher">
+            <li class="on"><a href="#0">用户登录</a></li>
+            <li><a href="#0">注册新用户</a></li>
+        </ul>
+        <div id="cd-login">
+            <!-- 登录表单 -->
+            <form class="cd-form">
+                <p class="fieldset">
+                    <label class="image-replace cd-username" for="signin-username">用户名</label>
+                    <input class="full-width has-padding has-border" id="signin-username" type="text" placeholder="输入用户名">
+                </p>
+                <p class="fieldset">
+                    <label class="image-replace cd-password" for="signin-password">密码</label>
+                    <input class="full-width has-padding has-border" id="signin-password" type="text" placeholder="输入密码">
+                </p>
+                <p class="fieldset">
+                    <input type="checkbox" id="remember-me" checked>
+                    <span for="remember-me">记住登录状态</span>
+                </p>
+                <p class="fieldset">
+                    <input class="full-width2" type="submit" value="登 录">
+                </p>
+            </form>
+        </div>
+        <div id="cd-signup">
+            <!-- 注册表单 -->
+            <form class="cd-form">
+                <p class="fieldset">
+                    <label class="image-replace cd-username" for="signup-username">用户名</label>
+                    <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="输入用户名">
+                </p>
+                <p class="fieldset">
+                    <label class="image-replace cd-email" for="signup-email">邮箱</label>
+                    <input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="输入mail">
+                </p>
+                <p class="fieldset">
+                    <label class="image-replace cd-password" for="signup-password">密码</label>
+                    <input class="full-width has-padding has-border" id="signup-password" type="text" placeholder="输入密码">
+                </p>
+                <p class="fieldset">
+                    <input type="checkbox" id="accept-terms">
+                    <span for="accept-terms">我已阅读并同意 <a href="http://localhost/game_count/html/leyou/term.html">用户协议</a></span>
+                </p>
+                <p class="fieldset">
+                    <input class="full-width2" type="submit" value="注册新用户">
+                </p>
+            </form>
+        </div>
+        <a href="#" class="cd-close-form">关闭</a>
+    </div>
+</div>
+<div data-spm="2">
+    <div class="ali-common-header0">
+        <div class="ali-common-header-inner common-header-clearfix">
+            <!-- 运营专区 -->
+            <div style="margin-right: 180px;" class="activity item pull-left">
+                <div class="flash-wrap" id="J-ali-activity-img">
+                    <a href="http://localhost/game_count"><img src="http://localhost/game_count/skin0/images/lylogo2.png" style="height: 75px;width: 95%;margin-top: 17.5px;"></a>
+                </div>
+            </div>
+            <!-- 导航菜单 -->
+            <ul class="menu item pull-left" id="J_common_header_menu" data-spm="201">
+                <li class="top-menu-item">
+                    <a class="menu-hd" href="http://localhost/game_count">首页</a>
+                </li>
+                <li class="top-menu-item">
+                    <a class="menu-hd" href="http://localhost/game_count/html/news/yxxw/index.html">新闻动态</a>
+                </li>
+                <li class="top-menu-item">
+                    <a target="_blank" class="menu-hd top-menu-item-link" href="http://localhost/game_count/html/leyou/about.html">关于我们</a>
+                </li>
+                <li class="top-menu-item" has-dropdown="true" menu-type="dev" data-spm-click="">
+                    <a class="menu-hd" href="http://localhost/game_count/html/games/index.html" target="_blank">产品中心 </a>
+                </li>
+                <li class="top-menu-item">
+                    <a class="menu-hd" href="http://localhost/game_count/html/leyou/joinus.html">人才招聘</a>
+                </li>
+                <li class="top-menu-item">
+                    <a class="menu-hd" href="http://localhost/game_count/html/news/ttdt/index.html">公司动态</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>	<!--菜单 end-->
+
+	<!-- 新闻页 详细内容 -->
+	<div class="newscontent_content">
+		<!-- 新闻页 标题 -->
+		<div class="nc_title">
+			<h4>公司动态</h4>
+			<p class="current fr">
+			    当前位置：
+			    <a href="http://localhost/game_count/index.html" title="首页">首页</a> &gt; 
+			    <a href="http://localhost/game_count/html/news/ttdt/index.html" title="公司动态">公司动态</a>
+			</p>
+		</div>
+		<!-- 新闻页 标题 end -->
+
+		<!-- 新闻 内容 -->
+		<div class="nc_content">
+			<div class="nc_ct_title">
+				<h3>《神契幻奇谭》中那些个性鲜明的人物形象</h3>
+				<p>
+					<span>作者：欢乐游戏</span>
+					<span>发布时间 : 2018-03-03</span>
+				</p>
+			</div>
+			<div class="nc_ct_content">
+			
+			</div>
+
+			<!-- 文章分享 -->
+			<!-- <div class="nc_ct_share">
+				<p>分享到:</p>
+				<ul>
+					<li><a class="nc_share_wechat" href="" title="分享到朋友圈"></a></li>
+					<li><a class="nc_share_tencnet" href="" title="分享到QQ好友"></a></li>
+					<li><a class="nc_share_space" href="" title="分享到QQ空间"></a></li>
+					<li><a class="nc_share_sina" href="" title="分享到新浪微博"></a></li>
+					<li><a class="nc_share_renren" href="" title="分享到人人网"></a></li>
+					<li><a class="nc_share_tcfirend" href="" title="分享到QQ朋友"></a></li>
+					<li><a class="nc_share_more" href="" title="更多"></a></li>
+				</ul>
+			</div> -->
+			<!--<div class="bdsharebuttonbox nc_ct_share">
+				<p>分享到:</p>
+				<ul>
+					<a href="#" title="分享到QQ空间" class="bds_qzone" data-cmd="qzone"></a>
+					<a href="#" title="分享到新浪微博" class="bds_tsina" data-cmd="tsina"></a>
+					<a href="#" title="分享到腾讯微博" class="bds_tqq" data-cmd="tqq"></a>
+					<a href="#" title="分享到人人网" class="bds_renren" data-cmd="renren"></a>
+					<a href="#" title="分享到微信" class="bds_weixin" data-cmd="weixin"></a>
+					<a href="#" title="更多" class="bds_more" data-cmd="more"></a>
+				</ul>
+			</div>
+			<script>
+				window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+			</script>-->
+			<!-- 文章分享 end -->
+
+		</div>
+		<!-- 新闻 内容 content -->
+
+		<!-- 热游预告 -->
+		<div class="nc_hotgame">
+			<div class="nc_hotgame_title">
+				<em></em>
+				<h4>热点游戏</h4>
+			</div>
+			<div class="nc_hotgame_content">
+				<ul>
+									<li>
+						<a href="#" title="秦时明月2" target="_blank">
+							<img src="http://localhost/game_count/uploads/f_photos/2017/12/1512974036948232.jpg" width="230" height="120">
+						</a>
+					</li>
+									<li>
+						<a href="#" title="秦时明月2" target="_blank">
+							<img src="http://localhost/game_count/uploads/f_photos/2017/12/1512974010686384.jpg" width="230" height="120">
+						</a>
+					</li>
+									<li>
+						<a href="#" title="出征吧！勇士" target="_blank">
+							<img src="http://localhost/game_count/uploads/f_photos/2017/12/1512973961271152.jpg" width="230" height="120">
+						</a>
+					</li>
+									<li>
+						<a href="#" title="秦时明月" target="_blank">
+							<img src="http://localhost/game_count/uploads/f_photos/2017/12/1512628425729571.jpg" width="230" height="120">
+						</a>
+					</li>
+								</ul>
+			</div>
+		</div>
+		<!-- 热游预告 end -->
+
+		<!-- 热门动态 -->
+		<div class="nc_hotnews">
+			<div class="nc_hotgame_title">
+				<em></em>
+				<h4>热门动态</h4>
+			</div>
+			<div class="nc_hotnews_list">
+				<ul>
+									<li>
+						<span>[公司动态]</span>
+						<a href="http://localhost/game_count/html/news/ttdt/3.html" title="《神契幻奇谭》中那些个性鲜明的人物形象" >《神契幻奇谭》中那些个性鲜明的人物形象</a>
+						<em>03/03</em>
+					</li>
+								</ul>
+			</div>
+		</div>
+		<!-- 热门动态 end -->
+	</div>
+	<!-- 新闻页 详细内容 end -->
+
+	<!-- 脚部 -->
+	<style>
+	.foot_content{font-size: 12px;}
+.foot {
+    width: 100%;
+    height: 150px;
+    margin: 0 auto;
+    line-height: 20px;
+    background-color: #2B2B2B;
+    position: relative;
+}
+
+.foot_logo a {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.foot_logo {
+    width: 9%;
+    height: 63px;
+    margin: 38px 24px 38px 25%;
+    float: left;
+}
+
+.foot_content {
+    width: 50%;
+    height: 85%;
+    float: right;
+    text-align: left;
+    color: #FFFFFF;
+    position: absolute;
+    bottom: 0;
+    left: 37%;
+    font-family: 'Lato', sans-serif;https://wx2.sinaimg.cn/mw690/d711ce85gy1fouvo4omzjj21z42yohdv.jpg
+}
+
+@media screen and (max-width: 1600px) {
+    .foot_logo{margin: 38px 24px 38px 20%;}
+    .foot_content{left: 32%;}
+}
+@media screen and (max-width: 1320px) {
+    .foot{width: 1320px;}
+}
+
+
+.foot_content a {
+    color: #FFFFFF;
+    padding: 0 6px;
+}
+
+.foot_content:hover a {
+    color: #000;
+}
+</style>
+<div class="foot">
+    <div class="foot_logo">
+        <a href="http://www.hlwy.com/" title="" target="_blank">
+				<img src="http://localhost/game_count/skin0/images/lylogofont2.png" width="100%" height="65">
+			</a>
+    </div>
+    <div class="foot_content">
+        <div class="tsy">健康游戏忠告：抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活 </div>
+        <div id="footer_logo_h"></div>
+        <ul id="footer_ul">
+            <li>
+                <a title="关于本站" href="http://localhost/game_count/html/leyou/about.html" target="_blank">关于本站</a><span>|</span>
+                <a title="联系我们" href="http://localhost/game_count/html/leyou/joinus.html" target="_blank">联系我们</a><span>|</span>
+                <a title="商务合作" href="http://localhost/game_count/html/leyou/business.html" target="_blank">商务合作</a><span>|</span>
+                <a title="服务条款" href="http://localhost/game_count/html/leyou/term.html" target="_blank">服务条款</a>
+            </li>
+            <li class="copyright">Copyright 2017 &copy;广州乐游.All Rights Reserved<a href="http://www.miibeian.gov.cn/" title="网站备案" target="_blank"> icp备案号：粤ICP备17102407号</a>
+            </li>
+            <li><a href="" target="_blank">粤网文[2017]9540-2374号</a></li>
+            <li>广东乐游互联网科技有限公司</li>
+        </ul>
+    </div>
+</div>	<!-- 脚部 end -->
+</div>
+</body>
+</html>

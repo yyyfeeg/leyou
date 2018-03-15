@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="wap-font-scale"  content="no"/><!-- 禁止浏览器优化 -->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title><!--{$content_arr.rubricid}--> - <!--{$title}--></title>
+	<meta name="Keywords" content="<!--{$keywords}-->"/> 
+	<meta name="Description" content="<!--{$description}-->"/>
+	<link href="<!--{$web_url}-->/templates/css/news_content.css" rel="stylesheet" type="text/css">
+	<link href="<!--{$web_url}-->/templates/css/common.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="<!--{$web_url}-->/m/js/main.js"></script> <!-- 登陆弹出框 -->
+    <link rel="stylesheet" type="text/css" href="<!--{$web_url}-->/m/css/style.css" /><!-- 登陆弹出框 -->
+    <link rel="stylesheet" href="<!--{$web_url}-->/skin0/css/global.css"><!-- 头部 -->
+	<link rel="stylesheet" href="<!--{$web_url}-->/skin0/css/common-header9.css"><!-- 头部 -->
+	<script type="text/javascript" src="<!--{$web_url}-->/skin0/js/common-header.js"></script><!-- 头部 -->
+</head>
+<body>
+<!--  PC端 -->
+<div class="index_wrap">
+	<!--菜单-->
+	<!--{include file="header.html"}-->
+	<!--菜单 end-->
+
+	<!-- 新闻页 详细内容 -->
+	<div class="newscontent_content">
+		<!-- 新闻页 标题 -->
+		<div class="nc_title">
+			<h4><!--{$content_arr.rubricid}--></h4>
+			<p class="current fr">
+			    当前位置：
+			    <a href="<!--{$web_url}-->/index.html" title="首页">首页</a> &gt; 
+			    <a href="<!--{$content_arr.rubricurl}-->" title="<!--{$content_arr.rubricid}-->"><!--{$content_arr.rubricid}--></a>
+			</p>
+		</div>
+		<!-- 新闻页 标题 end -->
+
+		<!-- 新闻 内容 -->
+		<div class="nc_content">
+			<div class="nc_ct_title">
+				<h3><!--{$content_arr.title}--></h3>
+				<p>
+					<span>作者：<!--{$content_arr.author}--></span>
+					<span>发布时间 : <!--{$content_arr.printtime}--></span>
+				</p>
+			</div>
+			<div class="nc_ct_content">
+			<!--{$content_arr.contents}-->
+			</div>
+
+			<!-- 文章分享 -->
+			<!-- <div class="nc_ct_share">
+				<p>分享到:</p>
+				<ul>
+					<li><a class="nc_share_wechat" href="" title="分享到朋友圈"></a></li>
+					<li><a class="nc_share_tencnet" href="" title="分享到QQ好友"></a></li>
+					<li><a class="nc_share_space" href="" title="分享到QQ空间"></a></li>
+					<li><a class="nc_share_sina" href="" title="分享到新浪微博"></a></li>
+					<li><a class="nc_share_renren" href="" title="分享到人人网"></a></li>
+					<li><a class="nc_share_tcfirend" href="" title="分享到QQ朋友"></a></li>
+					<li><a class="nc_share_more" href="" title="更多"></a></li>
+				</ul>
+			</div> -->
+			<!--<div class="bdsharebuttonbox nc_ct_share">
+				<p>分享到:</p>
+				<ul>
+					<a href="#" title="分享到QQ空间" class="bds_qzone" data-cmd="qzone"></a>
+					<a href="#" title="分享到新浪微博" class="bds_tsina" data-cmd="tsina"></a>
+					<a href="#" title="分享到腾讯微博" class="bds_tqq" data-cmd="tqq"></a>
+					<a href="#" title="分享到人人网" class="bds_renren" data-cmd="renren"></a>
+					<a href="#" title="分享到微信" class="bds_weixin" data-cmd="weixin"></a>
+					<a href="#" title="更多" class="bds_more" data-cmd="more"></a>
+				</ul>
+			</div>
+			<script>
+				window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+			</script>-->
+			<!-- 文章分享 end -->
+
+		</div>
+		<!-- 新闻 内容 content -->
+
+		<!-- 热游预告 -->
+		<div class="nc_hotgame">
+			<div class="nc_hotgame_title">
+				<em></em>
+				<h4>热点游戏</h4>
+			</div>
+			<div class="nc_hotgame_content">
+				<ul>
+				<!--{section name=index loop=$hot_games}-->
+					<li>
+						<a href="<!--{$hot_games[index].jurl}-->" title="<!--{$hot_games[index].title}-->" target="_blank">
+							<img src="<!--{$web_url}--><!--{$hot_games[index].purl}-->" width="230" height="120">
+						</a>
+					</li>
+				<!--{/section}-->
+				</ul>
+			</div>
+		</div>
+		<!-- 热游预告 end -->
+
+		<!-- 热门动态 -->
+		<div class="nc_hotnews">
+			<div class="nc_hotgame_title">
+				<em></em>
+				<h4>热门动态</h4>
+			</div>
+			<div class="nc_hotnews_list">
+				<ul>
+				<!--{section name=index loop=$dynamic}-->
+					<li>
+						<span>[<!--{$content_arr.rubricid}-->]</span>
+						<a href="<!--{if $dynamic[index].virtue eq 'true'}--><!--{$dynamic[index].jurl}--><!--{else}--><!--{$dynamic[index].url}--><!--{/if}-->" title="<!--{$dynamic[index].title}-->" <!--{if $dynamic[index].virtue eq 'true'}--> target="_blank"<!--{/if}-->><!--{$dynamic[index].title}--></a>
+						<em><!--{$dynamic[index].time|date_format:"%m/%d"}--></em>
+					</li>
+				<!--{/section}-->
+				</ul>
+			</div>
+		</div>
+		<!-- 热门动态 end -->
+	</div>
+	<!-- 新闻页 详细内容 end -->
+
+	<!-- 脚部 -->
+	<!--{include file="footer.html"}-->
+	<!-- 脚部 end -->
+</div>
+</body>
+</html>

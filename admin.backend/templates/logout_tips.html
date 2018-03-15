@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	<!--{include file="head.html"}-->
+	</head>
+<body>
+	<!--{include file="loading.html"}-->
+
+	<!--{if $type eq 'list'}--><!--退出登录提示信息列表-->
+	<style> ul{ list-style: none; } </style>
+    <div class="page-body">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="widget">
+                    <div class="widget-header bordered-bottom bordered-yellow">
+                        <span class="widget-caption">退出登录提示信息列表</span>
+                        <a href="javascript:void(0);" onclick="showhelp();" style="font-weight:bold">显示功能帮助</a>
+                        <div class="widget-buttons">
+                            <a href="#" data-toggle="maximize">
+                                <i class="fa fa-expand"></i>
+                            </a>
+                            <a href="#" data-toggle="collapse">
+                                <i class="fa fa-minus"></i>
+                            </a>
+                            <a href="#" data-toggle="dispose">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="widget-body no-padding">
+                        <table class="table table-bordered table-hover table-striped table-hover" id="searchable">
+                            <thead class="bordered-darkorange">
+                                <tr id='foot'>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_engine" placeholder="搜索系统ID" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_browser" placeholder="搜索游戏" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_platform" placeholder="搜索渠道" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_version" placeholder="" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_version" placeholder="跳转地址" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_version" placeholder="描述" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_version" placeholder="发布时间" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_version" placeholder="添加时间" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_version" placeholder="添加人员" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_version" placeholder="状态" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_grade" placeholder="" class="form-control input-sm"></th>
+                                </tr>
+                                <tr role="row" id='test'>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="templates/js/datatable/jquery.dataTables.min.js"></script>
+    <script src="templates/js/datatable/ZeroClipboard.js"></script>
+    <script src="templates/js/datatable/dataTables.tableTools.min.js"></script>
+    <script src="templates/js/datatable/dataTables.bootstrap.min.js"></script>
+    <script src="templates/js/datatable/datatables-init.js"></script>
+    <script>
+        InitiateSimpleDataTable.init();
+        InitiateEditableDataTable.init();
+        InitiateExpandableDataTable.init();
+        $(document).ready(function() {
+                /*
+                 * Insert a 'details' column to the table
+                 */
+                var oTable = $('#searchable').dataTable({
+                "sScrollX": "100%",
+                "bScrollCollapse": true,
+                "sDom": "Tflt<'row DTTTFooter'<'col-sm-6'i><'col-sm-6'p>>",
+                "aaSorting": [[1, 'asc']],
+                "aLengthMenu": [
+                   [5, 15, 20],
+                   [5, 15, 20]
+                ],
+                "iDisplayLength": 10,
+                "oTableTools": {
+                    "aButtons": []
+                },
+                "language": {
+                    "search": "",
+                    "sLengthMenu": "显示 _MENU_ 项结果",
+                    "sProcessing": "处理中...",
+                    "oPaginate": {
+                        "sFirst": "首页",
+                        "sPrevious": "上页",
+                        "sNext": "下页",
+                        "sLast": "末页"
+                    },
+                    "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                    "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                    "infoFiltered":   "(总过滤_MAX_条)",
+                    "zeroRecords":    "没有匹配结果",
+                },
+                
+                "data": <!--{$data}-->,
+                "columns": [
+                    { "sTitle": "系统ID",class:'123'},
+                    { "sTitle": "游戏" },
+                    { "sTitle": "渠道" },
+                    { "sTitle": "图片" },
+                    { "sTitle": "跳转地址" },
+                    { "sTitle": "描述" },
+                    { "sTitle": "发布时间" },
+                    { "sTitle": "添加时间" },
+                    { "sTitle": "添加人员" },
+                    { "sTitle": "状态" },
+                    { "sTitle": "操作"},
+                ]
+            });
+            $("thead input").keyup(function () {
+                /* Filter on the column (the index) of this element */
+                oTable.fnFilter(this.value, $("thead input").index(this));
+            });
+
+            $('#expandabledatatable_column_toggler input[type="checkbox"]').change(function () {
+                var iCol = parseInt($(this).attr("data-column"));
+                var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
+                oTable.fnSetColumnVis(iCol, (bVis ? false : true));
+            });
+
+            $('body').on('click', '.dropdown-menu.hold-on-click', function (e) {
+                e.stopPropagation();
+            })
+        } );
+    </script>
+	<!--{/if}-->
+
+	<!--{if $type eq 'add'}--><!--添加退出登录提示信息-->
+	<div class="col-lg-12 col-lg-offset-3 col-sm-12 col-xs-12" style="0 auto">
+        <h5 class="row-title before-pink"><i class="fa fa-expand pink"></i>退出登录提示信息添加</h5>
+        <div class="row">
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div class="widget">
+                    <div class="widget-header bordered-top bordered-palegreen">
+                        <span class="widget-caption">退出登录提示信息添加表单</span>
+                    </div>
+                    <div class="widget-body">
+                        <div class="collapse in">
+                            <form enctype="multipart/form-data" action="index.php?module=logout_tips&method=add_tips" method="post" id='myform' name='myform'>
+                                <input name="act" value="add" type="hidden"/>
+                                <input id="picture" name="picture" value="<!--{if $url != ''}--><!--{$url}--><!--{else}--><!--{$data.lt_picture}--><!--{/if}-->" type="hidden"/>
+                                <div class="form-group">
+                                   <label for="definpu">游戏选择：<span style="color:red">*</span></label>
+                                   <select name="gameid" id='gameid' style="width:100%;" onchange="getUaid(this.value,'add_tips');" onblur="clean_error('gameid')">
+                                   		<option value="0">请选择游戏</option>
+                                        <!--{foreach from=$gameArr key=sysid item=value}-->
+                                        <option value="<!--{$sysid}-->" <!--{if $data.lt_gid eq $sysid}-->selected="selected"<!--{/if}-->><!--{$value}--></option><hr/>
+                                        <!--{/foreach}-->
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">渠道选择：<span style="color:red">*</span></label>
+                                    <div id="uaid_select">
+                                        <!--{if $uaidArr != ''}-->
+                                        <select name="uaid" style="width:100%;">
+                                            <option value="0">所有渠道</option>
+                                            <!--{foreach from=$uaidArr key=sysid item=value}-->
+                                            <option value="<!--{$value.sysid}-->" <!--{if $data.lt_uaid eq $value.sysid}-->selected="selected"<!--{/if}-->><!--{$value.gc_cname}--></option>
+                                            <!--{/foreach}-->
+                                        </select>
+                                        <!--{/if}-->
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">展示图片：<span style="color:red">*</span></label><br/>
+                                    <label style="float:left;margin-right:10px">
+                                        <img src="<!--{if $url != ''}--><!--{$url}--><!--{else}--><!--{$data.lt_picture}--><!--{/if}-->"  width='100px' height='100px'/>
+                                    </label>
+                                    <lable>
+                                        <input id="file" name="file" type="file">
+                                        <br>
+                                        允许上传的文件类型为:<b style='color:red'><!--{$img}--></b>
+                                        <br/>
+                                        允许上传的文件大小为:<b style='color:red'><!--{$size}-->M</b>
+                                        <br/><b style='color:red'><!--{$error}--></b>
+                                        <br/><b style='color:blue'><!--{$success}--></b>
+                                    </lable>
+                                    <input type="submit" value="上传" onclick="formaction('index.php?module=logout_tips&method=add_tips&flag=up','myform',0)"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">图片跳转地址：</label><span style="color:red">*</span>
+                                    <input type="text" class="form-control" id="url" name="url" placeholder="例如：http://www.hlwy.com(还没有，请填 # )" value="<!--{$data.lt_url}-->" onblur="clean_error('url')"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">提示描述：</label>
+                                    <textarea class="form-control" rows="3" placeholder="例如：天拓用户中心。。。" id='contents' name='contents'><!--{$data.lt_contents}--></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">定时发布：</label><br/>
+                                    <label>
+                                        <input class="checkbox-slider toggle yesno" type="checkbox" id='timing' name='timing'>
+                                        <span class="text"></span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                   <label for="definpu">发布时间：</label>
+                                    <input type="text" value="<!--{$data.lt_printtime}-->" class="form-control date-picker" name="printtime" id="printtime" data-date-format="yyyy-mm-dd">
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">状态：</label>
+                                    <label>
+                                        <input type="radio" value='1' name='status' id='status' <!--{if $data.lt_status eq 1}-->checked="true"<!--{/if}-->>
+                                        <span class="text">草稿</span>
+                                    </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <label>
+                                        <input type="radio" value='2' name='status' id='status' <!--{if $data.lt_status eq 2}-->checked="true"<!--{/if}-->>
+                                        <span class="text">发布</span>
+                                    </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <label>
+                                        <input type="radio" value='3' name='status' id='status' <!--{if $data.lt_status eq 3}-->checked="true"<!--{/if}-->>
+                                        <span class="text">下架</span>
+                                    </label>
+                                </div>
+                                <button type="submit" class="btn btn-blue" onclick="return addGameCheck('index.php?module=logout_tips&method=add_tips','myform',0);">添 加</button>
+                                <button type="submit" onClick="history.go(-1);return false;" value="取消" name="submit" class="btn btn-blue">取 消</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<!--{/if}-->
+
+	<!--{if $type eq 'edit'}--><!--修改退出登录提示信息-->
+    <div class="col-lg-12 col-lg-offset-3 col-sm-12 col-xs-12" style="0 auto">
+        <h5 class="row-title before-pink"><i class="fa fa-expand pink"></i>退出登录提示信息修改</h5>
+        <div class="row">
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div class="widget">
+                    <div class="widget-header bordered-top bordered-palegreen">
+                        <span class="widget-caption">退出登录提示信息修改表单</span>
+                    </div>
+                    <div class="widget-body">
+                        <div class="collapse in">
+                            <form enctype="multipart/form-data" action="index.php?module=logout_tips&method=edit_tips" method="post" id='myform' name='myform'>
+                                <input name="act" value="edit" type="hidden"/>
+                                <input name="id" value="<!--{$data.sysid}-->" type="hidden"/>
+                                <input id="picture" name="picture" value="<!--{if $url != ''}--><!--{$url}--><!--{else}--><!--{$data.lt_picture}--><!--{/if}-->" type="hidden"/>
+                                <div class="form-group">
+                                   <label for="definpu">游戏选择：<span style="color:red">*</span></label>
+                                   <select name="gameid" id='gameid' style="width:100%;" onchange="getUaid(this.value,'edit_tips');" onblur="clean_error('gameid')">
+                                        <option value="0">请选择游戏</option>
+                                        <!--{foreach from=$gameArr key=sysid item=value}-->
+                                        <option value="<!--{$sysid}-->" <!--{if $data.lt_gid eq $sysid}-->selected="selected"<!--{/if}-->><!--{$value}--></option><hr/>
+                                        <!--{/foreach}-->
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">渠道选择：<span style="color:red">*</span></label>
+                                    <div id="uaid_select">
+                                        <!--{if $uaidArr != ''}-->
+                                        <select name="uaid" style="width:100%;">
+                                            <option value="0">所有渠道</option>
+                                            <!--{foreach from=$uaidArr key=sysid item=value}-->
+                                            <option value="<!--{$value.sysid}-->" <!--{if $data.lt_uaid eq $value.sysid}-->selected="selected"<!--{/if}-->><!--{$value.gc_cname}--></option>
+                                            <!--{/foreach}-->
+                                        </select>
+                                        <!--{/if}-->
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">展示图片：<span style="color:red">*</span></label><br/>
+                                    <label style="float:left;margin-right:10px">
+                                        <img src="<!--{if $url != ''}--><!--{$url}--><!--{else}--><!--{$data.lt_picture}--><!--{/if}-->"  width='100px' height='100px'/>
+                                    </label>
+                                    <lable>
+                                        <input id="file" name="file" type="file">
+                                        <br>
+                                        允许上传的文件类型为:<b style='color:red'><!--{$img}--></b>
+                                        <br/>
+                                        允许上传的文件大小为:<b style='color:red'><!--{$size}-->M</b>
+                                        <br/><b style='color:red'><!--{$error}--></b>
+                                        <br/><b style='color:blue'><!--{$success}--></b>
+                                    </lable>
+                                    <input type="submit" value="上传" onclick="formaction('index.php?module=logout_tips&method=edit_tips&flag=up','myform',0)"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">图片跳转地址：</label><span style="color:red">*</span>
+                                    <input type="text" class="form-control" id="url" name="url" placeholder="例如：http://www.hlwy.com(还没有，请填 # )" value="<!--{$data.lt_url}-->" onblur="clean_error('url')"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">提示描述：</label>
+                                    <textarea class="form-control" rows="3" placeholder="例如：乐游用户中心。。。" id='contents' name='contents'><!--{$data.lt_contents}--></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">定时发布：</label><br/>
+                                    <label>
+                                        <input class="checkbox-slider toggle yesno" type="checkbox" id='timing' name='timing'>
+                                        <span class="text"></span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                   <label for="definpu">发布时间：</label>
+                                    <input type="text" value="<!--{$data.lt_printtime}-->" class="form-control date-picker" name="printtime" id="printtime" data-date-format="yyyy-mm-dd">
+                                </div>
+                                <div class="form-group">
+                                    <label for="definpu">状态：</label>
+                                    <label>
+                                        <input type="radio" value='1' name='status' id='status' <!--{if $data.lt_status eq 1}-->checked="true"<!--{/if}-->>
+                                        <span class="text">草稿</span>
+                                    </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <label>
+                                        <input type="radio" value='2' name='status' id='status' <!--{if $data.lt_status eq 2}-->checked="true"<!--{/if}-->>
+                                        <span class="text">发布</span>
+                                    </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <label>
+                                        <input type="radio" value='3' name='status' id='status' <!--{if $data.lt_status eq 3}-->checked="true"<!--{/if}-->>
+                                        <span class="text">下架</span>
+                                    </label>
+                                </div>
+                                <button type="submit" class="btn btn-blue" onclick="return addGameCheck('index.php?module=logout_tips&method=edit_tips','myform',0);">修 改</button>
+                                <button type="submit" onClick="history.go(-1);return false;" value="取消" name="submit" class="btn btn-blue">取 消</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<!--{/if}-->
+	<script>
+        function addGameCheck(url,id,name) {
+            //检测数据
+            var gameid = clean_error('gameid');
+            var jurl = clean_error('url');
+            show_tips('picture','请上传图片！');
+            if(gameid && jurl){
+                formaction(url,id,name);
+            }else{
+                return false;
+            }
+        }
+
+        function clean_error(name) {
+            $('#'+name).next().remove();
+            var names = $('#'+name).val();
+            if(names == "" || names == '0' || names == 'undefined'){
+                $('#'+name).parent().attr("class","has-error");
+                $('#'+name).focus();
+                $('#'+name).after('<small class="help-block" style="" data-bv-validator="notEmpty" data-bv-validator-for="address"></small>');
+                $('#'+name).next().html('内容填写有误！');
+                return false;
+            }else{
+                $('#'+name).parent().attr("class","form-group");
+                $('#'+name).next().html();
+                $('#'+name).next().remove();
+                return true;
+            }
+        }
+
+        function formaction(url,id,name) {
+            if(name==0){
+                document.myform.action = url;
+                $("#"+id).submit();
+            }else{
+                document.myform1.action = url;
+                $("#"+id).submit();
+            }
+        }
+
+        //获取游戏下对应的渠道
+        function getUaid(gid,flag)
+        {
+        	$.ajax({
+        		type:'POST',
+        		url:'index.php?module=logout_tips&method='+flag+'&fun=get_uaid',
+        		data:'gameid='+gid,
+        		success:function(res){
+        			$('#uaid_select').html(res);
+        		}
+        	});
+        }
+
+        function show_tips(id,tips)
+        {
+            var id = $('#'+id).val();
+            if (id == '') {
+                alert(tips);
+                return false;
+            }
+        }
+    </script>
+	<script>
+        $(function(){
+            if('<!--{$meg}-->' !=''){
+                $("#toast-container").show();
+            }else{
+                $("#toast-container").hide();
+            }
+            $("#toast-container").bind('click',function(){
+                $("#toast-container").hide();
+            });
+        });
+        function showhelp(){
+            $("#toast-container").show();
+        }
+    </script>
+    <div id="toast-container" class="toast-bottom-right">
+    	<div class="toast fa-check toast-blue" >
+    		<button class="toast-close-button">×</button>
+    		<div class="toast-message"><!--{$meg}--></div>
+    	</div>
+    </div>
+</body>
+<script src="templates/js/bootstrap.min.js"></script>
+<script src="templates/js/beyond.min.js"></script>
+<script src="templates/js/datetime/bootstrap-datepicker.js"></script>
+<script src="templates/js/datetime/bootstrap-timepicker.js"></script>
+<script> $('.date-picker').datepicker();</script>
+</html>

@@ -1,0 +1,15 @@
+
+
+计划任务更新redis数据到mysql，每隔1-2分钟更新一次
+
+计划任务顺序：
+
+1、更新广告数据(adinfo_rk.php)
+
+2、更新打开游戏数据(get_game_open.php)
+
+3、更新登录数据(get_gamelogin.php)
+
+4、更新创角数据(get_create_role.php)
+
+5、更新充值数据(get_pay_log.php)

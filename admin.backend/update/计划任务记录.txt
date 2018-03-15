@@ -1,0 +1,29 @@
+================================数据转移说明=========================================
+1、updel_redis.php 	//删除转移数据测试数据（redis中的数据）
+2、updays.php		//更新redis中数据到mysql中
+3、upday_txt3.php	//更新数据写入到txt中 参数：游戏_开始时间_结束时间
+4、upday_redis.php	//更新txt写入到中mysql 参数：游戏_开始时间_结束时间
+2、updays.php		//直接更新数据到mysql和redis中（默认前一天） 参数 游戏_开始时间_结束时间
+
+
+=================================统计计划任务说明========================================
+参数：开始时间_结束时间_是否强制更新  date1=20160401&date2=20160701    默认更新前一天数据
+标号标识顺序
+url http://www.ttgfun.com/game_count.and.crm.admin.backend/update/update_newpay.php
+1、update_game_active.php 
+2、update_game_dayreg.php
+3、update_game_dayrole.php
+4、update_gamereg_outflow.php
+5、update_gamerole_outflow.php
+6、update_remain.php
+7、update_newpay.php
+
+
+
+10 02 * * * cd /data/htdocs/www/game_count.and.crm.admin.backend/update  && /usr/bin/php /data/htdocs/www/game_count.and.crm.admin.backend/update/update_game_active.php
+20 02 * * * cd /data/htdocs/www/game_count.and.crm.admin.backend/update  && /usr/bin/php /data/htdocs/www/game_count.and.crm.admin.backend/update/update_game_dayreg.php
+30 02 * * * cd /data/htdocs/www/game_count.and.crm.admin.backend/update  && /usr/bin/php /data/htdocs/www/game_count.and.crm.admin.backend/update/update_game_dayrole.php
+40 02 * * * cd /data/htdocs/www/game_count.and.crm.admin.backend/update  && /usr/bin/php /data/htdocs/www/game_count.and.crm.admin.backend/update/update_gamereg_outflow.php
+50 02 * * * cd /data/htdocs/www/game_count.and.crm.admin.backend/update  && /usr/bin/php /data/htdocs/www/game_count.and.crm.admin.backend/update/update_gamerole_outflow.php
+58 02 * * * cd /data/htdocs/www/game_count.and.crm.admin.backend/update  && /usr/bin/php /data/htdocs/www/game_count.and.crm.admin.backend/update/update_remain.php
+04 03 * * * cd /data/htdocs/www/game_count.and.crm.admin.backend/update  && /usr/bin/php /data/htdocs/www/game_count.and.crm.admin.backend/update/update_newpay.php

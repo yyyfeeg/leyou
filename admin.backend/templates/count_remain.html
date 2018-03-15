@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- Head -->
+<head>
+<!--{include file="head.html"}-->
+</head>
+<!-- /Head -->
+<!-- Body -->
+<body>
+    <!-- Loading Container -->
+        <!--{include file="loading.html"}-->
+    <!--  /Loading Container -->
+    
+    <!-- Main Container -->
+    <!--{if "remainlist" == $remain}-->  <!--注册留存列表-->
+    <style>
+        ul{
+            list-style: none;
+        }
+    </style>
+    <div class="page-body">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="widget">
+                    <div class="widget-header bordered-bottom bordered-yellow">
+                        <span class="widget-caption">注册留存列表</span>
+                        <a href="javascript:void(0);" onclick="showhelp();" style="font-weight:bold">显示功能帮助</a>
+                        <div class="widget-buttons">
+                            <a href="#" data-toggle="maximize">
+                                <i class="fa fa-expand"></i>
+                            </a>
+                            <a href="#" data-toggle="collapse">
+                                <i class="fa fa-minus"></i>
+                            </a>
+                            <a href="#" data-toggle="dispose">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="widget-body no-padding">
+                        <table class="table table-bordered table-hover table-striped table-hover" id="searchable">
+                            <thead class="bordered-darkorange">
+                                <br/>
+
+                                <div style="margin-left:10px;float:left;">开始时间：<input type="text" value="" style="width:200px" class="form-control date-picker" name="starttime2" id="starttime2" data-date-format="dd-mm-yyyy"></div>
+                                <div style="margin-left:10px;float:left;">结束时间：<input type="text" value="" style="width:200px;" class="form-control date-picker" name="endtime2" id="endtime2" data-date-format="dd-mm-yyyy"></div>
+                                <div style="margin-left:10px;float:left;">请选择游戏：
+                                <select name="gid" id='gid' style="width:100%;" style="width:200px;">
+                                    <option value="0">请选择游戏</option>
+                                    <!--{$gamestr}-->
+                                </select>
+                                </div>
+                                <div style="margin-left:10px;float:left;">渠道选择：
+                                    <div class="form-group">
+                                        <select name="tid" id='tid' style="width:100%;" onchange="select_ad()">
+                                            <option value="0">渠道选择</option>
+                                            <option value="1">安卓</option>
+                                            <option value="2">ios</option>
+                                            <option value="3">ios越狱</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-left:10px;float:left;">主广告选择：
+                                    <div class="form-group">
+                                        <select name="aid" id='aid' style="width:100%;" onchange="select_adsons()">
+                                            <option value="0">主广告选择</option>
+                                            <!--{foreach from=$gp_aids key=k item=v}-->
+                                                <option value="<!--{$k}-->"><!--{$v}--></option>
+                                            <!--{/foreach}-->
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-left:10px;float:left;">子广告选择：
+                                    <div class="form-group">
+                                        <select name="adsons" id='adsons' style="width:100%;">
+                                            <option value="0">子广告选择</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-left:10px;float:left;margin-top:20px;"><input type='button' id='getinfo' class="btn btn-blue" value="查询" /></div>
+                                <hr style="clear:both;margin-top:70px;"/>
+                                <form action="index.php?module=count_outflow&method=outflowlist">
+                                    <div style="margin-left:10px;float:left;">开始时间：<input type="text" value="" style="width:200px" class="form-control date-picker update_stime" name="starttime" id="starttime" data-date-format="yyyy/mm/dd"></div>
+                                    <div style="margin-left:10px;float:left;">结束时间：<input type="text" value="" style="width:200px;" class="form-control date-picker update_etime" name="endtime" id="endtime" data-date-format="yyyy/mm/dd"></div>
+                                    <div style="margin-left:10px;float:left;margin-top:20px;"><input type='button' class="btn btn-blue" value="强制更新数据"  onclick="update_url();"/></div>
+                                </form>
+                                <hr style="clear:both;border-bottom:3px solid red;margin-top:80px"/>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="templates/js/datatable/jquery.dataTables.min.js"></script>
+    <script src="templates/js/datatable/ZeroClipboard.js"></script>
+    <script src="templates/js/datatable/dataTables.tableTools.min.js"></script>
+    <script src="templates/js/datatable/dataTables.bootstrap.min.js"></script>
+    <script src="templates/js/datatable/datatables-init.js"></script>
+    <script>
+        InitiateSimpleDataTable.init();
+        InitiateEditableDataTable.init();
+        InitiateExpandableDataTable.init();
+        var data='';
+        $(document).ready(function() {
+            /*异步条件请求*/
+            $("#getinfo").bind("click",function(){
+                var starttime2     = $('#starttime2').val();
+                var endtime2       = $('#endtime2').val();
+                var gid            = $('#gid').val();
+                var aid            = $('#aid').val();
+                var adsons         = $('#adsons').val();
+                //异步请求数据
+                $.post("index.php?module=count_remain&method=remaininfo",{starttime2: starttime2,endtime2: endtime2,gid: gid,aid: aid,adsons: adsons},
+                     function(data){
+                        data = eval("("+data+")");
+                        if(data.str ==1001){
+                            alert(data.meg);
+                        }
+                        $('#searchable').dataTable({"bDestroy":true,"sScrollX": "100%",
+                            "bScrollCollapse": true,
+                            "searching":true,
+                            "aLengthMenu":false,
+                            "sDom": "Tflt<'row DTTTFooter'<'col-sm-6'i><'col-sm-6'p>>",
+                            "aaSorting": [[1, 'asc']],
+                            "aLengthMenu": [
+                               [5, 15, 20],
+                               [5, 15, 20]
+                            ],
+                            "iDisplayLength": 10,
+                            "oTableTools": {
+                                "aButtons": []
+                            },
+                            "language": {
+                                "search": "",
+                                "sLengthMenu": "显示 _MENU_ 项结果",
+                                "sProcessing": "处理中...",
+                                "oPaginate": {
+                                    "sFirst": "首页",
+                                    "sPrevious": "上页",
+                                    "sNext": "下页",
+                                    "sLast": "末页"
+                                },
+                                "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                                "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                                "infoFiltered":   "(总过滤_MAX_条)",
+                                "zeroRecords":    "没有匹配结果",
+                            },
+                            "data": data,
+                            "columns": [
+                                { "sTitle": "广告站",class:'123'},
+                                { "sTitle": "子广告站"},
+                                { "sTitle": "游戏"},
+                                { "sTitle": "注册时间" },
+                                { "sTitle": "登陆人数" },
+                                { "sTitle": "1日后留存" },
+                                { "sTitle": "2日后留存" },
+                                { "sTitle": "3日后留存" },
+                                { "sTitle": "4日后留存" },
+                                { "sTitle": "5日后留存" },
+                                { "sTitle": "6日后留存" },
+                                { "sTitle": "7日后留存" },
+                                { "sTitle": "14日后留存" },
+                                { "sTitle": "30日后留存" },
+                        ]});//重新调用插件
+                        $("thead input").keyup(function () {
+                            /* Filter on the column (the index) of this element */
+                            oTable.fnFilter(this.value, $("thead input").index(this));
+                        });
+
+                        $('#expandabledatatable_column_toggler input[type="checkbox"]').change(function () {
+                            var iCol = parseInt($(this).attr("data-column"));
+                            var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
+                            oTable.fnSetColumnVis(iCol, (bVis ? false : true));
+                        });
+
+                        $('body').on('click', '.dropdown-menu.hold-on-click', function (e) {
+                            e.stopPropagation();
+                        })
+                     }
+                 );
+            });
+        } );
+        function select_ad(){
+            //清空数据
+            $("#aid").find("option").remove();
+            //获取子分类数据
+            var tids = $("#tid").val();
+             $.post("index.php?module=count_outflow&method=getadson",{tid:tids},
+                 function(data){
+                    data = eval("("+data+")");
+                    //处理子展示
+                    $("#aid").append('<option value="0">广告选择</option>');
+                    $.each(data,function(i,item){
+                        $("#aid").append('<option value="'+i+'">'+item+'</option>');
+                    });
+                 }
+             ); 
+        }
+        function select_adsons(){
+            //清空数据
+            $("#adsons").find("option").remove();
+            //获取子分类数据
+            var ids  = $("#aid").val();
+             $.post("index.php?module=count_outflow&method=getadson",{aid: ids},
+                 function(data){
+                    data = eval("("+data+")");
+                    //处理子展示
+                    $("#adsons").append('<option value="0">子广告选择</option>');
+                    $.each(data,function(i,item){
+                        $("#adsons").append('<option value="'+i+'">'+item+'</option>');
+                    });
+                 }
+             );
+        }
+    </script>
+    <!--{/if}-->  <!--注册留存列表-->
+    <script>
+        $(function(){
+            if('<!--{$meg}-->' !=''){
+                $("#toast-container").show();
+            }else{
+                $("#toast-container").hide();
+            }
+            $("#toast-container").bind('click',function(){
+                $("#toast-container").hide();
+            });
+        });
+        function showhelp(){
+            $("#toast-container").show();
+        }
+        function update_url(){
+            var stime = (new Date($(".update_stime").val())).getTime();
+            var etime = (new Date($(".update_etime").val())).getTime();
+            //判断开始时间不能小于结束时间
+            if(etime-stime<0){
+                alert('结束时间需大于开始时间！');
+                return;
+            }
+            stime = $(".update_stime").val();
+            etime = $(".update_etime").val();
+            location.href="./update/update_remain.php?date1="+stime+"&date2="+etime;
+        }
+    </script>
+    <div id="toast-container" class="toast-bottom-right"><div class="toast fa-check toast-blue" ><button class="toast-close-button">×</button><div class="toast-message"><!--{$meg}--></div></div></div>
+        <!--显示主页信息-->
+    <!-- /Main Container -->
+    <!--消息提示-->
+</body>
+<!--  /Body -->
+<script src="templates/js/bootstrap.min.js"></script>
+<!--Beyond Scripts-->
+<script src="templates/js/beyond.min.js"></script>
+<!--Page Related Scripts-->
+
+<!--Bootstrap Date Picker-->
+<script src="templates/js/datetime/bootstrap-datepicker.js"></script>
+<script type="text/javascript">        
+    //--Bootstrap Date Picker--
+    $('.date-picker').datepicker();
+</script>
+</html>

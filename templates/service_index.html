@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta charset="utf-8" />
+		<meta http-equiv = "X-UA-Compatible" content ="IE=edge,chrome=1" />
+		<meta name="renderer" content="webkit"/>
+		<title>客服中心 - <!--{$webname}--></title>
+        <meta name="keywords" content="<!--{$keywords}-->" />
+		<meta name="description" content="<!--{$desc}-->" />
+	<link href="<!--{$web_url}-->/templates/css/base.css" rel="stylesheet" type="text/css">
+	<link href="<!--{$web_url}-->/templates/css/mian.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<div class="wrap">
+			<!--{include file="service_header.html"}-->
+            <!--{include file="service_banner.html"}-->
+			<div class="mian">
+				<div class="box">
+					<div class="box_h">
+						<i></i>
+						请选择对应的游戏
+					</div>
+					<ul class="box_cent" id="gamelist">
+                        <!--{foreach from=$gamelist key=lk item=value }-->
+						<li>
+							<a href="<!--{$web_url}-->/index.php?mo=service&me=<!--{$method}-->&tid=<!--{$value.tid}-->&gid=<!--{$value.gid}-->">
+								<img src="<!--{$value.logo}-->" width="139" height="139"/>
+								<em><!--{$value.gname}--></em>
+							</a>
+						</li>
+                        <!--{/foreach}-->
+					</ul>
+				</div>
+				
+				<div class="box1" style="display:none;">
+					<div class="box_h no_border">
+						<i></i>
+						热门问题<em>/FAQ</em>
+					</div>
+					<div class="box1_cent">
+						<ul>
+							<li>
+								<a href="service_center_5.html">
+									热门问题热门问题热门问题热门问题热门问题热门问题热门问题热门问题热门问题？
+								</a>
+							</li>
+							<li>
+								<a href="service_center_5.html">
+									热门问题热门问题热门问题热门问题热门问题热门问题热门问题热门问题热门问题？
+								</a>
+							</li>
+							<li>
+								<a href="service_center_5.html">
+									热门问题热门问题热门问题热门问题热门问题热门问题热门问题热门问题热门问题？
+								</a>
+							</li>
+							<li>
+								<a href="service_center_5.html">
+									热门问题热门问题热门问题热门问题热门问题热门问题热门问题热门问题热门问题？
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 脚部 -->
+		<!--{include file="service_footer.html"}-->
+		<!-- 脚部 end -->
+
+	</body>
+</html>

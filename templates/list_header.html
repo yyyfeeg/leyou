@@ -1,0 +1,28 @@
+<!-- 头部 -->
+<div class="newslist_head">
+	<!-- 新闻页大轮播 -->
+	<div class="newslist_head_pic slideBox">
+		<div class="nl_head_pic_img bd">
+			<ul>
+			<!--{section name=index loop=$ppt_array}-->
+				<li>
+					<a href="<!--{if $ppt_array[index].virtue eq 'true'}--><!--{$ppt_array[index].jurl}--><!--{else}--><!--{$ppt_array[index].url}--><!--{/if}-->" title="<!--{$ppt_array[index].title}-->" <!--{if $ppt_array[index].virtue eq 'true'}-->target="_blank"<!--{/if}-->>
+						<img src="<!--{$web_url}--><!--{$ppt_array[index].bphoto}-->" alt="<!--{$ppt_array[index].title}-->" width="100%" height="560">
+					</a>
+				</li>
+			<!--{/section}-->
+			</ul>
+		</div>
+		<div class="nl_head_pic_nav hd">
+			<ul>
+			<!--{section name=index loop=$ppt_array}-->
+				<li><a href="javascript:void(0);"></a></li>
+			<!--{/section}-->
+			</ul>
+		</div>
+	</div>
+	<!-- 新闻页大轮播 end -->
+
+
+</div>
+<!-- 头部 end -->

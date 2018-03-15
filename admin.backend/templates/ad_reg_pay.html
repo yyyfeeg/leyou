@@ -1,0 +1,409 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- Head -->
+<head>
+<!--{include file="head.html"}-->
+</head>
+<!-- /Head -->
+<!-- Body -->
+<body>
+    <!-- Loading Container -->
+        <!--{include file="loading.html"}-->
+    <!--  /Loading Container -->
+    
+    <!-- Main Container -->
+    <!--{if "reg_pay" == $reg_pay}-->  <!--新增注册付费数据-->
+    <style>
+        ul{
+            list-style: none;
+        }
+    </style>
+    <div class="page-body">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="widget">
+                    <div class="widget-header bordered-bottom bordered-yellow">
+                        <span class="widget-caption">新增注册付费数据列表</span>
+                        <a href="javascript:void(0);" onclick="showhelp();" style="font-weight:bold">显示功能帮助</a>
+                        <div class="widget-buttons">
+                            <a href="#" data-toggle="maximize">
+                                <i class="fa fa-expand"></i>
+                            </a>
+                            <a href="#" data-toggle="collapse">
+                                <i class="fa fa-minus"></i>
+                            </a>
+                            <a href="#" data-toggle="dispose">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="widget-body no-padding">
+                        <table class="table table-bordered table-hover table-striped table-hover" id="searchable" style="width:100%;" >
+                            <thead class="bordered-darkorange">
+                                <br/>
+                                <div style="margin-left:10px;float:left;">开始时间：<input type="text" value="" style="width:200px" class="form-control date-picker" name="starttime2" id="starttime2" data-date-format="dd-mm-yyyy"></div>
+                                <div style="margin-left:10px;float:left;">结束时间：<input type="text" value="" style="width:200px;" class="form-control date-picker" name="endtime2" id="endtime2" data-date-format="dd-mm-yyyy"></div>
+                                <div style="margin-left:10px;float:left;">请选择游戏：
+                                <select name="gid" id='gid' style="width:100%;" style="width:200px;">
+                                    <option value="0">请选择游戏</option>
+                                    <!--{$gamestr}-->
+                                </select>
+                                </div>
+
+                                <!-- 渠道选择,广告或者其它 -->
+                                <div style="margin-left:10px;float:left;">数据类型：
+                                    <div class="form-group">
+                                        <select name="show_type" id='show_type' style="width:100%;" onchange="show_type()">
+                                            <option value="1">运营</option>
+                                            <option value="2">广告</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div style="margin-left:10px;float:left;">渠道选择：
+                                    <div class="form-group">
+                                        <select name="tid" id='tid' style="width:100%;" onchange="select_ad()">
+                                            <option value="0">渠道选择</option>
+                                            <option value="1">安卓</option>
+                                            <option value="2">ios</option>
+                                            <option value="3">ios越狱</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-left:10px;float:left;" class="aid_class">主广告选择：
+                                    <div class="form-group">
+                                        <select name="aid" id='aid' style="width:100%;" onchange="select_adsons()">
+                                            <option value="0">主广告选择</option>
+                                            <!--{foreach from=$gp_aids key=k item=v}-->
+                                                <option value="<!--{$k}-->"><!--{$v}--></option>
+                                            <!--{/foreach}-->
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-left:10px;float:left;">子广告选择：
+                                    <div class="form-group">
+                                        <select name="adsons" id='adsons' style="width:100%;">
+                                            <option value="0">子广告选择</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-left:10px;float:left;">显示数据类型：
+                                    <div class="form-group">
+                                        <select name="types" id='types' style="width:100%;">
+                                            <option value="1">注册</option>
+                                            <option value="2">创角</option>
+                                            <option value="3">安装</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div style="margin-left:10px;float:left;margin-top:20px;">
+                                <div class="form-group">
+                                    <label for="definpu">是否导出：</label>
+                                    <label>
+                                        <input type="checkbox" value='1' name='explode' id='explode'>
+                                        <span class="text">导出</span>
+                                    </label>
+                                </div>
+                                </div>
+
+                                <div style="margin-left:10px;float:left;margin-top:20px;">
+                                <input type='button' id='getinfo' class="btn btn-blue" value="查询" /></div>
+                                <hr style="clear:both;border-bottom:3px solid red;margin-top:80px"/>
+                                <tr>
+                                    <th colspan="16"></th>
+                                    <th colspan="10">LTV</th>
+                                    <th colspan="10">回款率</th>
+                                    <th colspan="10">日付费</th>
+                                    <th colspan="10">日充值</th>
+                                    <th colspan="10">日付费率</th>
+                                    <th colspan="10">arpu</th>
+                                </tr>
+                                <tr>
+                                    <th>注册时间</th>
+                                    <th>广告站</th>
+                                    <th>子广告站</th>
+                                    <th>游戏</th>
+                                    <th>广告消耗</th>
+                                    <th>点击量</th>
+                                    <th>展示量</th>
+                                    <th>新进注册量</th>
+                                    <th>新进创角量</th>
+                                    <th>新进安装量</th>
+                                    <th>点击率</th>
+                                    <th>注册转化率</th>
+                                    <th>点击注册率</th>
+                                    <th>安装创角率</th>
+                                    <th>付费人数</th>
+                                    <th>付费金额</th>
+                                    <th>当日LTV</th>
+                                    <th>1日LTV</th>
+                                    <th>2日LTV</th>
+                                    <th>3日LTV</th>
+                                    <th>4日LTV</th>
+                                    <th>5日LTV</th>
+                                    <th>6日LTV</th>
+                                    <th>7日LTV</th>
+                                    <th>14日LTV</th>
+                                    <th>30日LTV</th>
+                                    <th>当日回款率</th>
+                                    <th>1日回款率</th>
+                                    <th>2日回款率</th>
+                                    <th>3日回款率</th>
+                                    <th>4日回款率</th>
+                                    <th>5日回款率</th>
+                                    <th>6日回款率</th>
+                                    <th>7日回款率</th>
+                                    <th>14日回款率</th>
+                                    <th>30日回款率</th>
+                                    <th>当日付费人数</th>
+                                    <th>1日付费人数</th>
+                                    <th>2日付费人数</th>
+                                    <th>3日付费人数</th>
+                                    <th>4日付费人数</th>
+                                    <th>5日付费人数</th>
+                                    <th>6日付费人数</th>
+                                    <th>7日付费人数</th>
+                                    <th>14日付费人数</th>
+                                    <th>30日付费人数</th>
+                                    <th>当日充值金额</th>
+                                    <th>1日充值金额</th>
+                                    <th>2日充值金额</th>
+                                    <th>3日充值金额</th>
+                                    <th>4日充值金额</th>
+                                    <th>5日充值金额</th>
+                                    <th>6日充值金额</th>
+                                    <th>7日充值金额</th>
+                                    <th>14日充值金额</th>
+                                    <th>30日充值金额</th>
+                                    <th>当日付费率</th>
+                                    <th>1日付费率</th>
+                                    <th>2日付费率</th>
+                                    <th>3日付费率</th>
+                                    <th>4日付费率</th>
+                                    <th>5日付费率</th>
+                                    <th>6日付费率</th>
+                                    <th>7日付费率</th>
+                                    <th>14日付费率</th>
+                                    <th>30日付费率</th>
+                                    <th>当日arpu</th>
+                                    <th>1日arpu</th>
+                                    <th>2日arpu</th>
+                                    <th>3日arpu</th>
+                                    <th>4日arpu</th>
+                                    <th>5日arpu</th>
+                                    <th>6日arpu</th>
+                                    <th>7日arpu</th>
+                                    <th>14日arpu</th>
+                                    <th>30日arpu</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="templates/js/datatable/jquery.dataTables.min.js"></script>
+    <script src="templates/js/datatable/ZeroClipboard.js"></script>
+    <script src="templates/js/datatable/dataTables.tableTools.min.js"></script>
+    <script src="templates/js/datatable/dataTables.bootstrap.min.js"></script>
+    <script src="templates/js/datatable/datatables-init.js"></script>
+    <script>
+        InitiateSimpleDataTable.init();
+        InitiateEditableDataTable.init();
+        InitiateExpandableDataTable.init();
+        $('#searchable').dataTable({
+            "bDestroy":true,
+            "sScrollX": "100%",
+            "bScrollCollapse": true,
+            "searching":false,
+            
+        });//载入插件
+        var data='';
+        $(document).ready(function(){
+            /*异步条件请求*/
+            $("#getinfo").bind("click",function(){
+                var starttime2     = $('#starttime2').val();
+                var endtime2       = $('#endtime2').val();
+                var gid            = $('#gid').val();
+                var aid            = $('#aid').val();
+                var adsons         = $('#adsons').val();
+                var types           = $('#types').val();
+                var tid             = $('#tid').val();
+                if($("input[type='checkbox']").is(':checked')){
+                    /*直接新窗口跳转*/
+                    window.open("index.php?module=ad_reg_pay&method=reg_payinfo&gid="+gid+"&starttime2="+starttime2+"&endtime2="+endtime2+"&aid="+aid+"&wid="+adsons+"&type="+types+"&tid="+tid+"&explode=1");
+                    var explode         = 1;
+                }
+                //异步请求数据
+                $.post("index.php?module=ad_reg_pay&method=reg_payinfo",{starttime2: starttime2,endtime2: endtime2,gid: gid,aid: aid,wid: adsons,type:types,explode:explode,tid:tid},
+                     function(data){
+                        data = eval("("+data+")");
+                        if(data.str ==1001){
+                            alert(data.meg);
+                        }
+                        $('#searchable').dataTable({
+                            "bDestroy":true,
+                            "sScrollX": "100%",
+                            "bScrollCollapse": true,
+                            "searching":true,
+                            "aLengthMenu":false,
+                            "sDom": "Tflt<'row DTTTFooter'<'col-sm-6'i><'col-sm-6'p>>",
+                            "aaSorting": [[1, 'asc']],
+                            "aLengthMenu": [
+                               [5, 15, 20],
+                               [5, 15, 20]
+                            ],
+                            "iDisplayLength": 5,
+                            "oTableTools": {
+                                "aButtons": []
+                            },
+                            "language": {
+                                "search": "",
+                                "sLengthMenu": "显示 _MENU_ 项结果",
+                                "sProcessing": "处理中...",
+                                "oPaginate": {
+                                    "sFirst": "首页",
+                                    "sPrevious": "上页",
+                                    "sNext": "下页",
+                                    "sLast": "末页"
+                                },
+                                "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                                "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                                "infoFiltered":   "(总过滤_MAX_条)",
+                                "zeroRecords":    "没有匹配结果",
+                            },
+                            "data": data,
+                            "columnDefs": [
+                                {    
+                                  "targets": data.titles, //隐藏列数
+                                  "visible": false    
+                                } 
+                            ]   
+
+                        });//重新调用插件
+                        $("thead input").keyup(function () {
+                            /* Filter on the column (the index) of this element */
+                            oTable.fnFilter(this.value, $("thead input").index(this));
+                        });
+
+                        $('#expandabledatatable_column_toggler input[type="checkbox"]').change(function () {
+                            var iCol = parseInt($(this).attr("data-column"));
+                            var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
+                            oTable.fnSetColumnVis(iCol, (bVis ? false : true));
+                        });
+
+                        $('body').on('click', '.dropdown-menu.hold-on-click', function (e) {
+                            e.stopPropagation();
+                        })
+                     }
+                );
+            });
+        });
+
+        function select_ad(){
+            //获取子分类数据
+            var tids = $("#tid").val();
+            var type = $("#show_type").val();
+            if(type == "2"){
+                var param = {type:tids};
+            }else{
+                var param = {tid:tids};
+            }
+            $.post("index.php?module=count_outflow&method=getadson",param,
+                function(data){
+                    data = eval("("+data+")");
+                    //处理子展示
+                        if(type == "2"){
+                            $("#adsons").find("option").remove();
+                            $("#adsons").append('<option value="0">子广告选择</option>');
+                            $.each(data,function(i,item){
+                                $("#adsons").append('<option value="'+i+'">'+item+'</option>');
+                            });
+                       }else{
+                            $("#aid").find("option").remove();
+                            $("#aid").append('<option value="0">广告选择</option>');
+                            $.each(data,function(i,item){
+                                $("#aid").append('<option value="'+i+'">'+item+'</option>');
+                            });
+                       }
+                }
+            ); 
+        }
+        function select_adsons(){
+            //清空数据
+            $("#adsons").find("option").remove();
+            //获取子分类数据
+            var ids  = $("#aid").val();
+             $.post("index.php?module=count_outflow&method=getadson",{aid: ids},
+                 function(data){
+                    data = eval("("+data+")");
+                    //处理子展示
+                    $("#adsons").append('<option value="0">子广告选择</option>');
+                    $.each(data,function(i,item){
+                        $("#adsons").append('<option value="'+i+'">'+item+'</option>');
+                    });
+                 }
+             );
+        }
+    </script>
+    <!--{/if}-->  <!--总收入列表-->
+    <script>
+        $(function(){
+            if('<!--{$meg}-->' !=''){
+                $("#toast-container").show();
+            }else{
+                $("#toast-container").hide();
+            }
+            $("#toast-container").bind('click',function(){
+                $("#toast-container").hide();
+            });
+        });
+        function showhelp(){
+            $("#toast-container").show();
+        }
+        function update_url(){
+            var stime = (new Date($(".update_stime").val())).getTime();
+            var etime = (new Date($(".update_etime").val())).getTime();
+            //判断开始时间不能小于结束时间
+            if(etime-stime<0){
+                alert('结束时间需大于开始时间！');
+                return;
+            }
+            location.href="./update/update_remain.php?date1="+stime+"&date2="+etime;
+        }
+        /*显示广告*/
+        function show_type(){
+            //获取当前点击
+            var show_type = $("#show_type").val();
+            //显示渠道
+            if(show_type =='2'){
+                //隐藏渠道
+                $('.aid_class').hide();
+            }else{
+                //显示渠道
+                $('.aid_class').show();
+            }
+        }
+    </script>
+    <div id="toast-container" class="toast-bottom-right"><div class="toast fa-check toast-blue" ><button class="toast-close-button">×</button><div class="toast-message"><!--{$meg}--></div></div></div>
+        <!--显示主页信息-->
+    <!-- /Main Container -->
+    <!--消息提示-->
+</body>
+<!--  /Body -->
+<script src="templates/js/bootstrap.min.js"></script>
+<!--Beyond Scripts-->
+<script src="templates/js/beyond.min.js"></script>
+<!--Page Related Scripts-->
+
+<!--Bootstrap Date Picker-->
+<script src="templates/js/datetime/bootstrap-datepicker.js"></script>
+<script type="text/javascript">        
+    //--Bootstrap Date Picker--
+    $('.date-picker').datepicker();
+</script>
+</html>

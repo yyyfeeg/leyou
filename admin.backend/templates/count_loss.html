@@ -1,0 +1,323 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- Head -->
+<head>
+<!--{include file="head.html"}-->
+</head>
+<!-- /Head -->
+<!-- Body -->
+<body>
+    <!-- Loading Container -->
+        <!--{include file="loading.html"}-->
+    <!--  /Loading Container -->
+    <!-- Main Container -->
+    <!--{if "active" == $active}--><!--列表-->
+    <style>
+        ul{
+            list-style: none;
+        }
+    </style>
+    <div class="page-body">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="widget">
+                    <div class="widget-header bordered-bottom bordered-yellow">
+                        <span class="widget-caption">流失统计</span>
+                        <a href="javascript:void(0);" onclick="showhelp();" style="font-weight:bold">显示功能帮助</a>
+                        <div class="widget-buttons">
+                            <a href="#" data-toggle="maximize">
+                                <i class="fa fa-expand"></i>
+                            </a>
+                            <a href="#" data-toggle="collapse">
+                                <i class="fa fa-minus"></i>
+                            </a>
+                            <a href="#" data-toggle="dispose">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="widget-body no-padding">
+                    <table class="table table-bordered table-hover table-striped table-hover" id="searchable">
+                            <thead class="bordered-darkorange">
+                                <div style="float:left;margin:20px 10px;font-size: 12px">
+                                <strong>每日流失：</strong>统计所选时期内，当日往后推连续3日/7日/14日/30日（当日不计入天数）未登录游戏的活跃/付费玩家数量<br/></div>
+                                <hr style="clear:both;border-bottom:3px solid red;margin-top:20px"/>
+                            </thead>
+                        </table>
+                    <form action="index.php" name="form1" id="form1" style="margin:0px;" onsubmit="return check_s();">
+                        <table class="table table-bordered table-hover table-striped table-hover" id="searchable">
+                            <thead class="bordered-darkorange">
+                                <br/>
+                                <input type='hidden' name="module" value='count_loss'/>
+                                <input type='hidden' name="method" value='lossinfo'/>
+                                <input type='hidden' name="action" value='submit'/>
+                                <div style="margin-left:10px;float:left;">开始时间：<input type="text" value="<!--{$starttime2}-->" style="width:200px" class="form-control date-picker" name="starttime2" id="starttime2" data-date-format="yyyy-mm-dd"></div>
+                                <div style="margin-left:10px;float:left;">结束时间：<input type="text" value="<!--{$endtime2}-->" style="width:200px;" class="form-control date-picker" name="endtime2" id="endtime2" data-date-format="yyyy-mm-dd"></div>
+                                <div style="margin-left:10px;float:left;">请选择游戏：
+                                <select name="gid" id='gid' style="width:100%;" style="width:200px;">
+                                    <option value="0">请选择游戏</option>
+                                    <!--{$gamestr}-->
+                                </select>
+                                </div>
+                                <div style="margin-left:10px;float:left;">渠道选择：
+                                    <div class="form-group">
+                                        <select name="tid" id='tid' style="width:100%;" onchange="select_ad()">
+                                            <option value="0" <!--{if $tid eq 0}-->selected='selected'<!--{/if}-->>渠道选择</option>
+                                            <option value="1" <!--{if $tid eq 1}-->selected='selected'<!--{/if}-->>安卓</option>
+                                            <option value="2" <!--{if $tid eq 2}-->selected='selected'<!--{/if}-->>ios</option>
+                                            <option value="3" <!--{if $tid eq 3}-->selected='selected'<!--{/if}-->>ios越狱</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-left:10px;float:left;">主广告选择：
+                                    <div class="form-group">
+                                        <select name="aid" id='aid' style="width:100%;" onchange="select_adsons()">
+                                            <option value="0">主广告选择</option>
+                                            <!--{if $tps eq 1}-->
+                                                <!--{$adstr}-->
+                                            <!--{else}-->
+                                                <!--{foreach from=$gp_aids key=k item=v}-->
+                                                    <option value="<!--{$k}-->" <!--{if $aid eq $k}-->selected="selected"<!--{/if}-->><!--{$v}--></option>
+                                                <!--{/foreach}-->
+                                            <!--{/if}-->
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-left:10px;float:left;">子广告选择：
+                                    <div class="form-group">
+                                        <select name="adsons" id='adsons' style="width:100%;">
+                                            <option value="0">子广告选择</option>
+                                            <!--{$wdstr}-->
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-left:10px;float:left;">流失类型选择：
+                                    <div class="form-group">
+                                        <select name="type" id='type' style="width:100%;">
+                                            <option value="0" <!--{if $type eq 0}-->selected='selected'<!--{/if}-->>流失类型选择：</option>
+                                            <option value="1" <!--{if $type eq 1}-->selected='selected'<!--{/if}-->>新增玩家</option>
+                                            <option value="2" <!--{if $type eq 2}-->selected='selected'<!--{/if}-->>活跃玩家</option>
+                                            <option value="3" <!--{if $type eq 3}-->selected='selected'<!--{/if}-->>付费玩家</option>
+                                            <option value="4" <!--{if $type eq 4}-->selected='selected'<!--{/if}-->>非付费玩家</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-left:10px;float:left;margin-top:20px;"><input type='submit' id='getinfo' class="btn btn-blue" value="查询" /></div>
+                                <div style="margin-left:10px;float:left;margin-top:20px;"><input type='button' id='export' class="btn btn-blue" value="导出" onclick="btn_export()"/></div>
+                                 </thead>
+                        </table>
+                        </form>
+                        <hr style="clear:both;margin-top:10px;"/>
+                        <div style="margin-left:10px;float:left;">更新时间：<input type="text" value="" style="width:200px" class="form-control date-picker update_stime" name="starttime" id="starttime" data-date-format="yyyy-mm-dd"></div>
+                                   <!--{if $isadmin eq 1}--> <div style="margin-left:10px;float:left;">结束时间：<input type="text" value="" style="width:200px;" class="form-control date-picker update_etime" name="endtime" id="endtime" data-date-format="yyyy-mm-dd"></div><!--{/if}-->
+                                    <div style="margin-left:10px;float:left;">更新类型选择：
+                                    <div class="form-group">
+                                        <select name="forceupdate" id='forceupdate' style="width:100%;">
+                                            <option value="1" selected='selected'>普通更新</option>
+                                            <!--{if $isadmin eq 1}--><option value="2" >强制更新</option><!--{/if}-->
+                                        </select>
+                                    </div>
+                                    </div>
+                                    <div style="margin-left:10px;float:left;margin-top:20px;"><input type='button' class="btn btn-blue" value="更新数据"  onclick="update_url();"/></div>
+                        <hr style="clear:both;border-bottom:3px solid red;margin-top:80px"/>
+                                <!--{if $type > 0}-->
+                                <div style="clear:both;margin:10px auto"><span style="margin-left: 10px; font-size: 16px;font-weight: 600">流失类型：<!--{$arrt[$type]}--></span></div>
+                                <!--{/if}-->
+                                <div id="main" style="width: 1600px;height:400px;"></div>
+                                <script type="text/javascript">
+                                // 基于准备好的dom，初始化echarts实例
+                                var myChart = echarts.init(document.getElementById('main'));
+                                // 指定图表的配置项和数据
+                                var option = {
+                                  tooltip : {
+                                        trigger: 'axis'
+                                    },
+                                    legend: {
+                                        data:['次日流失','3日流失','7日流失','14日流失','30日流失']
+                                    },
+                                    toolbox: {
+                                        show : true,
+                                        feature : {
+                                            mark : {show: true},
+                                            dataView : {show: true, readOnly: false},
+                                            magicType : {show: true, type: ['line', 'bar', 'stack','tiled']},
+                                            restore : {show: true},
+                                            saveAsImage : {show: true}
+                                        }
+                                    },
+                                    calculable : true,
+                                    xAxis : [
+                                    ],
+                                    yAxis : [
+                                        {
+                                            type : 'value'
+                                        }
+                                    ],
+                                    series : [
+                                    ]
+                                };
+                                var view  = <!--{$view}-->;
+                                var category   = <!--{$category}-->;
+                                var sym = new Array("emptyCircle","diamond","rectangle","square","triangle","circle","emptyDiamond","emptyRectangle","emptyTriangle");
+                                //图表数据
+                                var bol = 0;
+                                for(var key in view){
+                                    var databand = [];
+                                    for(var item in view[key]){
+                                        databand.push(view[key][item]);
+                                    }
+                                    var seriesx={name:key,type:'line',symbol:sym[bol],data:databand};
+                                    option.series.push(seriesx);
+                                    bol += 1;
+                                }
+                                //X轴数据展示
+                                var xdata = [];
+                                for(var key in category){
+                                    xdata.push(category[key]);
+                                }
+                                var axis = {type:'category',boundaryGap:'false',data:xdata}
+                                option.xAxis.push(axis);
+                                // 使用刚指定的配置项和数据显示图表。
+                                myChart.setOption(option);
+                            </script>
+                           
+                        <table  class="table table-bordered table-hover table-striped table-hover" id="searchable">
+                        <thead class="bordered-darkorange">
+                        <tr role="row" id="test">
+                            <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 88px;text-align: center;" >日期</th>
+                            <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 100px;text-align: center;" >广告渠道</th>
+                            <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 100px;text-align: center;" >子渠道</th>
+                            <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 100px;text-align: center;" >游戏</th>
+                            <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 80;text-align: center;" ><!--{$arrt[$type]|default:'新增玩家'}--></th>
+                            <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 80;text-align: center;" >次日流失</th>
+                            <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 80;text-align: center;" >3日流失</th>
+                            <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 80;text-align: center;" >7日流失</th>
+                            <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 80;text-align: center;" >14日流失</th>
+                            <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 80;text-align: center;" >30日流失</th>
+                        </tr>
+                        <tr id="odd"><!--{$str}--></tr> 
+                        <tr bgcolor="#FFFFFF">
+                            <td colspan="30"><div align="right">每页 <font color="#FF0000"><!--{$pageinfo.pagesize}--></font> 条 共 <font color="#FF0000"><!--{$pageinfo.totalpage}--></font> 页 共 <font color="#FF0000"><!--{$pageinfo.totalrecord}--></font> 条记录&nbsp;<!--{$pageinfo.multi}--></div></td>
+                        </tr>
+                        </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="templates/js/datatable/jquery.dataTables.min.js"></script>
+    <script src="templates/js/datatable/ZeroClipboard.js"></script>
+    <script src="templates/js/datatable/dataTables.tableTools.min.js"></script>
+    <script src="templates/js/datatable/dataTables.bootstrap.min.js"></script>
+    <script src="templates/js/datatable/datatables-init.js"></script>
+    <script>
+        InitiateSimpleDataTable.init();
+        InitiateEditableDataTable.init();
+        InitiateExpandableDataTable.init();
+        function select_ad(){
+            //清空数据
+            $("#aid").find("option").remove();
+            $("#adsons").find("option").remove();
+            $("#adsons").append('<option value="0">子广告选择</option>');
+            $("#aid").append('<option value="0">广告选择</option>');
+            //获取子分类数据
+            var tids = $("#tid").val();
+            if(tids!=0){
+                 $.post("index.php?module=count_loss&method=getadson",{tid:tids},
+                     function(data){
+                        data = eval("("+data+")");
+                        $.each(data,function(i,item){
+                            $("#aid").append('<option value="'+i+'" <!--{if $aid eq "'+i+'"}-->selected="selected"<!--{/if}-->>'+item+'</option>');
+                        });
+                     }
+                 ); 
+            }
+        }
+        function select_adsons(){
+            //清空数据
+            $("#adsons").find("option").remove();
+            //获取子分类数据
+            var ids  = $("#aid").val();
+             $.post("index.php?module=count_loss&method=getadson",{aid: ids},
+                 function(data){
+                    data = eval("("+data+")");
+                    //处理子展示
+                    $("#adsons").append('<option value="0">子广告选择</option>');
+                    $.each(data,function(i,item){
+                        $("#adsons").append('<option value="'+i+'" <!--{if $aid eq "'+i+'"}-->selected="selected"<!--{/if}-->>'+item+'</option>');
+                    });
+                 }
+             );
+        }
+    </script>
+    <!--{/if}-->  <!--注册留存列表-->
+    <script>
+        $(function(){
+            if('<!--{$meg}-->' !=''){
+                $("#toast-container").show();
+            }else{
+                $("#toast-container").hide();
+            }
+            $("#toast-container").bind('click',function(){
+                $("#toast-container").hide();
+            });
+        });
+        function showhelp(){
+            $("#toast-container").show();
+        }
+
+        function check_s(){
+            var type = $("#type").val();
+            //未选择统计类型时给出提示
+            if(type<=0){
+                alert('请选择统计类型！');
+                return false;
+            }
+        }
+        function btn_export(){
+            var starttime2  = $("#starttime2").val();
+            var endtime2    = $("#endtime2").val();
+            var gid         = $('#gid option:selected').val();
+            var aid         = $('#aid option:selected').val();
+            var adsons      = $('#adsons option:selected').val();
+            var tid         = $('#tid option:selected').val();
+            var type        = $('#type option:selected').val();
+            if(type<=0){
+                alert('请选择统计流失类型！');
+                return false;
+            }
+            location.href="index.php?module=count_loss&method=lossinfo&export=1&starttime2="+starttime2+"&endtime2="+endtime2+"&gid="+gid+"&aid="+aid+"&adsons="+adsons+"&tid="+tid+"&type="+type;
+        }
+
+        function update_url(){
+            var date1  = $("#starttime").val();
+            var date2  = $("#endtime").val();
+            if(date1 =='' || date1==null){
+                alert("更新日期不能为空!");
+                return false;
+            }
+            var uptype = $("#forceupdate").find("option:selected").val();
+            var updatephp = '<!--{$updatephp}-->';    //更新URL
+            location.href="updates.php?date1="+date1+"&date2="+date2+"&forceupdate="+uptype+"&updatephp="+updatephp;
+        }
+    </script>
+    <div id="toast-container" class="toast-bottom-right"><div class="toast fa-check toast-blue" ><button class="toast-close-button">×</button><div class="toast-message"><!--{$meg}--></div></div></div>
+        <!--显示主页信息-->
+    <!-- /Main Container -->
+    <!--消息提示-->
+</body>
+<!--  /Body -->
+<script src="templates/js/bootstrap.min.js"></script>
+<!--Beyond Scripts-->
+<script src="templates/js/beyond.min.js"></script>
+<!--Page Related Scripts-->
+
+<!--Bootstrap Date Picker-->
+<script src="templates/js/datetime/bootstrap-datepicker.js"></script>
+<script type="text/javascript">        
+    //--Bootstrap Date Picker--
+    $('.date-picker').datepicker();
+</script>
+</html>

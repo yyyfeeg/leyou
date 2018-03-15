@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!--
+Beyond Admin - Responsive Admin Dashboard Template build with Twitter Bootstrap 3
+Version: 1.0.0
+Purchase: http://wrapbootstrap.com
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!--Head-->
+<head>
+    <meta charset="utf-8" />
+    <title>游戏渠道中心-登录界面</title>
+
+    <meta name="description" content="login page" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="templates/img/favicon.png" type="image/x-icon">
+
+    <!--Basic Styles-->
+    <link href="templates/css/bootstrap.min.css" rel="stylesheet" />
+    <link id="bootstrap-rtl-link" href="" rel="stylesheet" />
+    <link href="templates/css/font-awesome.min.css" rel="stylesheet" />
+    <!--Beyond styles-->
+    <link id="beyond-link" href="templates/css/beyond.min.css" rel="stylesheet" />
+    <link href="templates/css/demo.min.css" rel="stylesheet" />
+    <link href="templates/css/animate.min.css" rel="stylesheet" />
+    <link id="skin-link" href="" rel="stylesheet" type="text/css" />
+    <!--Skin Script: Place this script in head to load scripts for skins and rtl support-->
+    <Script>
+        function focusForm()
+        {
+            document.loginform.username.focus();    
+        }
+            // 表单提交客户端检测
+        function doSubmit(){
+            $(".logobox").find("#meg").html("");
+            $(".logobox").find("#meg").css('color','red');
+            if (document.loginform.username.value==""){
+                $(".logobox").find("#meg").html("请输入用户名！");
+                document.loginform.username.focus();
+                return false;
+            }
+            if (document.loginform.password.value==""){
+                $(".logobox").find("#meg").html("请输入密码！");
+                document.loginform.password.focus();
+                return false;
+            }
+            if (document.loginform.CheckCode.value==""){
+                $(".logobox").find("#meg").html("请输入验证码！");
+                document.loginform.CheckCode.focus();
+                return false;
+            }
+            return true;
+        }
+    </Script>
+</head>
+<!--Head Ends-->
+<!--Body-->
+<body onload="focusForm();">
+    <div class="login-container animated fadeInDown">
+    <form style="margin:0px;" method="post" action="" name="loginform" autocomplete="off" id="loginform" onsubmit=" return doSubmit();">
+        <input type="hidden" value="gologin" name="act"/>
+        <div class="loginbox bg-white">
+            <div class="loginbox-title">登录界面</div>
+            <div class="loginbox-social">
+                <div class="social-title ">我们的目标是星辰大海<br/>然而——先跨出第一步吧</div>
+            </div>
+            <div class="loginbox-or">
+                <div class="or-line"></div>
+                <div class="or">GO</div>
+            </div>
+            <div class="loginbox-textbox">
+                <input type="text" class="form-control" name="username" id="username" placeholder="帐号" />
+            </div>
+            <div class="loginbox-textbox">
+                <input type="password" class="form-control" name="password" id="password" placeholder="密码" />
+            </div>
+            <div class="loginbox-textbox" style="float:left">
+                <input type="text" class="form-control" name="CheckCode" id="CheckCode" placeholder="验证码" style="width:130px" />
+            </div>
+            <div class="loginbox-textbox">
+                <img style="margin-left:0" id="code_img" src="./lyinclude/getcode.php" width="50" height="34" alt="点击再刷新换一个" style="background-color: #000000;" onclick="javascript:this.src='./lyinclude/getcode.php?id='+Math.random();">
+            </div>
+            <div class="loginbox-forgot">
+                <a href="javascript:void()" onclick="zhuguan()">忘记密码？点我！</a>
+            </div>
+            <div class="loginbox-submit">
+                <input type="submit" class="btn btn-primary btn-block login_button" id="login_button" value="Login">
+            </div>
+        </div>
+    </form>
+        <div class="logobox">
+            <div id="meg" style="text-align:center;line-height:40px;color:green">有错误会在这里提示哦！</div>
+        </div>
+    </div>
+
+    <!--Basic Scripts-->
+    <script src="templates/js/jquery-2.0.3.min.js"></script>
+    <script src="templates/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        function zhuguan(){
+            alert("点我也没用呀，赶紧找主管去！");
+        }
+    </script>
+
+</body>
+<!--Body Ends-->
+</html>

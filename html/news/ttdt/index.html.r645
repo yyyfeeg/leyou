@@ -1,0 +1,321 @@
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="wap-font-scale"  content="no"/><!-- 禁止浏览器优化 -->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>公司动态 - 欢乐游戏</title>
+	<meta name="Keywords" content="欢乐游戏,3737,游戏,3737.com,手游,热门手游,倚天"/> 
+	<meta name="Description" content="欢乐游戏"/>
+	<script src="http://192.168.1.164/game_count/skin0/js/jquery.min.js"></script>
+	
+	<link href="http://192.168.1.164/game_count/templates/css/index.css" rel="stylesheet" type="text/css">
+	<link href="http://192.168.1.164/game_count/templates/css/common.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="http://192.168.1.164/game_count/skin0/css/index_c510ece.css">
+	
+	<script type="text/javascript" src="http://192.168.1.164/game_count/skin0/js/memenu.js"></script>
+	<link rel="stylesheet" href="http://192.168.1.164/game_count/skin0/css/global.css"><!-- 头部 -->
+	<link rel="stylesheet" href="http://192.168.1.164/game_count/skin0/css/common-header9.css"><!-- 头部 -->
+	<script type="text/javascript" src="http://192.168.1.164/game_count/skin0/js/common-header.js"></script><!-- 头部 -->
+	<link rel="stylesheet" type="text/css" href="http://192.168.1.164/game_count/skin0/css/index.min.css" /> <!-- 新闻 -->
+	<script type="text/javascript" src="http://192.168.1.164/game_count/m/js/main.js"></script> <!-- 登陆弹出框 -->
+    <link rel="stylesheet" type="text/css" href="http://192.168.1.164/game_count/m/css/style.css" /><!-- 登陆弹出框 -->
+    <link href="http://192.168.1.164/game_count/templates/css/news_list.css" rel="stylesheet" type="text/css">
+	<link href="http://192.168.1.164/game_count/list/list_news.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<!--  PC端 -->
+<div class="wrap">
+	<!--菜单-->
+	<div class="demo">
+    <nav class="main_nav">
+        <ul>
+            <li><a href="#0"><img src="http://192.168.1.164/game_count/skin0/images/user.png" /></a></li>
+            <li><a href="#0"><img src="http://192.168.1.164/game_count/skin0/images/enroll.png" /></a></li>
+        </ul>
+    </nav>
+</div>
+<div class="cd-user-modal">
+    <div class="cd-user-modal-container">
+        <ul class="cd-switcher">
+            <li class="on"><a href="#0">用户登录</a></li>
+            <li><a href="#0">注册新用户</a></li>
+        </ul>
+        <div id="cd-login">
+            <!-- 登录表单 -->
+            <form class="cd-form">
+                <p class="fieldset">
+                    <label class="image-replace cd-username" for="signin-username">用户名</label>
+                    <input class="full-width has-padding has-border" id="signin-username" type="text" placeholder="输入用户名">
+                </p>
+                <p class="fieldset">
+                    <label class="image-replace cd-password" for="signin-password">密码</label>
+                    <input class="full-width has-padding has-border" id="signin-password" type="text" placeholder="输入密码">
+                </p>
+                <p class="fieldset">
+                    <input type="checkbox" id="remember-me" checked>
+                    <span for="remember-me">记住登录状态</span>
+                </p>
+                <p class="fieldset">
+                    <input class="full-width2" type="submit" value="登 录">
+                </p>
+            </form>
+        </div>
+        <div id="cd-signup">
+            <!-- 注册表单 -->
+            <form class="cd-form">
+                <p class="fieldset">
+                    <label class="image-replace cd-username" for="signup-username">用户名</label>
+                    <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="输入用户名">
+                </p>
+                <p class="fieldset">
+                    <label class="image-replace cd-email" for="signup-email">邮箱</label>
+                    <input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="输入mail">
+                </p>
+                <p class="fieldset">
+                    <label class="image-replace cd-password" for="signup-password">密码</label>
+                    <input class="full-width has-padding has-border" id="signup-password" type="text" placeholder="输入密码">
+                </p>
+                <p class="fieldset">
+                    <input type="checkbox" id="accept-terms">
+                    <span for="accept-terms">我已阅读并同意 <a href="#0">用户协议</a></span>
+                </p>
+                <p class="fieldset">
+                    <input class="full-width2" type="submit" value="注册新用户">
+                </p>
+            </form>
+        </div>
+        <a href="#" class="cd-close-form">关闭</a>
+    </div>
+</div>
+<div data-spm="2">
+    <div class="ali-common-header0">
+        <div class="ali-common-header-inner common-header-clearfix">
+            <!-- 运营专区 -->
+            <div style="margin-right: 180px;" class="activity item pull-left">
+                <div class="flash-wrap" id="J-ali-activity-img">
+                    <a href="#"><img src="http://192.168.1.164/game_count/skin0/images/lylogo2.png" style="height: 75px;width: 95%;margin-top: 17.5px;"></a>
+                </div>
+            </div>
+            <!-- 导航菜单 -->
+            <ul class="menu item pull-left" id="J_common_header_menu" data-spm="201">
+                <li class="top-menu-item">
+                    <a class="menu-hd" href="http://192.168.1.164/game_count">首页</a>
+                </li>
+                <li class="top-menu-item">
+                    <a class="menu-hd" href="http://192.168.1.164/game_count/html/news/yxxw/index.html">新闻动态</a>
+                </li>
+                <li class="top-menu-item">
+                    <a target="_blank" class="menu-hd top-menu-item-link" href="http://192.168.1.164/game_count/about.html">关于我们</a>
+                </li>
+                <li class="top-menu-item" has-dropdown="true" menu-type="dev" data-spm-click="">
+                    <a class="menu-hd" href="http://192.168.1.164/game_count/html/games/index.html" target="_blank">产品中心 </a>
+                </li>
+                <li class="top-menu-item">
+                    <a class="menu-hd" href="http://192.168.1.164/game_count/joinus.html">人才招聘</a>
+                </li>
+                <li class="top-menu-item">
+                    <a class="menu-hd" href="http://192.168.1.164/game_count/html/news/ttdt/index.html">公司动态</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+//暂时屏蔽外连接
+function show() {
+    alert('敬请期待！');
+}
+</script>	<!--菜单 end-->
+
+	<!-- 头部 -->
+	<!-- 头部 -->
+<div class="newslist_head">
+	<!-- 新闻页大轮播 -->
+	<div class="newslist_head_pic slideBox">
+		<div class="nl_head_pic_img bd">
+			<ul>
+							<li>
+					<a href="http://192.168.1.164/game_count/html/news/ttdt/11.html" title="契约OL之神秘事情" >
+						<img src="http://192.168.1.164/game_count/uploads/f_essay/2017/12/1513677500274894.jpg" alt="契约OL之神秘事情" width="100%" height="560">
+					</a>
+				</li>
+							<li>
+					<a href="http://192.168.1.164/game_count/html/news/ttdt/3.html" title="神契OL更新预告" >
+						<img src="http://192.168.1.164/game_count/uploads/f_essay/2017/12/1513589023467014.jpg" alt="神契OL更新预告" width="100%" height="560">
+					</a>
+				</li>
+						</ul>
+		</div>
+		<div class="nl_head_pic_nav hd">
+			<ul>
+							<li><a href="javascript:void(0);"></a></li>
+							<li><a href="javascript:void(0);"></a></li>
+						</ul>
+		</div>
+	</div>
+	<!-- 新闻页大轮播 end -->
+
+
+</div>
+<!-- 头部 end -->	<!-- 头部 end -->
+
+	<!-- 内容 -->
+		<!-- 新闻页列表内容 -->
+		    <!-- 新闻列表 -->
+    	<div class="box">
+        	<div class="wrapper news">
+            	<div class="container">
+                	<div class="list-container ">
+                    <h3>
+                    	欢乐游戏<span>当前位置：<a href="news.html">欢乐游戏</a> &gt; </span>
+                    </h3>
+					<ul class="overflow">
+											<li>
+							<div class="fl news-img">
+								<a href="http://192.168.1.164/game_count/html/news/ttdt/11.html" title="契约OL之神秘事情" >
+									<img src="http://192.168.1.164/game_count/uploads/f_essay/2017/12/1513677494490037.jpg" alt="契约OL之神秘事情" >
+								</a>
+							</div>
+							<div class="fl news-detail">
+								<h2>
+	                            	<a href="http://192.168.1.164/game_count/html/news/ttdt/11.html" title="契约OL之神秘事情" >契约OL之神秘事情</a>
+	                        	</h2>
+	                        	<p>
+	                        		<a href="http://192.168.1.164/game_count/html/news/ttdt/11.html" title="契约OL之神秘事情" >体验全新游戏，《神契OL》是你不可错过的首选！酣畅淋漓的感受，带给你极具震撼的乐趣。2010绝对疯狂之作，颠覆老套的网游，《神契OL》，为你开启充满探险趣味与诸多神秘挑战的奇妙之旅，你不得错过。</a>
+	                        	</p>
+							</div>
+						</li>
+											<li>
+							<div class="fl news-img">
+								<a href="http://192.168.1.164/game_count/html/news/ttdt/10.html" title="神契OL之心得体会" >
+									<img src="http://192.168.1.164/game_count/uploads/f_essay/2017/12/1513676891199661.jpg" alt="神契OL之心得体会" >
+								</a>
+							</div>
+							<div class="fl news-detail">
+								<h2>
+	                            	<a href="http://192.168.1.164/game_count/html/news/ttdt/10.html" title="神契OL之心得体会" >神契OL之心得体会</a>
+	                        	</h2>
+	                        	<p>
+	                        		<a href="http://192.168.1.164/game_count/html/news/ttdt/10.html" title="神契OL之心得体会" >在游戏里面这么久了，也有了自己的见解，而如今就这些经验做一些简要的概述，方便新人朋友们队游戏的体验。</a>
+	                        	</p>
+							</div>
+						</li>
+											<li>
+							<div class="fl news-img">
+								<a href="http://192.168.1.164/game_count/html/news/ttdt/9.html" title="神契OL特色一览" >
+									<img src="http://192.168.1.164/game_count/uploads/f_essay/2017/12/1513676836508861.jpg" alt="神契OL特色一览" >
+								</a>
+							</div>
+							<div class="fl news-detail">
+								<h2>
+	                            	<a href="http://192.168.1.164/game_count/html/news/ttdt/9.html" title="神契OL特色一览" >神契OL特色一览</a>
+	                        	</h2>
+	                        	<p>
+	                        		<a href="http://192.168.1.164/game_count/html/news/ttdt/9.html" title="神契OL特色一览" >首推变形职业系统游戏中职业种类丰富，每个职业都极富特色，远远超过以往游戏的简单设定。</a>
+	                        	</p>
+							</div>
+						</li>
+											<li>
+							<div class="fl news-img">
+								<a href="http://192.168.1.164/game_count/html/news/ttdt/8.html" title="神契OL的传说" >
+									<img src="http://192.168.1.164/game_count/uploads/f_essay/2017/12/1513676785795381.jpg" alt="神契OL的传说" >
+								</a>
+							</div>
+							<div class="fl news-detail">
+								<h2>
+	                            	<a href="http://192.168.1.164/game_count/html/news/ttdt/8.html" title="神契OL的传说" >神契OL的传说</a>
+	                        	</h2>
+	                        	<p>
+	                        		<a href="http://192.168.1.164/game_count/html/news/ttdt/8.html" title="神契OL的传说" >这就是属于神契的传说。而你想要演绎你自己的传奇吗？</a>
+	                        	</p>
+							</div>
+						</li>
+											<li>
+							<div class="fl news-img">
+								<a href="http://192.168.1.164/game_count/html/news/ttdt/7.html" title="神契OL之新体验" >
+									<img src="http://192.168.1.164/game_count/uploads/f_essay/2017/12/1513676723255079.jpg" alt="神契OL之新体验" >
+								</a>
+							</div>
+							<div class="fl news-detail">
+								<h2>
+	                            	<a href="http://192.168.1.164/game_count/html/news/ttdt/7.html" title="神契OL之新体验" >神契OL之新体验</a>
+	                        	</h2>
+	                        	<p>
+	                        		<a href="http://192.168.1.164/game_count/html/news/ttdt/7.html" title="神契OL之新体验" >是一款以西方魔幻为背景的即时战斗类手机网络游戏，采用了符合亚洲审美的Q版人物造型，配合多变的场景以及炫目华丽的技能使得整个游戏的画质在同类游戏中遥遥领先。</a>
+	                        	</p>
+							</div>
+						</li>
+											<li>
+							<div class="fl news-img">
+								<a href="http://192.168.1.164/game_count/html/news/ttdt/6.html" title="局座加盟《率土之滨》 年度版本主题曲《东风起》首发" >
+									<img src="http://192.168.1.164/game_count/uploads/f_essay/2017/12/1513652402779961.jpg" alt="局座加盟《率土之滨》 年度版本主题曲《东风起》首发" >
+								</a>
+							</div>
+							<div class="fl news-detail">
+								<h2>
+	                            	<a href="http://192.168.1.164/game_count/html/news/ttdt/6.html" title="局座加盟《率土之滨》 年度版本主题曲《东风起》首发" >局座加盟《率土之滨》 年度版本主题曲《东风起》首发</a>
+	                        	</h2>
+	                        	<p>
+	                        		<a href="http://192.168.1.164/game_count/html/news/ttdt/6.html" title="局座加盟《率土之滨》 年度版本主题曲《东风起》首发" >普天之下，莫非王土，风雨雾雪，皆为天助；率土之滨，莫非王臣，横扫天下，睥睨众生。网易全自由沙盘战略手游《率土之滨》年度大版本“东风起”同名主题曲MV今日首发，这首讲述气象与战争的歌曲，由著名军事专家局座张召忠指导创作并倾情献唱。</a>
+	                        	</p>
+							</div>
+						</li>
+										</ul>
+					</div>
+            	</div>
+        	</div>
+    	</div>
+		<!-- 新闻页列表内容 end -->
+		
+		<!-- 新闻页列表页数 -->
+				<div class="newslist_content_page">
+			<ul>
+				<li class="on"><a href="http://192.168.1.164/game_count/html/news/ttdt/index.html" title="首页">首页</a></li>
+								<li ><a href="http://192.168.1.164/game_count/html/news/ttdt/list_1.html" title="尾页">尾页</a></li>
+			</ul>
+		</div>
+				<!-- 新闻页列表页数 end -->
+	<!-- 内容 end -->
+
+	<!-- 脚部 -->
+	<style>
+.foot{ width: 100%; height: 150px; margin: 0 auto;line-height: 20px; background-color: #2B2B2B;position: relative;}
+.foot_logo{ width: 165px; height: 63px; overflow: hidden; margin: 38px 24px 38px 450px; float: left;}
+.foot_logo a{ width: 100%; height: 100%; display: block;  }
+.foot_content{ width: 780px; height: 85%; float: left; text-align: left;  color: #FFFFFF;position: absolute;bottom: 0;left: 700px;font-family: 'Lato', sans-serif; font-size:12px;}
+.foot_content a{ color: #FFFFFF; padding: 0 6px; }
+.foot_content:hover a{ color: #000; }
+</style>		
+		
+		<div class="foot" >
+		<div class="foot_logo">
+			<a href="http://www.hlwy.com/" title="" target="_blank">
+				<img src="http://192.168.1.164/game_count/skin0/images/lylogofont2.png" width="100%" height="65">
+			</a>
+		</div>
+		<div class="foot_content">
+			<div class="tsy">健康游戏忠告：抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活 </div>
+			<div id="footer_logo_h"></div>
+			<ul id="footer_ul">
+				<li>
+					<a title="关于本站" href="http://192.168.1.164/game_count/html/leyou/about.html" target="_blank">关于本站</a><span>|</span>
+					<a title="联系我们" href="http://192.168.1.164/game_count/html/leyou/joinus.html" target="_blank">联系我们</a><span>|</span>
+					<a title="商务合作" href="http://192.168.1.164/game_count/html/leyou/business.html" target="_blank">商务合作</a><span>|</span>
+					<a title="服务条款" href="http://192.168.1.164/game_count/html/leyou/term.html" target="_blank">服务条款</a>
+				</li>
+				<li class="copyright">Copyright 2017 &copy;广州乐游.All Rights Reserved<a href="http://www.miibeian.gov.cn/" title="网站备案" target="_blank"> icp备案号：粤ICP备17102407号</a>
+				</li>
+				<li><a href="" target="_blank">粤网文[2017]9540-2374号</a></li>
+	            <li>广东乐游互联网科技有限公司</li>
+			</ul>
+		</div>
+   </div>	<!-- 脚部 end -->
+</div>
+<script type="text/javascript" src="http://192.168.1.164/game_count/templates/js/jquery.SuperSlide.js"></script>
+<script>
+	jQuery(".slideBox").slide({mainCell:".bd ul",effect:"left",autoPlay:true,trigger:"click"});
+</script>
+</body>
+</html>

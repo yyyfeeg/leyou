@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- Head -->
+<head>
+<!--{include file="head.html"}-->
+</head>
+<!-- /Head -->
+<!-- Body -->
+<body>
+    <!-- Loading Container -->
+        <!--{include file="loading.html"}-->
+    <!--  /Loading Container -->
+    
+    <!-- Main Container -->
+    <!--{if "list" == $list}-->  <!--游戏注册列表-->
+    <style>
+        ul{
+            list-style: none;
+        }
+    </style>
+    <div class="page-body">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="widget">
+                    <div class="widget-header bordered-bottom bordered-yellow">
+                        <span class="widget-caption">游戏注册列表</span>
+                        <a href="javascript:void(0);" onclick="showhelp();" style="font-weight:bold">显示功能帮助</a>
+                        <div class="widget-buttons">
+                            <a href="#" data-toggle="maximize">
+                                <i class="fa fa-expand"></i>
+                            </a>
+                            <a href="#" data-toggle="collapse">
+                                <i class="fa fa-minus"></i>
+                            </a>
+                            <a href="#" data-toggle="dispose">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="widget-body no-padding">
+                        <table class="table table-bordered table-hover table-striped table-hover" id="searchable">
+                            <thead class="bordered-darkorange">
+                                <tr id='foot'>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_engine" placeholder="搜索系统ID" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_engine" placeholder="搜索会员ID" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_browser" placeholder="搜索会员名称" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_platform" placeholder="搜索来源广告" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_version" placeholder="搜索来源子广告" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_version" placeholder="搜索首次登录时间" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_version" placeholder="搜索平台注册时间" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_version" placeholder="搜索游戏" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_version" placeholder="搜索mac地址" class="form-control input-sm"></th>
+                                    <th rowspan="1" colspan="1"><input type="text" name="search_version" placeholder="搜索加密IDFA" class="form-control input-sm"></th>
+                                </tr>
+                                <tr role="row" id='test'>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="templates/js/datatable/jquery.dataTables.min.js"></script>
+    <script src="templates/js/datatable/ZeroClipboard.js"></script>
+    <script src="templates/js/datatable/dataTables.tableTools.min.js"></script>
+    <script src="templates/js/datatable/dataTables.bootstrap.min.js"></script>
+    <script src="templates/js/datatable/datatables-init.js"></script>
+    <script>
+        InitiateSimpleDataTable.init();
+        InitiateEditableDataTable.init();
+        InitiateExpandableDataTable.init();
+        $(document).ready(function() {
+                /*
+                 * Insert a 'details' column to the table
+                 */
+                var oTable = $('#searchable').dataTable({
+                "bProcessing":true,
+                "bServerSide":true,
+                "sAjaxSource":"index.php?module=ad_reg&method=game_list",
+                "sScrollX": "100%",
+                "bScrollCollapse": true,
+                "sDom": "Tflt<'row DTTTFooter'<'col-sm-6'i><'col-sm-6'p>>",
+                "aaSorting": [[1, 'asc']],
+                "aLengthMenu": [
+                   [5, 15, 20],
+                   [5, 15, 20]
+                ],
+                "iDisplayLength": 10,
+                "oTableTools": {
+                    "aButtons": []
+                },
+                "language": {
+                    "search": "",
+                    "sLengthMenu": "显示 _MENU_ 项结果",
+                    "sProcessing": "处理中...",
+                    "oPaginate": {
+                        "sFirst": "首页",
+                        "sPrevious": "上页",
+                        "sNext": "下页",
+                        "sLast": "末页"
+                    },
+                    "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                    "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                    "infoFiltered":   "(总过滤_MAX_条)",
+                    "zeroRecords":    "没有匹配结果",
+                },
+                "columns": [
+                    { "sTitle": "系统ID",class:'123'},
+                    { "sTitle": "会员ID" },
+                    { "sTitle": "会员名称" },
+                    { "sTitle": "来源广告" },
+                    { "sTitle": "来源子广告" },
+                    { "sTitle": "首次登录游戏时间" },
+                    { "sTitle": "平台注册时间" },
+                    { "sTitle": "游戏" },
+                    { "sTitle": "MAC地址" },
+                    { "sTitle": "加密IDFA" }
+                ]
+            });
+            $("thead input").keyup(function () {
+                /* Filter on the column (the index) of this element */
+                oTable.fnFilter(this.value, $("thead input").index(this));
+            });
+
+            $('#expandabledatatable_column_toggler input[type="checkbox"]').change(function () {
+                var iCol = parseInt($(this).attr("data-column"));
+                var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
+                oTable.fnSetColumnVis(iCol, (bVis ? false : true));
+            });
+
+            $('body').on('click', '.dropdown-menu.hold-on-click', function (e) {
+                e.stopPropagation();
+            })
+        } );
+    </script>
+    <!--{/if}-->  <!--用户日志列表-->
+
+    <script>
+        $(function(){
+            if('<!--{$meg}-->' !=''){
+                $("#toast-container").show();
+            }else{
+                $("#toast-container").hide();
+            }
+            $("#toast-container").bind('click',function(){
+                $("#toast-container").hide();
+            });
+        });
+        function showhelp(){
+            $("#toast-container").show();
+        }
+    </script>
+    <div id="toast-container" class="toast-bottom-right"><div class="toast fa-check toast-blue" ><button class="toast-close-button">×</button><div class="toast-message"><!--{$meg}--></div></div></div>
+        <!--显示主页信息-->
+    <!-- /Main Container -->
+    <!--消息提示-->
+</body>
+<!--  /Body -->
+<script src="templates/js/bootstrap.min.js"></script>
+<!--Beyond Scripts-->
+<script src="templates/js/beyond.min.js"></script>
+<!--Page Related Scripts-->
+</html>

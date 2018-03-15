@@ -1,0 +1,306 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="wap-font-scale"  content="no"/><!-- 禁止浏览器优化 -->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>游戏新闻 - 欢乐游戏</title>
+	<meta name="Keywords" content="欢乐游戏,leyou,游戏,leyou.com"/> 
+	<meta name="Description" content="欢乐游戏"/>
+	<link href="http://localhost/game_count/templates/css/news_content.css" rel="stylesheet" type="text/css">
+	<link href="http://localhost/game_count/templates/css/common.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="http://localhost/game_count/m/js/main.js"></script> <!-- 登陆弹出框 -->
+    <link rel="stylesheet" type="text/css" href="http://localhost/game_count/m/css/style.css" /><!-- 登陆弹出框 -->
+    <link rel="stylesheet" href="http://localhost/game_count/skin0/css/global.css"><!-- 头部 -->
+	<link rel="stylesheet" href="http://localhost/game_count/skin0/css/common-header9.css"><!-- 头部 -->
+	<script type="text/javascript" src="http://localhost/game_count/skin0/js/common-header.js"></script><!-- 头部 -->
+</head>
+<body>
+<!--  PC端 -->
+<div class="index_wrap">
+	<!--菜单-->
+	<div class="demo">
+    <nav class="main_nav">
+        <ul>
+            <li><a href="#0"><img src="http://localhost/game_count/skin0/images/user.png" /></a></li>
+            <li><a href="#0"><img src="http://localhost/game_count/skin0/images/enroll.png" /></a></li>
+        </ul>
+    </nav>
+</div>
+<div class="cd-user-modal">
+    <div class="cd-user-modal-container">
+        <ul class="cd-switcher">
+            <li class="on"><a href="#0">用户登录</a></li>
+            <li><a href="#0">注册新用户</a></li>
+        </ul>
+        <div id="cd-login">
+            <!-- 登录表单 -->
+            <form class="cd-form">
+                <p class="fieldset">
+                    <label class="image-replace cd-username" for="signin-username">用户名</label>
+                    <input class="full-width has-padding has-border" id="signin-username" type="text" placeholder="输入用户名">
+                </p>
+                <p class="fieldset">
+                    <label class="image-replace cd-password" for="signin-password">密码</label>
+                    <input class="full-width has-padding has-border" id="signin-password" type="text" placeholder="输入密码">
+                </p>
+                <p class="fieldset">
+                    <input type="checkbox" id="remember-me" checked>
+                    <span for="remember-me">记住登录状态</span>
+                </p>
+                <p class="fieldset">
+                    <input class="full-width2" type="submit" value="登 录">
+                </p>
+            </form>
+        </div>
+        <div id="cd-signup">
+            <!-- 注册表单 -->
+            <form class="cd-form">
+                <p class="fieldset">
+                    <label class="image-replace cd-username" for="signup-username">用户名</label>
+                    <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="输入用户名">
+                </p>
+                <p class="fieldset">
+                    <label class="image-replace cd-email" for="signup-email">邮箱</label>
+                    <input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="输入mail">
+                </p>
+                <p class="fieldset">
+                    <label class="image-replace cd-password" for="signup-password">密码</label>
+                    <input class="full-width has-padding has-border" id="signup-password" type="text" placeholder="输入密码">
+                </p>
+                <p class="fieldset">
+                    <input type="checkbox" id="accept-terms">
+                    <span for="accept-terms">我已阅读并同意 <a href="http://localhost/game_count/html/leyou/term.html">用户协议</a></span>
+                </p>
+                <p class="fieldset">
+                    <input class="full-width2" type="submit" value="注册新用户">
+                </p>
+            </form>
+        </div>
+        <a href="#" class="cd-close-form">关闭</a>
+    </div>
+</div>
+<div data-spm="2">
+    <div class="ali-common-header0">
+        <div class="ali-common-header-inner common-header-clearfix">
+            <!-- 运营专区 -->
+            <div style="margin-right: 180px;" class="activity item pull-left">
+                <div class="flash-wrap" id="J-ali-activity-img">
+                    <a href="http://localhost/game_count"><img src="http://localhost/game_count/skin0/images/lylogo2.png" style="height: 75px;width: 95%;margin-top: 17.5px;"></a>
+                </div>
+            </div>
+            <!-- 导航菜单 -->
+            <ul class="menu item pull-left" id="J_common_header_menu" data-spm="201">
+                <li class="top-menu-item">
+                    <a class="menu-hd" href="http://localhost/game_count">首页</a>
+                </li>
+                <li class="top-menu-item">
+                    <a class="menu-hd" href="http://localhost/game_count/html/news/yxxw/index.html">新闻动态</a>
+                </li>
+                <li class="top-menu-item">
+                    <a target="_blank" class="menu-hd top-menu-item-link" href="http://localhost/game_count/html/leyou/about.html">关于我们</a>
+                </li>
+                <li class="top-menu-item" has-dropdown="true" menu-type="dev" data-spm-click="">
+                    <a class="menu-hd" href="http://localhost/game_count/html/games/index.html" target="_blank">产品中心 </a>
+                </li>
+                <li class="top-menu-item">
+                    <a class="menu-hd" href="http://localhost/game_count/html/leyou/joinus.html">人才招聘</a>
+                </li>
+                <li class="top-menu-item">
+                    <a class="menu-hd" href="http://localhost/game_count/html/news/ttdt/index.html">公司动态</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>	<!--菜单 end-->
+
+	<!-- 新闻页 详细内容 -->
+	<div class="newscontent_content">
+		<!-- 新闻页 标题 -->
+		<div class="nc_title">
+			<h4>游戏新闻</h4>
+			<p class="current fr">
+			    当前位置：
+			    <a href="http://localhost/game_count/index.html" title="首页">首页</a> &gt; 
+			    <a href="http://localhost/game_count/html/news/yxxw/index.html" title="游戏新闻">游戏新闻</a>
+			</p>
+		</div>
+		<!-- 新闻页 标题 end -->
+
+		<!-- 新闻 内容 -->
+		<div class="nc_content">
+			<div class="nc_ct_title">
+				<h3>神契天赋系统攻略全解</h3>
+				<p>
+					<span>作者：欢乐游戏</span>
+					<span>发布时间 : 2017-12-07</span>
+				</p>
+			</div>
+			<div class="nc_ct_content">
+			<div class="img-wrap logo-fade" style="color: rgb(34, 34, 34); font-family: arial, verdana, sans-serif; font-size: 12px; white-space: normal;"><img data-osrc="https://gss0.bdstatic.com/7lswddw5_xn3otebn9fn2djv/doc/pic/item/0b7b02087bf40ad1dd3daf8a5f2c11dfa8eccefa.jpg" height="270" data-cke-saved-src="https://gss0.bdstatic.com/7lswddw5_xn3otebn9fn2djv/doc/pic/item/0b7b02087bf40ad1dd3daf8a5f2c11dfa8eccefa.jpg" src="https://gss0.bdstatic.com/7lswddw5_xn3otebn9fn2djv/doc/pic/item/0b7b02087bf40ad1dd3daf8a5f2c11dfa8eccefa.jpg" width="380" style="cursor: default;"/></div><p style="color: rgb(34, 34, 34); font-family: arial, verdana, sans-serif; font-size: 12px; white-space: normal;"><br/></p><p><span style="color: rgb(34, 34, 34); font-family: arial, verdana, sans-serif; font-size: 12px; white-space: normal;">《神契online》刚刚开始公测，对于很多踏入这个魔幻世界的新手玩家来说还是一个崭新的世界，有很多神秘的东西等着去探索。当然在探索之路上，会遇到很多问题和困难，为了让玩家在探险之旅更有趣和刺激，我会陆续将游戏中的各个系统一一介绍给大家的，今天我们先介绍一下《神契online》的天赋系统。</span><br style="color: rgb(34, 34, 34); font-family: arial, verdana, sans-serif; font-size: 12px; white-space: normal;"/><span style="color: rgb(34, 34, 34); font-family: arial, verdana, sans-serif; font-size: 12px; white-space: normal;">一、天赋系统简介</span><br style="color: rgb(34, 34, 34); font-family: arial, verdana, sans-serif; font-size: 12px; white-space: normal;"/><span style="color: rgb(34, 34, 34); font-family: arial, verdana, sans-serif; font-size: 12px; white-space: normal;">游戏中角色的天赋系统影响角色技能的属性，每个职业可以选择的天赋各不相同，每种天赋需要花费的天赋点数和学习该天赋的最低等级要求也各不相同。</span><br style="color: rgb(34, 34, 34); font-family: arial, verdana, sans-serif; font-size: 12px; white-space: normal;"/><span style="color: rgb(34, 34, 34); font-family: arial, verdana, sans-serif; font-size: 12px; white-space: normal;">二、天赋点用途</span><br style="color: rgb(34, 34, 34); font-family: arial, verdana, sans-serif; font-size: 12px; white-space: normal;"/><span style="color: rgb(34, 34, 34); font-family: arial, verdana, sans-serif; font-size: 12px; white-space: normal;">天赋点的分配可以增强人物所学技能的效果，天赋只跟战斗和战斗技能有关，跟商业技能无关。</span><br style="color: rgb(34, 34, 34); font-family: arial, verdana, sans-serif; font-size: 12px; white-space: normal;"/><span style="color: rgb(34, 34, 34); font-family: arial, verdana, sans-serif; font-size: 12px; white-space: normal;">三、如何查看天赋系统</span><br style="color: rgb(34, 34, 34); font-family: arial, verdana, sans-serif; font-size: 12px; white-space: normal;"/><span style="color: rgb(34, 34, 34); font-family: arial, verdana, sans-serif; font-size: 12px; white-space: normal;">点击菜单→技能→天赋，就可以看到天赋分配的界面了，每个天赋的具体描述都可以通过点击左下角的操作进行查看和加点。</span><br style="color: rgb(34, 34, 34); font-family: arial, verdana, sans-serif; font-size: 12px; white-space: normal;"/><span style="color: rgb(34, 34, 34); font-family: arial, verdana, sans-serif; font-size: 12px; white-space: normal;">四、天赋加点小技巧</span><br style="color: rgb(34, 34, 34); font-family: arial, verdana, sans-serif; font-size: 12px; white-space: normal;"/><span style="color: rgb(34, 34, 34); font-family: arial, verdana, sans-serif; font-size: 12px; white-space: normal;">每个职业都会有两大块的天赋，战士是攻击和防御，根据需求可以选择攻击型和防御型战士，攻击型主要是在pk和杀怪的时候体现出高攻的特点，防御型主要是在刷副本时扛怪的。法师是有火焰和冰霜，火焰主要是输出伤害，所以在刷副本和杀怪的时候用的比较多，冰霜主要是一些限制性技能，在pk的时候比较重要。德鲁伊和元素祭祀是野性和自然（元素），野性主要是在pk和刷副本时加攻击的，自然或元素是加血的。德鲁伊和元素祭司 pk的时候打战士需要远程缠绕+远程法术，打法师的时候需要变身近战，打副本的时候变身是用于抗怪的元素和自然则可以远程输出和给别人加血。（小贴士:五级开始有天赋点，以后每升一级会有一个天赋点可以分配）</span><br style="color: rgb(34, 34, 34); font-family: arial, verdana, sans-serif; font-size: 12px; white-space: normal;"/><span style="color: rgb(34, 34, 34); font-family: arial, verdana, sans-serif; font-size: 12px; white-space: normal;">五、如何进行天赋点重置</span><br style="color: rgb(34, 34, 34); font-family: arial, verdana, sans-serif; font-size: 12px; white-space: normal;"/><span style="color: rgb(34, 34, 34); font-family: arial, verdana, sans-serif; font-size: 12px; white-space: normal;">在新手村找到“技能训练师”点击他花费一定的金钱就可以将天赋重置。</span><br style="color: rgb(34, 34, 34); font-family: arial, verdana, sans-serif; font-size: 12px; white-space: normal;"/><span style="color: rgb(34, 34, 34); font-family: arial, verdana, sans-serif; font-size: 12px; white-space: normal;">通过上面的介绍，想必大家对天赋系统有了比较清楚的了解了吧。赶快加入游戏打造独一无二的你，这片大陆你就是唯一。2010绝对疯狂之作，颠覆老套的网游，《神契online》，为你开启充满探险趣味与诸多神秘挑战的奇妙之旅，你不得错过。</span><span class="span-text-end" style="color: rgb(34, 34, 34); font-family: arial, verdana, sans-serif; font-size: 12px; white-space: normal;">攻略完</span></p><p style="color: rgb(34, 34, 34); font-family: arial, verdana, sans-serif; font-size: 12px; white-space: normal;"><br/></p><p><br/></p>
+			</div>
+
+			<!-- 文章分享 -->
+			<!-- <div class="nc_ct_share">
+				<p>分享到:</p>
+				<ul>
+					<li><a class="nc_share_wechat" href="" title="分享到朋友圈"></a></li>
+					<li><a class="nc_share_tencnet" href="" title="分享到QQ好友"></a></li>
+					<li><a class="nc_share_space" href="" title="分享到QQ空间"></a></li>
+					<li><a class="nc_share_sina" href="" title="分享到新浪微博"></a></li>
+					<li><a class="nc_share_renren" href="" title="分享到人人网"></a></li>
+					<li><a class="nc_share_tcfirend" href="" title="分享到QQ朋友"></a></li>
+					<li><a class="nc_share_more" href="" title="更多"></a></li>
+				</ul>
+			</div> -->
+			<!--<div class="bdsharebuttonbox nc_ct_share">
+				<p>分享到:</p>
+				<ul>
+					<a href="#" title="分享到QQ空间" class="bds_qzone" data-cmd="qzone"></a>
+					<a href="#" title="分享到新浪微博" class="bds_tsina" data-cmd="tsina"></a>
+					<a href="#" title="分享到腾讯微博" class="bds_tqq" data-cmd="tqq"></a>
+					<a href="#" title="分享到人人网" class="bds_renren" data-cmd="renren"></a>
+					<a href="#" title="分享到微信" class="bds_weixin" data-cmd="weixin"></a>
+					<a href="#" title="更多" class="bds_more" data-cmd="more"></a>
+				</ul>
+			</div>
+			<script>
+				window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+			</script>-->
+			<!-- 文章分享 end -->
+
+		</div>
+		<!-- 新闻 内容 content -->
+
+		<!-- 热游预告 -->
+		<div class="nc_hotgame">
+			<div class="nc_hotgame_title">
+				<em></em>
+				<h4>热点游戏</h4>
+			</div>
+			<div class="nc_hotgame_content">
+				<ul>
+									<li>
+						<a href="#" title="秦时明月2" target="_blank">
+							<img src="http://localhost/game_count/uploads/f_photos/2017/12/1512974036948232.jpg" width="230" height="120">
+						</a>
+					</li>
+									<li>
+						<a href="#" title="秦时明月2" target="_blank">
+							<img src="http://localhost/game_count/uploads/f_photos/2017/12/1512974010686384.jpg" width="230" height="120">
+						</a>
+					</li>
+									<li>
+						<a href="#" title="出征吧！勇士" target="_blank">
+							<img src="http://localhost/game_count/uploads/f_photos/2017/12/1512973961271152.jpg" width="230" height="120">
+						</a>
+					</li>
+									<li>
+						<a href="#" title="秦时明月" target="_blank">
+							<img src="http://localhost/game_count/uploads/f_photos/2017/12/1512628425729571.jpg" width="230" height="120">
+						</a>
+					</li>
+								</ul>
+			</div>
+		</div>
+		<!-- 热游预告 end -->
+
+		<!-- 热门动态 -->
+		<div class="nc_hotnews">
+			<div class="nc_hotgame_title">
+				<em></em>
+				<h4>热门动态</h4>
+			</div>
+			<div class="nc_hotnews_list">
+				<ul>
+									<li>
+						<span>[游戏新闻]</span>
+						<a href="http://localhost/game_count/html/news/yxxw/2.html" title="网游神契生活技能全面解析" >网游神契生活技能全面解析</a>
+						<em>12/07</em>
+					</li>
+									<li>
+						<span>[游戏新闻]</span>
+						<a href="http://localhost/game_count/html/news/yxxw/1.html" title="神契天赋系统攻略全解" >神契天赋系统攻略全解</a>
+						<em>12/07</em>
+					</li>
+								</ul>
+			</div>
+		</div>
+		<!-- 热门动态 end -->
+	</div>
+	<!-- 新闻页 详细内容 end -->
+
+	<!-- 脚部 -->
+	<style>
+.foot {
+    width: 100%;
+    height: 150px;
+    margin: 0 auto;
+    line-height: 20px;
+    background-color: #2B2B2B;
+    position: relative;
+}
+
+.foot_logo {
+    width: 165px;
+    height: 63px;
+    overflow: hidden;
+    margin: 38px 24px 38px 450px;
+    float: left;
+}
+
+.foot_logo a {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.foot_content {
+    width: 780px;
+    height: 85%;
+    float: left;
+    text-align: left;
+    color: #FFFFFF;
+    position: absolute;
+    bottom: 0;
+    left: 700px;
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+}
+
+.foot_content a {
+    color: #FFFFFF;
+    padding: 0 6px;
+}
+
+.foot_content:hover a {
+    color: #000;
+}
+</style>
+<div class="foot">
+    <div class="foot_logo">
+        <a href="http://www.hlwy.com/" title="" target="_blank">
+				<img src="http://localhost/game_count/skin0/images/lylogofont2.png" width="100%" height="65">
+			</a>
+    </div>
+    <div class="foot_content">
+        <div class="tsy">健康游戏忠告：抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活 </div>
+        <div id="footer_logo_h"></div>
+        <ul id="footer_ul">
+            <li>
+                <a title="关于本站" href="http://localhost/game_count/html/leyou/about.html" target="_blank">关于本站</a><span>|</span>
+                <a title="联系我们" href="http://localhost/game_count/html/leyou/joinus.html" target="_blank">联系我们</a><span>|</span>
+                <a title="商务合作" href="http://localhost/game_count/html/leyou/business.html" target="_blank">商务合作</a><span>|</span>
+                <a title="服务条款" href="http://localhost/game_count/html/leyou/term.html" target="_blank">服务条款</a>
+            </li>
+            <li class="copyright">Copyright 2017 &copy;广州乐游.All Rights Reserved<a href="http://www.miibeian.gov.cn/" title="网站备案" target="_blank"> icp备案号：粤ICP备17102407号</a>
+            </li>
+            <li><a href="" target="_blank">粤网文[2017]9540-2374号</a></li>
+            <li>广东乐游互联网科技有限公司</li>
+        </ul>
+    </div>
+</div>	<!-- 脚部 end -->
+</div>
+</body>
+</html>

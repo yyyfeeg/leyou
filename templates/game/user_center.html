@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="wap-font-scale"  content="no"/><!-- 禁止浏览器优化 -->
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="x-rim-auto-match" content="none">
+    <meta name="viewport" content="width=640, target-densitydpi=device-dpi, minimum-scale=0.5, maximum-scale=2, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><!--{$title}--> - <!--{$menu_title}--></title>
+    <link href="<!--{$web_url}-->/templates/game/css/common.css" rel="stylesheet" type="text/css">
+    <link href="<!--{$web_url}-->/templates/game/css/index.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<!-- 移动端 -->
+<div class="wap">
+    <!-- 头部 -->
+    <!--{include file="game/header.html"}-->
+    <!-- 头部 -->
+    <!--内容-->
+    <div class="content">
+        <!--账号信息-->
+        <div class="account_number_1">
+            <!--头像-->
+            <div class="head_portrait head_portrait_1">
+                <a>
+                    <!--灰色框框-->
+                    <span class="head_portrait_top"></span>
+                    <!--灰色框框 end-->
+                    <!--用户头像-->
+                    <span class="head_portrait_bottom head_portrait_bottom_2">
+                    	<img src="<!--{if $uinfo_arr.ulogo eq ''}--><!--{$web_url}-->/templates/game/images/user_1.png<!--{ else }--><!--{ $uinfo_arr.ulogo }--><!--{/if}-->" width="320" />
+                    </span>
+                    <!--用户头像 end-->
+                </a>
+            </div>
+            <!--头像 end-->
+            <!--昵称-->
+            <div class="nickname nickname_1">
+                <p><em>账号：</em><!--{ $uinfo_arr.uname }--></p>
+                <i><em>昵称：</em><!--{ $uinfo_arr.nickname }--></i>
+                <div class="vip">
+                    <em>VIP<!--{ $uinfo_arr.vip }--></em>
+                    <div class="vip_content vip_content_1">
+                        <!--成长值-->
+                        <div class="already" style="width:<!--{ $uinfo_arr.grow_rate }-->%"></div>
+                        <!--成长值 end-->
+                        <!--剩余成长值-->
+                        <div class="besides"></div>
+                        <!--剩余成长值 end-->
+                    </div>
+                    <em>VIP<!--{ $uinfo_arr.next_vip }--></em>
+                </div>
+            </div>
+            <!--昵称 end-->
+        </div>
+        <!--账号信息 end-->
+        <!--2个绑定-->
+        <div class="binding">
+        	<div class="binding_phone <!--{if $uinfo_arr.photo neq ''}-->on<!--{/if}-->">
+            	<a href="<!--{if $uinfo_arr.photo eq ''}--><!--{$uinfo_arr.bind_url}--><!--{else}-->javascript:;<!--{/if}-->" title="绑定手机">
+                	<span></span>
+                    <p>绑定手机</p>
+                    <em><i></i><!--{if $uinfo_arr.photo neq ''}-->已绑定<!--{else}-->未绑定<!--{/if}--></em>
+                </a>
+            </div>
+            <div class="binding_name <!--{if $uinfo_arr.truename neq ''}-->on<!--{/if}-->">
+            	<a href="<!--{if $uinfo_arr.truename eq ''}--><!--{$uinfo_arr.legalize}--><!--{else}-->javascript:;<!--{/if}-->" title="实名认证">
+                	<span></span>
+                    <p>实名认证</p>
+                    <em><i></i><!--{if $uinfo_arr.truename neq ''}-->已认证<!--{else}-->未认证<!--{/if}--></em>
+                </a>
+            </div>
+        </div>
+        <!--2个绑定 end-->
+        <!--近期领取的礼包-->
+        <div class="recent_package">
+        	<span>近期领取的礼包</span>
+            <ul>
+            <!--{if $giftsArr}-->
+                <!--{section name=index loop=$giftsArr}-->
+            	<li><a href="<!--{ $giftsArr[index].curl }-->"><i></i><em><!--{ $giftsArr[index].gifts }-->：</em><p><!--{ $giftsArr[index].cdkey }--></p></a></li>
+                <!--{/section}-->
+            <!--{else}-->
+                <li>您最近一周没有领取过礼包！</li>
+            <!--{/if}-->
+            </ul>
+        </div>
+        <!--近期领取的礼包 end-->
+    </div>
+    <!--内容 end-->
+    <!-- 底部 -->
+    <!--{include file="game/footer.html"}-->
+    <!-- 底部 end-->
+</div>
+</body>
+</html>

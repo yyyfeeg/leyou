@@ -1,0 +1,18 @@
+1、数据更新顺序和时间
+
+2、格式：xxx.php 参数（非必须）
+3、说明：统计表数据单位都为天,自动更新前一天数据。
+自动更新：update_game_active.php
+手动更新：update_game_active.php 20150101_20150102_2 (第一个为开始时间，第二个为结束时间，第三个参数为强制更新[1、普通 2、强制删除数据])
+
+4、更新没有任何顺序
+
+5、需要更新如下
+
+1、update_game_active.php 每天活跃用户数据更新
+2、update_game_dayreg.php 每天时间段游戏注册统计
+3、update_game_dayrole.php 每天时间段游戏创角统计
+4、update_gamereg_outflow.php 游戏付费流失统计
+5、update_gamerole_outflow.php 游戏创角付费流失
+6、update_newpay.php 充值统计数据更新
+7、update_remain.php 更新留存数据

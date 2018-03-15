@@ -1,0 +1,57 @@
+<div class="main-container container-fluid">
+    <!-- Page Container -->
+    <div class="page-container">
+        <!-- left -->
+            <!--{include file="left.html"}-->
+        <!-- /left -->
+        <!-- Page Content -->
+        <div class="page-content">
+            <!-- Page Header -->
+            <div class="page-header position-relative">
+                <div class="header-title">
+                    <h1>
+                        <!--{block name='pagename'}--><!--{/block}-->
+                    </h1>
+                </div>
+                <!--Header Buttons-->
+                <div class="header-buttons">
+                    <a class="sidebar-toggler" href="#">
+                        <i class="fa fa-arrows-h"></i>
+                    </a>
+                    <a class="refresh" id="refresh-toggler" href="">
+                        <i class="glyphicon glyphicon-refresh"></i>
+                    </a>
+                    <a class="fullscreen" id="fullscreen-toggler" href="#">
+                        <i class="glyphicon glyphicon-fullscreen"></i>
+                    </a>
+                </div>
+                <!--Header Buttons End-->
+            </div>
+            <!-- /Page Header -->
+            <!--{block name="body"}-->
+                <!-- Page Body -->
+                <div class="page-body">
+                    <!-- Your Content Goes Here -->
+                    我来测试下内容看是否可以
+                </div>
+                <!-- /Page Body -->
+            <!--{/block}-->
+        </div>
+        <!-- /Page Content -->   
+    </div>
+    <!-- /Page Container -->
+    <!-- Main Container -->
+</div>
+<script>
+    $(function(){
+        if('<!--{$meg}-->' !=''){
+            $("#toast-container").show();
+        }else{
+            $("#toast-container").hide();
+        }
+        $("#toast-container").bind('click',function(){
+            $("#toast-container").hide();
+        });
+    });
+</script>
+<div id="toast-container" class="toast-bottom-right"><div class="toast fa-check toast-blue" ><button class="toast-close-button">×</button><div class="toast-message"><!--{$meg}--></div></div></div>

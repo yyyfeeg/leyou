@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta charset="utf-8" />
+	<meta http-equiv = "X-UA-Compatible" content ="IE=edge,chrome=1" />
+	<meta name="renderer" content="webkit"/>
+	<title>用户中心 - <!--{$title}--></title>
+	<meta name="Keywords" content="<!--{$keywords}-->"/> 
+	<meta name="Description" content="<!--{$description}-->"/>
+	<link href="<!--{$web_url}-->/templates/css/index.css" rel="stylesheet" type="text/css">
+	<link href="<!--{$web_url}-->/templates/css/common.css" rel="stylesheet" type="text/css">
+	<link href="<!--{$web_url}-->/templates/css/base.css" rel="stylesheet" type="text/css">
+	<link href="<!--{$web_url}-->/templates/css/mian.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div class="wrap">
+		<!-- 顶部导航 -->
+		<div class="herder">
+			<div class="herder_box">
+				<div class="td" style="top: 45px;">
+					欢迎您！<a><!--{$username}--></a>|<a id="logout" href="javascript:void(0);">退出</a>
+				</div>
+				<div id="logo">
+					<h1 class="fl">
+						<a href="<!--{$web_url}-->/index.html" title="天拓游戏">
+							<img src="<!--{$web_url}-->/templates/images/logo.png"/>
+						</a>
+					</h1>
+					<em class="fl" style="width: 123px;">天拓用户中心</em>
+				</div>
+			</div>
+		</div>
+		<!-- 顶部导航end -->
+
+		<div class="mian">
+			<!-- 左边内容 -->
+			<div class="yhzx_l fl">
+
+				<!-- 用户头像 -->
+				<div class="yh_icons">
+					<em><img src="<!--{if $baseInfo.ulogo != ''}--><!--{$web_url}--><!--{$baseInfo.ulogo}--><!--{else}--><!--{$web_url}-->/templates/images/yonghu_tx_bg.png<!--{/if}-->" width="120" height="118"/></em><br>
+					<a><!--{$username}--></a>
+				</div>
+				<!-- 用户头像end -->
+
+				<!-- 最近玩过的游戏 -->
+				<div class="zjyx_li"><em class="fl"></em>最近游戏 <span>/Recent games</span></div>
+				<div class="yxlb">
+					<ul>
+						<!--{section name=index loop=$login_game2}-->
+						<li>
+							<div class="fl icon_tx">
+								<img src="<!--{$web_url}--><!--{$login_game2[index].icon}-->" width="51" height="51"/>
+							</div>
+							<div class="fl xing">
+								<a href="<!--{$login_game2[index].url}-->" target="_blank"><!--{$login_game2[index].gname}--></a><br>
+								<!--{if $login_game2[index].rating ge 1}--><span></span><!--{/if}-->
+								<!--{if $login_game2[index].rating ge 2}--><span></span><!--{/if}-->
+								<!--{if $login_game2[index].rating ge 3}--><span></span><!--{/if}-->
+								<!--{if $login_game2[index].rating ge 4}--><span></span><!--{/if}-->
+								<!--{if $login_game2[index].rating ge 5}--><span></span><!--{/if}-->
+							</div>
+						</li>
+						<!--{/section}-->
+					</ul>
+				</div>
+				<!-- 最近玩过的游戏end -->
+			</div>
+			<!-- 左边内容end -->
+
+			<!-- 中间内容 -->
+			<div class="yhzx_r fl">
+				<div class="zhgl">
+					<h3>账号管理</h3>
+					<ul>
+						<li class="li_bod_l li_bod_l_b li_one">
+							账号：<em><!--{$username}--></em>&nbsp;&nbsp;<a href="javascript:void(0)" onClick="base.displayHandle('change-password','pop-ups','','s',300);">修改密码</a>
+						</li>
+						<li>
+							<div class="li_div_two">
+								<h4>最近登录</h4>
+								<dl>
+									<dt></dt>
+									<!--{section name=index loop=$login_game}-->
+									<dd><em></em><!--{$login_game[index].time}-->&nbsp;&nbsp;&nbsp;<!--{$login_game[index].game}-->&nbsp;&nbsp;&nbsp;<!--{$login_game[index].sname}--></dd>
+									<!--{/section}-->
+									<!-- <dd><a href="" title="更多"></a></dd> -->
+								</dl>
+							</div>
+						</li>
+
+						<li id="phone" class="li_bod_l li_bg_wei">
+							<a href="javascript:void(0);" title="绑定手机">
+								<dl class="li_div_three">
+									<dt class="fl"></dt>
+									<dd class="fl">
+										<em>绑定手机</em><br/>
+										<span></span>
+									</dd>
+								</dl>
+							</a>
+						</li>
+
+						<li id="email" class="li_bg_wei">
+							<a href="javascript:void(0);" title="绑定邮箱">
+								<dl class="li_div_three li_div_fl">
+									<dt class="fl"></dt>
+									<dd class="fl">
+										<em>绑定邮箱</em><br/>
+										<span></span>
+									</dd>
+								</dl>
+							</a>
+						</li>
+
+						<li id="uinfo" class="li_bod_l li_bg_wei">
+							<a href="javascript:void(0);" title="填写资料">
+								<dl class="li_div_three li_div_fi">
+									<dt class="fl"></dt>
+									<dd class="fl">
+										<em>注册资料</em><br />
+										<span></span>
+									</dd>
+								</dl>
+							</a>
+						</li>
+
+						<li id="idcard" class="li_bg_wei">
+							<a href="javascript:void(0);" title="实名认证">
+								<dl class="li_div_three li_div_sex">
+									<dt class="fl"></dt>
+									<dd class="fl">
+										<em>实名认证</em><br />
+										<span></span>
+									</dd>
+								</dl>
+							</a>
+						</li>
+						
+					</ul>
+				</div>
+				
+				<div class="cjwt">
+					<h3>
+						<a href="<!--{$web_url}-->/index.php?mo=service&me=index" target="_blank"><em class="fr">+更多问题</em></a>
+						常见问题
+					</h3>
+					<ul>
+						<li>
+							<a href="<!--{$web_url}-->/index.php?mo=service&me=index" target="_blank">支付成功，游戏币没到账?</a>
+						</li>
+					</ul>
+					<div class="tel">客服电话：400-100-200-30</div>
+				</div>
+			</div>
+			<!-- 中间内容end -->
+		</div>
+	</div>
+		
+	<!--弹出层-->
+    <div id="pop-ups" class="tc_di" style="display: none;">
+		<!-- 手机绑定 -->
+    	<div id="bind-phone" class="sj_box" style="display: none;">
+    		<div class="sj_bd_head">
+    			<div class="clos fr"><a href="javascript:void(0);" onclick="base.displayHandle('bind-phone','pop-ups','','h');"></a></div>
+    			绑定手机
+    		</div>
+    		<div class="sj_bd_b">
+    			<img src="<!--{$web_url}-->/templates/images/01.jpg"/>
+    			<p class="op1">手机绑定后，可用手机进行找回/修改密码，还可用于登陆本账号哦！</p>
+    			<!-- 错误提示 -->
+    			<div class="tips">
+					<div id="tips" class="form_tip" style="display: none;"></div>
+				</div>
+				<!-- 错误提示end -->
+    			<ul>
+    				<li>
+    					<em>手机号码：</em><input type="text" name="tel" id="tel" placeholder="请输入您的手机号码" value="" style="width: 253px;" />
+    				</li>
+    				<li>
+    					<em>验证码：</em><input type="text" name="smscode" id="smscode" placeholder="请输入短信验证码" value="" style="width: 171px;" /><span id="sendcode"><a href="javascript:void(0);" onclick="sendCode('<!--{$username}-->','tel','tips');">获取验证码</a></span>
+    				</li>
+    			</ul>
+    			<input id="bp_flag" type="hidden" name="flag" value="bing">
+    			<input id="bp_name" type="hidden" name="name" value="<!--{$username}-->">
+    			<input id="bp_act" type="hidden" name="act" value="1">
+    			<a id="sub_bindphone" href="javascript:void(0);" class="sj_bg_bottom">提 交</a>
+    		</div>
+    	</div>
+		<!-- 手机绑定end -->
+
+		<!-- 手机绑定成功 -->
+    	<div id="bind-phone-success" class="sj_box" style="display: none;">
+    		<div class="sj_bd_head">
+    			<div class="clos fr"><a href="javascript:void(0);" onclick="base.displayHandle('bind-phone-success','pop-ups','','h');history.go(0);"></a></div>
+    			绑定手机
+    		</div>
+    		<div class="sj_bd_b">
+    			<img src="<!--{$web_url}-->/templates/images/02.jpg"/>
+    			<p class="op2"><b class="fl"></b><i class="fl">恭喜你成功绑定手机</i></p>
+    			<p style="text-align:center">自动跳转ing...</p>
+    			<a href="javascript:void(0);" onclick="base.displayHandle('bind-phone-success','pop-ups','','h',2000);history.go(0);" class="sj_bg_bottom">完 成</a>
+    		</div>
+    	</div>
+    	<!-- 手机绑定成功end -->
+
+    	<!--邮箱绑定-->
+        <div id="bind-email" class="sj_box" style="display:none;">
+    		<div class="sj_bd_head">
+    			<div class="clos fr"><a href="javascript:void(0);" onclick="base.displayHandle('bind-email','pop-ups','','h');"></a></div>
+    			绑定邮箱
+    		</div>
+    		<div class="sj_bd_b">
+    			<img src="<!--{$web_url}-->/templates/images/03.jpg"/>
+    			<p class="op1">进行邮箱绑定后，可以用邮箱进行找回/修改密码，还可用于登陆本账号哦！</p>
+    			<div class="tips">
+					<div id="mail-tips" class="form_tip" style="display: none;"></div>
+				</div>
+    			<ul>
+    				<li>
+    					<em>邮箱地址：</em><input type="text" name="mail" id="mail" value="" placeholder="请输入邮箱地址"style="width: 253px;" />
+    				</li>
+    			</ul>
+    			<input id="bm_flag" type="hidden" name="flag" value="bing">
+    			<input id="bm_name" type="hidden" name="name" value="<!--{$username}-->">
+    			<input id="bm_act" type="hidden" name="act" value="3">
+    			<a id="bindmail" href="javascript:void(0);" class="sj_bg_bottom">下 一 步</a>
+    		</div>
+    	</div>
+		<!--邮箱绑定end-->
+		<!-- 激活邮件已发 -->
+    	<div id="bind-email-success" class="sj_box" style="display:none;">
+    		<div class="sj_bd_head">
+    			<div class="clos fr"><a href="javascript:void(0);" onclick="base.displayHandle('bind-email-success','pop-ups','','h');history.go(0);"></a></div>
+    			绑定邮箱
+    		</div>
+    		<div class="sj_bd_b">
+    			<img src="<!--{$web_url}-->/templates/images/04.jpg"/>
+    			<p class="op2 op4"><b class="fl"></b><i class="fl">验证邮件已送达</i></p>
+    			<p class="op1">请登录邮箱，点击激活链接完成绑定，激活链接在24小时内有效。</p>
+    			<a href="javascript:void(0);" onclick="base.displayHandle('bind-email-success','pop-ups','','h');" class="sj_bg_bottom">完 成</a>
+    		</div>
+    	</div>
+    	<!-- 激活邮件已发end -->
+        
+        <!-- 修改密码 -->
+        <div id="change-password" class="sj_box" style="display:none;">
+            <div class="sj_bd_head">
+                <div class="clos fr">
+                    <a href="javascript:void(0);" onclick="base.displayHandle('change-password','pop-ups','','h');"></a>
+                </div>
+                修改密码
+            </div>
+            <div class="sj_bd_b">
+                <p>&nbsp;</p>
+                <div class="tips">
+                    <div id="change-tips" class="form_tip" style="display: none;"></div>
+                </div>
+                <ul>
+                    <li>
+                        <em>旧密码：</em><input type="password" name="oldpass" id="oldpass"  placeholder="请输入旧密码" style="width: 253px;" />
+                    </li>
+                    <li>
+                        <em>新密码：</em><input type="password" name="newpass" id="newpass" placeholder="请设置新密码" style="width: 253px;" />
+                    </li>
+                    <li>
+                        <em>确认密码：</em><input type="password" name="repass" id="repass" placeholder="请确认新密码" style="width: 253px;" />
+                    </li>
+                </ul>
+                <input type="hidden" id="cpwd_flag" name="cpwd_flag" value="changepwd">
+                <input type="hidden" id="cpwd_name" name="cpwd_name" value="<!--{$username}-->">
+                <a id="sub_change" href="javascript:void(0);" class="sj_bg_bottom">提 交</a>
+            </div>
+        </div>
+        <!-- 修改密码end -->
+        
+    </div>
+</div>
+<!-- 脚部 -->
+<!--{include file="footer.html"}-->
+<!-- 脚部 end -->
+<script type="text/javascript" src="<!--{$web_url}-->/templates/js/jquery.usercenter.js"></script>
+<script>
+	var pstyle  = "<!--{if $phone.phone != ''}-->li_bg_yi<!--{else}--> <!--{/if}-->";
+	var ptips   = "<!--{if $phone.phone != ''}-->已绑定<!--{else}-->未绑定<!--{/if}-->";
+	var bindp   = "<!--{if $phone.phone != ''}--><!--{else}-->bind-phone<!--{/if}-->";
+	var estyle  = "<!--{if $email.email != ''}-->li_bg_yi<!--{else}--> <!--{/if}-->";
+	var etips   = "<!--{if $email.email != ''}-->已绑定<!--{else}-->未绑定<!--{/if}-->";
+	var binde   = "<!--{if $email.email != ''}--><!--{else}-->bind-email<!--{/if}-->";
+	var istyle  = "<!--{if $uinfo != ''}-->li_bg_yi<!--{else}--> <!--{/if}-->";
+	var itips   = "<!--{if $uinfo != ''}-->已完善<!--{else}-->未完善<!--{/if}-->";
+	var info    = "<!--{if $uinfo != ''}--><!--{else}--><!--{/if}-->";
+	var idstyle = "<!--{if $idcard.idnum != ''}-->li_bg_yi<!--{else}--> <!--{/if}-->";
+	var idtips  = "<!--{if $idcard.idnum != ''}-->已认证<!--{else}-->未认证<!--{/if}-->";
+	var idnum   = "<!--{if $idcard.idnum != ''}--><!--{else}--><!--{/if}-->";
+	usercenter.certified('phone',pstyle,bindp,ptips);
+	usercenter.certified('email',estyle,binde,etips);
+	usercenter.certified('uinfo',istyle,info,itips);
+	usercenter.certified('idcard',idstyle,idnum,idtips);
+
+	function sendCode(name,phoneID,tipsID)
+	{
+		var tel    = $('#'+phoneID).val();
+		var length = tel.length;
+		var regex  = /^1[3|4|5|7|8][0-9]\d{4,8}$/;
+
+		if (!tel || length == 'undefined') {
+			$('#'+tipsID).text('请填写手机号码!').show();
+            return false;
+		}
+		if (length != 11 || !regex.test(tel)) {
+		 	$('#'+tipsID).text('手机号码不正确!').show();
+            return false;
+        }
+        $('#'+tipsID).html('').hide();
+        $.cookie('tel', tel, { expires: 10, path: '/' });
+        $.getJSON(URL+'/index.php',{flag:'bing',name:name,tel:tel,act:'2',mo:'user_center',me:'bing'},function(data){
+        	if (data.code == 1000) {
+        		alert('短信验证码已发送，请注意查收！');
+        		time();
+        	} else {
+        		alert(data.msg);
+        		return false;
+        	}
+        });
+	}
+
+	// 预约倒计时
+	if ($.cookie('wait') == null || $.cookie('wait') <= 0) {
+		$.cookie('wait', 60, { expires: 10, path: '/' });
+	}
+
+	function time()
+	{
+	    if ($.cookie('wait') == 0) {
+	        $('#sendcode a').attr('onClick',"sendCode('<!--{$username}-->','tel','tips');");
+	        $('#sendcode').attr('style','');
+	        $('#sendcode a').html('获取验证码');
+	        $.cookie('wait', 60, { expires: 10, path: '/' });
+	    } else {
+	    	var wait = $.cookie('wait');
+	    	$('#sendcode a').attr('onClick','');
+	    	$('#sendcode').attr('style','background: none repeat scroll 0 0 #C1C1C1;');
+	        $('#sendcode a').html("重新获取(" + wait + ")");
+	        wait--;
+	        $.cookie('wait', wait, { expires: 10, path: '/' });
+	        setTimeout(function() {
+	            time();
+	        },
+	        1000);
+	    }
+	}
+
+	// 记住时间
+	$(function(){
+		if ($.cookie('wait') < 60 && $.cookie('wait')> 0) {
+			time();
+		}
+		if ($.cookie('tel') != '') {
+			$('#tel').val($.cookie('tel'));
+		}
+	});
+
+	var hideArrID = ['pop-ups','bind-phone-success','bind-phone','bind-email','bind-email-success','change-password'];
+	$('#sub_bindphone').click(function(){
+		usercenter.bindPhone('bp_flag','bp_name','bp_act','tel','smscode','tips',"'"+URL+"'",'bind-phone-success','pop-ups',hideArrID);
+	});
+	$('#bindmail').click(function(){
+		usercenter.bindEmail('bm_flag','bm_name','bm_act','mail','mail-tips',"'"+URL+"'",'bind-email-success','pop-ups',hideArrID);
+	});
+	$('#sub_change').click(function(){
+		usercenter.changePassword('cpwd_flag','cpwd_name','oldpass','newpass','repass','change-tips',"'"+URL+"'","change-password",'pop-ups',hideArrID);
+	});
+	
+</script>
+</body>
+</html>

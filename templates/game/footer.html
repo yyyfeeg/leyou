@@ -1,0 +1,57 @@
+<!--弹出框-->
+<div class="pop_up" style="display:none;">
+	<!--信息弹出窗-->
+	<div id="all_tips" class="pop_up_content" style="display:none;">
+    	<div class="pop_up_title">
+        	<p>提 示</p>
+            <span><a href="javascript:;" title="关闭" onclick="$('#all_tips').hide(300);$('.pop_up').hide();"></a></span>
+        </div>
+        <div class="pop_up_writing">
+        	<p></p>
+        </div>
+        <div class="pop_up_confirm">
+        	<p><a href="javascript:;" title="确认" onclick="$('#all_tips').hide(300);$('.pop_up').hide();">确认</a></p>
+        </div>
+    </div>
+    <!--信息弹出窗 end-->
+    
+    <!--cdkey弹出窗-->
+	<div id="cdkey_tips" class="pop_up_content" style="display:none;">
+        <div class="pop_up_writing pop_up_writing_1">
+        	<p>您的礼包号是：</p>
+            <span><a></a></span>
+            <i>请长按序列号进行复制</i>
+            <i>然后在游戏中输入兑换礼包</i>
+        </div>
+        <div class="pop_up_confirm pop_up_confirm1">
+        	<p><a href="javascript:;" title="关闭" onclick="$('#cdkey_tips').hide(300);$('.pop_up').hide();">关闭</a></p>
+        </div>
+    </div>
+    <!--cdkey弹出窗 end-->
+    
+</div>
+<script>
+    $(function(){
+        var h = window.screen.height;
+        var w = window.screen.width;
+        var o = window.orientation;
+        if (o == 0) {
+            // 竖屏
+            $('#all_tips,#cdkey_tips').css('top',h/2);
+        } else if (o == 90) {
+            // 横屏
+            $('#all_tips,#cdkey_tips').css('top','10%');
+        }
+        window.addEventListener('orientationchange',function(){
+            var O = window.orientation;
+            if (O == 0) {
+                // 竖屏
+                $('#all_tips,#cdkey_tips').css('top',h/2);
+            } else if (O == 90) {
+                // 横屏
+                $('#all_tips,#cdkey_tips').css('top','10%');
+            }
+        });
+    });
+</script>
+<!--弹出框-->

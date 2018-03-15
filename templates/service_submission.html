@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta charset="utf-8" />
+		<meta http-equiv = "X-UA-Compatible" content ="IE=edge,chrome=1" />
+		<meta name="renderer" content="webkit"/>
+		<title>问题提交 - <!--{$webname}--></title>
+        <meta name="keywords" content="<!--{$keywords}-->" />
+		<meta name="description" content="<!--{$desc}-->" />
+	<link href="<!--{$web_url}-->/templates/css/base.css" rel="stylesheet" type="text/css">
+	<link href="<!--{$web_url}-->/templates/css/mian.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<div class="wrap">
+			<!--{include file="service_header.html"}-->
+            <!--{include file="service_banner.html"}-->
+			<div class="mian">
+				<div class="td_box">
+					<div class="td_l fl">
+						<div class="td_box_bd_cent" id="sidelist">
+							<!--{foreach from=$onetype key=tk item=value }-->
+                            <dl>
+								<dt>
+									<i class="fl"></i>
+									<em class="fl"><!--{$value.name}--></em>
+								</dt>
+                                <!--{section max=4 name=k loop=$value.faq}-->
+								<dd><a href="<!--{$web_url}-->/index.php?mo=service&me=problems&tid=<!--{$value.tid}-->&gid=<!--{$value.gid}-->&id=<!--{$value.faq[k].id}-->"><!--{$value.faq[k].title}--></a></dd>
+                                <!--{/section}-->
+							</dl>
+                            <!--{/foreach}-->
+						</div>
+						<div class="td_box_bd_bottom">
+							
+						</div>
+					</div>
+					
+					<div class="td_r fr">
+						<div class="td_head">
+							问题提交
+						</div>
+						<ul class="td_txt">
+							<li>
+								<em>问题类型</em>
+								<select name="type" id="type">
+                                	<!--{foreach from=$twotype key=tk item=value }-->
+                                 	<option value="<!--{$value.id}-->"><!--{$value.name}--></option>  
+                                    <!--{/foreach}-->
+							    </select>
+					        </li>
+							<li>
+								<em>问题标题</em>
+								<input type="text" name="title" id="title" value="" />
+							</li>
+							<li>
+								<em>游戏区服</em>
+								<select name="sid" id="sid">
+                                	<!--{foreach from=$gamedb key=db item=value }-->
+                                 	<option value="<!--{$value.sid}-->"><!--{$value.sname}--></option>  
+                                    <!--{/foreach}-->
+								</select>
+							</li>
+							<li>
+								<em>游戏角色ID</em>
+								<input type="text" name="uname" id="uname" value="" />
+							</li>
+							<li>
+								<em>联系手机</em>
+								<input type="text" name="tel" id="tel" value="" />
+							</li>
+							<li style="overflow: hidden;">
+								<em class="fl" style="margin-right: 3px;">详细描述问题</em>
+								<textarea class="fl" cols="73" rows="10" id="content" name="content" style="padding:6px 12px;"></textarea>
+							</li>
+						</ul>
+						<p class="tj_btn">
+                        	<input type="hidden" name="gid" id="gid" value="<!--{$gid}-->" />
+                            <input type="hidden" name="tid" id="tid" value="<!--{$tid}-->" />
+                            <input type="hidden" name="uid" id="uid" value="<!--{$uid}-->" />
+							<a href="javascript:void(0)" onClick="save_send_func();">
+								提交
+							</a>
+						</p>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+
+		<!-- 脚部 -->
+		<!--{include file="service_footer.html"}-->
+		<!-- 脚部 end -->
+
+		
+	</body>
+</html>

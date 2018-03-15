@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="wap-font-scale"  content="no"/><!-- 禁止浏览器优化 -->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>公司动态 - <!--{$title}--></title>
+	<meta name="Keywords" content="<!--{$keywords}-->"/> 
+	<meta name="Description" content="<!--{$description}-->"/>
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	
+	<link href="<!--{$web_url}-->/templates/css/index.css" rel="stylesheet" type="text/css">
+	<link href="<!--{$web_url}-->/templates/css/common.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="<!--{$web_url}-->/skin0/css/index_c510ece.css">
+	
+	<script type="text/javascript" src="<!--{$web_url}-->/skin0/js/memenu.js"></script>
+	<link rel="stylesheet" href="<!--{$web_url}-->/skin0/css/global.css"><!-- 头部 -->
+	<link rel="stylesheet" href="<!--{$web_url}-->/skin0/css/common-header9.css"><!-- 头部 -->
+	<script type="text/javascript" src="<!--{$web_url}-->/skin0/js/common-header.js"></script><!-- 头部 -->
+	<link rel="stylesheet" type="text/css" href="<!--{$web_url}-->/skin0/css/index.min.css" /> <!-- 新闻 -->
+	<script type="text/javascript" src="<!--{$web_url}-->/m/js/main.js"></script> <!-- 登陆弹出框 -->
+    <link rel="stylesheet" type="text/css" href="<!--{$web_url}-->/m/css/style.css" /><!-- 登陆弹出框 -->
+    <link href="<!--{$web_url}-->/templates/css/news_list.css" rel="stylesheet" type="text/css">
+	<link href="<!--{$web_url}-->/list/list_news.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<!--  PC端 -->
+<div class="wrap">
+	<!--菜单-->
+	<!--{include file="header.html"}-->
+	<!--菜单 end-->
+
+	<!-- 头部 -->
+	<!--{include file='list_header.html'}-->
+	<!-- 头部 end -->
+
+	<!-- 内容 -->
+		<!-- 新闻页列表内容 -->
+		    <!-- 新闻列表 -->
+    	<div class="box">
+        	<div class="wrapper news">
+            	<div class="container">
+                	<div class="list-container ">
+                    <h3>
+                    	<!--{$title}--><span>当前位置：<a href="news.html"><!--{$title}--></a> &gt; </span>
+                    </h3>
+					<ul class="overflow">
+					<!--{section name=index loop=$data}-->
+						<li>
+							<div class="fl news-img">
+								<a href="<!--{if $data[index].virtue eq 'true'}--><!--{$data[index].jurl}--><!--{else}--><!--{$data[index].url}--><!--{/if}-->" title="<!--{$data[index].title}-->" <!--{if $data[index].virtue eq 'true'}-->target="_blank"<!--{/if}-->>
+									<img src="<!--{$web_url}--><!--{$data[index].sphoto}-->" alt="<!--{$data[index].title}-->" >
+								</a>
+							</div>
+							<div class="fl news-detail">
+								<h2>
+	                            	<a href="<!--{if $data[index].virtue eq 'true'}--><!--{$data[index].jurl}--><!--{else}--><!--{$data[index].url}--><!--{/if}-->" title="<!--{$data[index].title}-->" <!--{if $data[index].virtue eq 'true'}-->target="_blank"<!--{/if}-->><!--{$data[index].title}--></a>
+	                        	</h2>
+	                        	<p>
+	                        		<a href="<!--{if $data[index].virtue eq 'true'}--><!--{$data[index].jurl}--><!--{else}--><!--{$data[index].url}--><!--{/if}-->" title="<!--{$data[index].title}-->" <!--{if $data[index].virtue eq 'true'}-->target="_blank"<!--{/if}-->><!--{$data[index].desc}--></a>
+	                        	</p>
+							</div>
+						</li>
+					<!--{/section}-->
+					</ul>
+					</div>
+            	</div>
+        	</div>
+    	</div>
+		<!-- 新闻页列表内容 end -->
+		
+		<!-- 新闻页列表页数 -->
+		<!--{if $page_flag eq 'true'}-->
+		<div class="newslist_content_page">
+			<ul>
+				<li <!--{if $page eq 0}-->class="on"<!--{/if}-->><a href="<!--{$index_page}-->" title="首页">首页</a></li>
+				<!--{foreach from=$page_menu key=k item=v}-->
+				<li <!--{if $page eq $k+1}-->class="on"<!--{/if}-->><a href="<!--{$v}-->" title="<!--{$k+1}-->"><!--{$k+1}--></a></li>
+				<!--{/foreach}-->
+				<li <!--{if $page eq $last_page_flag}-->class="on"<!--{/if}-->><a href="<!--{$last_page}-->" title="尾页">尾页</a></li>
+			</ul>
+		</div>
+		<!--{/if}-->
+		<!-- 新闻页列表页数 end -->
+	<!-- 内容 end -->
+
+	<!-- 脚部 -->
+	<!--{include file="footer.html"}-->
+	<!-- 脚部 end -->
+</div>
+<script type="text/javascript" src="<!--{$web_url}-->/templates/js/jquery.SuperSlide.js"></script>
+<script>
+	jQuery(".slideBox").slide({mainCell:".bd ul",effect:"left",autoPlay:true,trigger:"click"});
+</script>
+</body>
+</html>

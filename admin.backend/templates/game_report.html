@@ -1,0 +1,668 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- Head -->
+<head>
+<!--{include file="head.html"}-->
+</head>
+<!-- /Head -->
+<!-- Body -->
+<body>
+    <!-- Loading Container -->
+        <!--{include file="loading.html"}-->
+    <!--  /Loading Container -->
+    <!-- Main Container -->
+         <!--{if "dreport" == $report}-->  <!--日报详情-->
+    <style>
+        ul{
+            list-style: none;
+        }
+    </style>
+    <div class="page-body">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="widget">
+                    <div class="widget-header bordered-bottom bordered-yellow">
+                        <span class="widget-caption">游戏日报</span>
+                        <a href="javascript:void(0);" onclick="showhelp();" style="font-weight:bold">显示功能帮助</a>
+                        <div class="widget-buttons">
+                            <a href="#" data-toggle="maximize">
+                                <i class="fa fa-expand"></i>
+                            </a>
+                            <a href="#" data-toggle="collapse">
+                                <i class="fa fa-minus"></i>
+                            </a>
+                            <a href="#" data-toggle="dispose">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="widget-body no-padding">
+                    <table class="table table-bordered table-hover table-striped table-hover" id="searchable">
+                            <thead class="bordered-darkorange">
+                                <div style="float:left;margin:20px 10px;font-size: 12px">
+                                <strong>激活设备：</strong>统计所选时期内，每日新增的玩家安装游戏客户端，并运行游戏的可连接网络设备的数量，每台设备只计算一次<br/>
+                                <strong>新增设备：</strong>实时统计当日激活的设备数量，如果已安装的游戏激活标识被移除的话，则设备激活不会被去重<br/>
+                                <strong>新增玩家：</strong>实时统计当日新增玩家账号数量<br/>
+                                <strong>玩家转化率：</strong>实时统计当日，新玩家激活游戏后，进行了自动或者手动注册有ID信息或者账户信息的玩家设备数量，单设备中多个帐号只计算一次成功转化<br/>
+                                <strong>活跃玩家：</strong>实时统计当日所有进行登录行为的玩家账号数量<br/>
+                                <strong>有效活跃玩家：</strong>统计所选时期内，每日至少登录过3次游戏的玩家（新增玩家/活跃玩家）数量<br>
+                                <strong>付费玩家数量：</strong>统计所选时期内，每日成功充值的玩家数量，去重<br>
+                                <strong>付费金额：</strong>实时统计当日用户总付费金额<br/>
+                                <strong>日付费率：</strong>实时统计当日，当日登录玩家中成功付费玩家的数量占当日登录玩家数量的比例<br>
+                                <strong>ARPU：</strong>Average Revenue Per User（每用户平均收入）指当天时间内，游戏能从玩家身上获取收益的能力，衡量盈利能力的指标。计算公式为：日ARPU=当日充值总额度/当日活跃玩家数量<br>
+                                <strong>ARPPU：</strong>Average Revenue Per Pay User 每付费用户平均收入，指当天时间内，游戏能从付费玩家身上获取收益的能力。计算公式为：日ARPPU=当日充值总额度/当日付费玩家数量<br>
+                                <strong>游戏次数：</strong>实时统计当日玩家所进行的游戏（登录）总次数<br>
+                                <strong>平均日游戏次数：</strong>统计所选时期内，当日成功登陆游戏的活跃玩家数量，占当日玩家所进行的游戏（登录）总次数的比例取整<br>
+                                <strong>新增玩家次日留存率：</strong>统计所选时期内，当日成功登陆游戏的新增玩家中，第二日再次登陆游戏的玩家数量，占当日游戏新增玩家数量的比例<br>
+                                <strong>新增玩家3日留存率：</strong>统计所选时期内，当日成功登陆游戏的新增玩家中，往后推第3日（当日不计入天数）登陆游戏的玩家数量，占当日游戏新增玩家数量的比例<br>
+                                <strong>新增玩家7日留存率：</strong>统计所选时期内，当日成功登陆游戏的新增玩家中，往后推第7日（当日不计入天数）登陆游戏的玩家数量，占当日游戏新增玩家数量的比例<br></div>
+                                <hr style="clear:both;border-bottom:3px solid red;margin-top:20px"/>
+                            </thead>
+                        </table>
+                    <form action="index.php" name="form1" id="form1" style="margin:0px;" onsubmit="return check_s();">
+                        <table class="table table-bordered table-hover table-striped table-hover" id="searchable">
+                            <thead class="bordered-darkorange">
+                                <br/>
+                                <input type='hidden' name="module" value='game_report'/>
+                                <input type='hidden' name="method" value='dreport'/>
+                                <input type='hidden' name="action" value='submit'/>
+                                <div style="margin-left:10px;float:left;">开始时间：<input type="text" value="<!--{$starttime2}-->" style="width:200px" class="form-control date-picker" name="starttime2" id="starttime2" data-date-format="yyyy-mm-dd"></div>
+                                <div style="margin-left:10px;float:left;">结束时间：<input type="text" value="<!--{$endtime2}-->" style="width:200px;" class="form-control date-picker" name="endtime2" id="endtime2" data-date-format="yyyy-mm-dd"></div>
+                                <div style="margin-left:10px;float:left;">请选择游戏：
+                                <select name="gid" id='gid' style="width:100%;" style="width:200px;">
+                                    <option value="0">请选择游戏</option>
+                                    <!--{$gamestr}-->
+                                </select>
+                                </div>
+                                <div style="margin-left:10px;float:left;">渠道选择：
+                                    <div class="form-group">
+                                        <select name="tid" id='tid' style="width:100%;" onchange="select_ad()">
+                                            <option value="0" <!--{if $tid eq 0}-->selected='selected'<!--{/if}-->>渠道选择</option>
+                                            <option value="1" <!--{if $tid eq 1}-->selected='selected'<!--{/if}-->>安卓</option>
+                                            <option value="2" <!--{if $tid eq 2}-->selected='selected'<!--{/if}-->>ios</option>
+                                            <option value="3" <!--{if $tid eq 3}-->selected='selected'<!--{/if}-->>ios越狱</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-left:10px;float:left;" class="aid_class">主广告选择：
+                                    <div class="form-group">
+                                        <select name="aid" id='aid' style="width:100%;" onchange="select_adsons()">
+                                            <option value="0">主广告选择</option>
+                                            <!--{if $tps eq 1}-->
+                                                <!--{$adstr}-->
+                                            <!--{else}-->
+                                                <!--{foreach from=$gp_aids key=k item=v}-->
+                                                    <option value="<!--{$k}-->" <!--{if $aid eq $k}-->selected="selected"<!--{/if}-->><!--{$v}--></option>
+                                                <!--{/foreach}-->
+                                            <!--{/if}-->
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-left:10px;float:left;">子广告选择：
+                                    <div class="form-group">
+                                        <select name="adsons" id='adsons' style="width:100%;">
+                                            <option value="0">子广告选择</option>
+                                            <!--{$wdstr}-->
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div style="margin-left:10px;float:left;margin-top:20px;">
+                                <input type='submit' id='getinfo' class="btn btn-blue" value="查询" /></div>
+                                <div style="margin-left:10px;float:left;margin-top:20px;"><input type='button' id='export' class="btn btn-blue" value="导出" onclick="btn_export()"/></div>
+                            </thead>
+                        </table>
+                        </form>
+                        <hr style="clear:both;margin-top:10px;"/>
+                        <div style="margin-left:10px;float:left;">更新时间：<input type="text" value="" style="width:200px" class="form-control date-picker update_stime" name="starttime" id="starttime" data-date-format="yyyy-mm-dd"></div>
+                                   <!--{if $isadmin eq 1}--> <div style="margin-left:10px;float:left;">结束时间：<input type="text" value="" style="width:200px;" class="form-control date-picker update_etime" name="endtime" id="endtime" data-date-format="yyyy-mm-dd"></div><!--{/if}-->
+                                    <div style="margin-left:10px;float:left;">更新类型选择：
+                                    <div class="form-group">
+                                        <select name="forceupdate" id='forceupdate' style="width:100%;">
+                                            <option value="1" selected='selected'>普通更新</option>
+                                            <!--{if $isadmin eq 1}--><option value="2" >强制更新</option><!--{/if}-->
+                                        </select>
+                                    </div>
+                                    </div>
+                                    <div style="margin-left:10px;float:left;margin-top:20px;"><input type='button' class="btn btn-blue" value="更新数据"  onclick="update_url();"/></div>
+                        <hr style="clear:both;border-bottom:3px solid red;margin-top:80px"/>
+                        <table  class="table table-bordered table-hover table-striped table-hover" id="searchable">
+                        <thead class="bordered-darkorange">
+                        <tr role="row" id="test">
+                            <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 88px;text-align: center;" >日期</th>
+                            <!-- <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 88;" >广告渠道</th>
+                            <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 80;" >子渠道</th> -->
+                            <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 88;text-align: center;" >游戏</th>
+                            <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 80;text-align: center;" >激活设备</th>
+                            <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 80;text-align: center;" >新增设备</th>
+                            <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 80;text-align: center;" >新增玩家</th>
+                            <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 80;text-align: center;" >注册转化率（%）</th>
+                            <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 80;text-align: center;" >活跃玩家</th>
+                            <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 80;text-align: center;" >有效活跃玩家</th>
+                            <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 80;text-align: center;" >付费金额</th>
+                            <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 80;text-align: center;" >付费玩家数量</th>
+                            <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 80;text-align: center;" >日付费率</th>
+                            <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 70;text-align: center;" >ARPU</th>
+                            <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 60;text-align: center;" >ARPPU</th>
+                            <!-- <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 60;text-align: center;" >ACU</th>
+                            <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 60;text-align: center;" >PCU</th> -->
+                            <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 80;text-align: center;" >游戏次数</th>
+                            <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 80;text-align: center;" >平均日游戏次数</th>
+                            <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 80;text-align: center;" >次日留存</th>
+                            <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 80;text-align: center;" >3日留存</th>
+                            <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 80;text-align: center;" >7日留存</th>
+                        </tr>
+                        <tr id="odd"><!--{$str}--></tr>
+                        </thead>
+                        </table>
+                        <hr style="clear:both;border-bottom:3px solid red;margin-top:80px"/>
+                        <table  class="table table-bordered table-hover table-striped table-hover" id="searchable">
+                        <thead class="bordered-darkorange">
+                        <tr role="row" id="test">
+                            <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 80;text-align: center;" >日期</th>
+                            <!-- th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 80;" >广告渠道</th>
+                            <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 100;" >子渠道</th> -->
+                            <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 80;text-align: center;" >游戏</th>
+                            <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 80;text-align: center;" >累计激活设备</th>
+                            <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 100;text-align: center;" >累计新增玩家</th>
+                            <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 80;text-align: center;" >累计付费玩家</th>
+                            <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 120;text-align: center;" >累计收入金额</th>
+                            <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 120;text-align: center;" >总体付费率（%）</th>
+                            <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 120;text-align: center;" >累计ARPU</th>
+                            <th class="sorting" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 120;text-align: center;" >累计ARPPU</th>
+                        </tr>
+                        <tr id="odd"><!--{$str_s}--></tr> 
+                        </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="templates/js/datatable/jquery.dataTables.min.js"></script>
+    <script src="templates/js/datatable/ZeroClipboard.js"></script>
+    <script src="templates/js/datatable/dataTables.tableTools.min.js"></script>
+    <script src="templates/js/datatable/dataTables.bootstrap.min.js"></script>
+    <script src="templates/js/datatable/datatables-init.js"></script>
+    <script>
+        InitiateSimpleDataTable.init();
+        InitiateEditableDataTable.init();
+        InitiateExpandableDataTable.init();
+        function select_ad(){
+            //清空数据
+            $("#aid").find("option").remove();
+            $("#adsons").find("option").remove();
+            $("#adsons").append('<option value="0">子广告选择</option>');
+            $("#aid").append('<option value="0">广告选择</option>');
+            //获取子分类数据
+            var tids = $("#tid").val();
+            if(tids!=0){
+                 $.post("index.php?module=game_report&method=getadson",{tid:tids},
+                     function(data){
+                        data = eval("("+data+")");
+                        $.each(data,function(i,item){
+                            $("#aid").append('<option value="'+i+'" <!--{if $aid eq "'+i+'"}-->selected="selected"<!--{/if}-->>'+item+'</option>');
+                        });
+                     }
+                 ); 
+            }
+        }
+        function select_adsons(){
+            //清空数据
+            $("#adsons").find("option").remove();
+            //获取子分类数据
+            var ids  = $("#aid").val();
+             $.post("index.php?module=game_report&method=getadson",{aid: ids},
+                 function(data){
+                    data = eval("("+data+")");
+                    //处理子展示
+                    $("#adsons").append('<option value="0">子广告选择</option>');
+                    $.each(data,function(i,item){
+                        $("#adsons").append('<option value="'+i+'" <!--{if $aid eq "'+i+'"}-->selected="selected"<!--{/if}-->>'+item+'</option>');
+                    });
+                 }
+             );
+        }
+    </script>
+    <!--{/if}-->  <!--周报列表-->
+    <!--{if "wreport" == $report}--><!--列表-->
+    <style>
+        ul{
+            list-style: none;
+        }
+    </style>
+    <div class="page-body">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="widget">
+                    <div class="widget-header bordered-bottom bordered-yellow">
+                        <span class="widget-caption">游戏周报</span>
+                        <a href="javascript:void(0);" onclick="showhelp();" style="font-weight:bold">显示功能帮助</a>
+                        <div class="widget-buttons">
+                            <a href="#" data-toggle="maximize">
+                                <i class="fa fa-expand"></i>
+                            </a>
+                            <a href="#" data-toggle="collapse">
+                                <i class="fa fa-minus"></i>
+                            </a>
+                            <a href="#" data-toggle="dispose">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="widget-body no-padding">
+                    <table class="table table-bordered table-hover table-striped table-hover" id="searchable">
+                            <thead class="bordered-darkorange">
+                                <div style="float:left;margin:20px 10px;font-size: 12px">
+                                <strong>周激活设备数：</strong>统计周内，每日激活设备数量的总和<br/>
+                                <strong>周新增设备数：</strong>统计周内，每日新增设备数量的总和<br/>
+                                <strong>周新增玩家数（WNU）：</strong>统计周内，每日新增玩家数量的总和<br/>
+                                <strong>周活跃玩家数（WAU）：</strong>统计周内，有过一次登录行为的玩家数量<br/>
+                                <strong>周有效活跃玩家数：</strong>统计周内，累计登陆游戏至少3天，至少登录过9次的玩家（新增玩家/活跃玩家）数量<br/>
+                                <strong>周总收入金额：</strong>统计周内，玩家充值的总金额<br/>
+                                <strong>周付费玩家数：</strong>统计周内，有过一次及以上成功充值行为的玩家数量（排重）<br/>
+                                <strong>周玩家付费率：</strong>统计周内，充值玩家数量占活跃玩家数量的比例<br>
+                                <strong>ARPU：</strong>统计周的活跃玩家的平均充值金额，计算公式：周总收入/WAU<br>
+                                <strong>ARPPU：</strong>统计周的充值玩家的平均充值金额，计算公式：周总收入/充值玩家数量<br>
+                                <strong>周新增玩家次日留存：</strong>统计周内，每日新增玩家的次日留存总和除以7<br>
+                                <strong>周流失玩家数量：</strong>上周有登陆行为，本周从未有过登陆行为的玩家数量<br>
+                                <strong>周回流玩家数：</strong>上上周有登陆行为，上周未登陆过游戏，但在本周又有登陆行为的玩家数量<br>
+                                <strong>周流失率：</strong>统计周内，周流失人数占上个周活跃玩家的比例。计算公式：周流失玩家数量/上周活跃玩家数量<br></div>
+                                <hr style="clear:both;border-bottom:3px solid red;margin-top:20px"/>
+                            </thead>
+                        </table>
+                    <form action="index.php" name="form1" id="form1" style="margin:0px;" onsubmit="return check_s();">
+                        <table class="table table-bordered table-hover table-striped table-hover" id="searchable">
+                            <thead class="bordered-darkorange">
+                                <br/>
+                                <input type='hidden' name="module" value='game_report'/>
+                                <input type='hidden' name="method" value='wreport'/>
+                                <input type='hidden' name="action" value='submit'/>
+                                <div style="margin-left:10px;float:left;">日期：<input type="text" value="<!--{$starttime2}-->" style="width:200px" class="form-control date-picker" name="starttime2" id="starttime2" data-date-format="yyyy-mm-dd"></div>
+                                <div style="margin-left:10px;float:left;">请选择游戏：
+                                <select name="gid" id='gid' style="width:100%;" style="width:200px;">
+                                    <option value="0">请选择游戏</option>
+                                    <!--{$gamestr}-->
+                                </select>
+                                </div>
+                                <div style="margin-left:10px;float:left;">渠道选择：
+                                    <div class="form-group">
+                                        <select name="tid" id='tid' style="width:100%;" onchange="select_ad()">
+                                            <option value="0" <!--{if $tid eq 0}-->selected='selected'<!--{/if}-->>渠道选择</option>
+                                            <option value="1" <!--{if $tid eq 1}-->selected='selected'<!--{/if}-->>安卓</option>
+                                            <option value="2" <!--{if $tid eq 2}-->selected='selected'<!--{/if}-->>ios</option>
+                                            <option value="3" <!--{if $tid eq 3}-->selected='selected'<!--{/if}-->>ios越狱</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-left:10px;float:left;">主广告选择：
+                                    <div class="form-group">
+                                        <select name="aid" id='aid' style="width:100%;" onchange="select_adsons()">
+                                            <option value="0">主广告选择</option>
+                                            <!--{if $tps eq 1}-->
+                                                <!--{$adstr}-->
+                                            <!--{else}-->
+                                                <!--{foreach from=$gp_aids key=k item=v}-->
+                                                    <option value="<!--{$k}-->" <!--{if $aid eq $k}-->selected="selected"<!--{/if}-->><!--{$v}--></option>
+                                                <!--{/foreach}-->
+                                            <!--{/if}-->
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-left:10px;float:left;">子广告选择：
+                                    <div class="form-group">
+                                        <select name="adsons" id='adsons' style="width:100%;">
+                                            <option value="0">子广告选择</option>
+                                            <!--{$wdstr}-->
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-left:10px;float:left;margin-top:20px;"><input type='submit' id='getinfo' class="btn btn-blue" value="查询" /></div>
+                                <div style="margin-left:10px;float:left;margin-top:20px;"><input type='button' id='export' class="btn btn-blue" value="导出" onclick="btn_export()"/></div>
+                            </thead>
+                        </table>
+                        </form>
+                        <hr style="clear:both;margin-top:10px;"/>
+                        <div style="margin-left:10px;float:left;">更新时间：<input type="text" value="" style="width:200px" class="form-control date-picker update_stime" name="starttime" id="starttime" data-date-format="yyyy-mm-dd"></div>
+                                   <!--{if $isadmin eq 1}--> <div style="margin-left:10px;float:left;">结束时间：<input type="text" value="" style="width:200px;" class="form-control date-picker update_etime" name="endtime" id="endtime" data-date-format="yyyy-mm-dd"></div><!--{/if}-->
+                                    <div style="margin-left:10px;float:left;">更新类型选择：
+                                    <div class="form-group">
+                                        <select name="forceupdate" id='forceupdate' style="width:100%;">
+                                            <option value="1" selected='selected'>普通更新</option>
+                                            <!--{if $isadmin eq 1}--><option value="2" >强制更新</option><!--{/if}-->
+                                        </select>
+                                    </div>
+                                    </div>
+                                    <div style="margin-left:10px;float:left;margin-top:20px;"><input type='button' class="btn btn-blue" value="更新数据"  onclick="update_url();"/></div>
+                        <hr style="clear:both;border-bottom:3px solid red;margin-top:80px"/>
+                        <table  class="table table-bordered table-hover table-striped table-hover" id="searchable">
+                        <thead class="bordered-darkorange">
+                        <tr role="row" id="test">
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 100px;text-align: center;" >日期</th>
+                                    <!-- <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 100px;text-align: center;">广告渠道</th>
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 100px;text-align: center;">子渠道</th> -->
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 120px;text-align: center;">游戏</th>
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 88px;text-align: center;">周激活设备</th>
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 88px;text-align: center;">周新增设备</th>
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 88px;text-align: center;">周新增玩家</th>
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 88px;text-align: center;" >周活跃玩家（WAU）</th>
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 88px;text-align: center;">周有效活跃玩家</th>
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 88px;text-align: center;">周付费金额</th>
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 88px;text-align: center;">周付费玩家数量</th>
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 88px;text-align: center;">周付费率</th>
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 88px;text-align: center;">周ARPU</th>
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 88px;text-align: center;">周ARPPU</th>
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1"style="width: 88px;text-align: center;" >周次日留存率</th>
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 88px;text-align: center;">周流失玩家数量</th>
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 88px;text-align: center;">周流失率</th>
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 88px;text-align: center;" >周回流玩家数量</th>
+                        </tr>
+                        <tr id="odd"><!--{$str}--></tr> 
+                        </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="templates/js/datatable/jquery.dataTables.min.js"></script>
+    <script src="templates/js/datatable/ZeroClipboard.js"></script>
+    <script src="templates/js/datatable/dataTables.tableTools.min.js"></script>
+    <script src="templates/js/datatable/dataTables.bootstrap.min.js"></script>
+    <script src="templates/js/datatable/datatables-init.js"></script>
+    <script>
+        InitiateSimpleDataTable.init();
+        InitiateEditableDataTable.init();
+        InitiateExpandableDataTable.init();
+        function select_ad(){
+            //清空数据
+            $("#aid").find("option").remove();
+            $("#adsons").find("option").remove();
+            $("#adsons").append('<option value="0">子广告选择</option>');
+            $("#aid").append('<option value="0">广告选择</option>');
+            //获取子分类数据
+            var tids = $("#tid").val();
+            if(tids!=0){
+                 $.post("index.php?module=game_report&method=getadson",{tid:tids},
+                     function(data){
+                        data = eval("("+data+")");
+                        $.each(data,function(i,item){
+                            $("#aid").append('<option value="'+i+'" <!--{if $aid eq "'+i+'"}-->selected="selected"<!--{/if}-->>'+item+'</option>');
+                        });
+                     }
+                 ); 
+            }
+        }
+        function select_adsons(){
+            //清空数据
+            $("#adsons").find("option").remove();
+            //获取子分类数据
+            var ids  = $("#aid").val();
+             $.post("index.php?module=game_report&method=getadson",{aid: ids},
+                 function(data){
+                    data = eval("("+data+")");
+                    //处理子展示
+                    $("#adsons").append('<option value="0">子广告选择</option>');
+                    $.each(data,function(i,item){
+                        $("#adsons").append('<option value="'+i+'" <!--{if $aid eq "'+i+'"}-->selected="selected"<!--{/if}-->>'+item+'</option>');
+                    });
+                 }
+             );
+        }
+    </script>
+    <!--{/if}-->  <!--注册留存列表-->
+    <!--{if "mreport" == $report}--><!--月报列表-->
+    <style>
+        ul{
+            list-style: none;
+        }
+    </style>
+    <div class="page-body">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="widget">
+                    <div class="widget-header bordered-bottom bordered-yellow">
+                        <span class="widget-caption">游戏月报</span>
+                        <a href="javascript:void(0);" onclick="showhelp();" style="font-weight:bold">显示功能帮助</a>
+                        <div class="widget-buttons">
+                            <a href="#" data-toggle="maximize">
+                                <i class="fa fa-expand"></i>
+                            </a>
+                            <a href="#" data-toggle="collapse">
+                                <i class="fa fa-minus"></i>
+                            </a>
+                            <a href="#" data-toggle="dispose">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="widget-body no-padding">
+                    <table class="table table-bordered table-hover table-striped table-hover" id="searchable">
+                            <thead class="bordered-darkorange">
+                                <div style="float:left;margin:20px 10px;font-size: 12px">
+                                <strong>月激活设备数：</strong>统计当月内，每日激活设备数量的总和<br/>
+                                <strong>月新增设备数：</strong>统计当月内，每日新增设备数量的总和<br/>
+                                <strong>月新增玩家数（MNU）：</strong>统计当月内，每日新增玩家数量的总和<br/>
+                                <strong>月活跃玩家数（MAU）：</strong>统计当月内，有过一次登录行为的玩家数量<br/>
+                                <strong>月有效活跃玩家数：</strong>统计当月内，累计登陆游戏至少8天，至少登录过24次的玩家（新增玩家/活跃玩家）数量<br/>
+                                <strong>月总收入金额：</strong>统计当月内，玩家充值的总金额<br/>
+                                <strong>月付费玩家数（排重）：</strong>统计当月内，有过一次及以上成功充值行为的玩家数量（排重）<br/>
+                                <strong>月付费率：</strong>统计当月内，充值玩家数量占活跃玩家数量的比例<br>
+                                <strong>ARPU：</strong>统计当月的活跃玩家的平均充值金额，计算公式：当月总收入/MAU<br>
+                                <strong>ARPPU：</strong>统计当月的充值玩家的平均充值金额，计算公式：当月总收入/当月充值玩家数量<br>
+                                <strong>月新增玩家次日留存：</strong>统计当月内，每日新增玩家的次日留存总和除以30<br>
+                                <strong>月流失玩家数量：</strong>在当月前一个月有登陆行为，但是当月从未有登陆过游戏的玩家数量<br>
+                                <strong>月回流玩家数：</strong>当月上一个月未登陆过游戏，上上月有登陆行为，当月有登陆行为的玩家数量<br>
+                                <strong>月流失率：</strong>统计当月内，当月流失人数占上个月活跃玩家的比例。计算公式：当月流失玩家数量/上月活跃玩家数量<br></div>
+                                <hr style="clear:both;border-bottom:3px solid red;margin-top:20px"/>
+                            </thead>
+                        </table>
+                    <form action="index.php" name="form1" id="form1" style="margin:0px;" onsubmit="return check_s();">
+                        <table class="table table-bordered table-hover table-striped table-hover" id="searchable">
+                            <thead class="bordered-darkorange">
+                                <br/>
+                                <input type='hidden' name="module" value='game_report'/>
+                                <input type='hidden' name="method" value='mreport'/>
+                                <input type='hidden' name="action" value='submit'/>
+                                <div style="margin-left:10px;float:left;">日期：<input type="text" value="<!--{$starttime2}-->" style="width:200px" class="form-control date-picker" name="starttime2" id="starttime2" data-date-format="yyyy-mm"></div>
+                                <div style="margin-left:10px;float:left;">请选择游戏：
+                                <select name="gid" id='gid' style="width:100%;" style="width:200px;">
+                                    <option value="0">请选择游戏</option>
+                                    <!--{$gamestr}-->
+                                </select>
+                                </div>
+                                <div style="margin-left:10px;float:left;">渠道选择：
+                                    <div class="form-group">
+                                        <select name="tid" id='tid' style="width:100%;" onchange="select_ad()">
+                                            <option value="0" <!--{if $tid eq 0}-->selected='selected'<!--{/if}-->>渠道选择</option>
+                                            <option value="1" <!--{if $tid eq 1}-->selected='selected'<!--{/if}-->>安卓</option>
+                                            <option value="2" <!--{if $tid eq 2}-->selected='selected'<!--{/if}-->>ios</option>
+                                            <option value="3" <!--{if $tid eq 3}-->selected='selected'<!--{/if}-->>ios越狱</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-left:10px;float:left;">主广告选择：
+                                    <div class="form-group">
+                                        <select name="aid" id='aid' style="width:100%;" onchange="select_adsons()">
+                                            <option value="0">主广告选择</option>
+                                            <!--{if $tps eq 1}-->
+                                                <!--{$adstr}-->
+                                            <!--{else}-->
+                                                <!--{foreach from=$gp_aids key=k item=v}-->
+                                                    <option value="<!--{$k}-->" <!--{if $aid eq $k}-->selected="selected"<!--{/if}-->><!--{$v}--></option>
+                                                <!--{/foreach}-->
+                                            <!--{/if}-->
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-left:10px;float:left;">子广告选择：
+                                    <div class="form-group">
+                                        <select name="adsons" id='adsons' style="width:100%;">
+                                            <option value="0">子广告选择</option>
+                                            <!--{$wdstr}-->
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-left:10px;float:left;margin-top:20px;"><input type='submit' id='getinfo' class="btn btn-blue" value="查询" /></div>
+                                <div style="margin-left:10px;float:left;margin-top:20px;"><input type='button' id='export' class="btn btn-blue" value="导出" onclick="btn_export()"/></div>
+                            </thead>
+                        </table>
+                        </form>
+                        <hr style="clear:both;margin-top:10px;"/>
+                        <div style="margin-left:10px;float:left;">更新时间：<input type="text" value="" style="width:200px" class="form-control date-picker update_stime" name="starttime" id="starttime" data-date-format="yyyy-mm-dd"></div>
+                                   <!--{if $isadmin eq 1}--> <div style="margin-left:10px;float:left;">结束时间：<input type="text" value="" style="width:200px;" class="form-control date-picker update_etime" name="endtime" id="endtime" data-date-format="yyyy-mm-dd"></div><!--{/if}-->
+                                    <div style="margin-left:10px;float:left;">更新类型选择：
+                                    <div class="form-group">
+                                        <select name="forceupdate" id='forceupdate' style="width:100%;">
+                                            <option value="1" selected='selected'>普通更新</option>
+                                            <!--{if $isadmin eq 1}--><option value="2" >强制更新</option><!--{/if}-->
+                                        </select>
+                                    </div>
+                                    </div>
+                                    <div style="margin-left:10px;float:left;margin-top:20px;"><input type='button' class="btn btn-blue" value="更新数据"  onclick="update_url();"/></div>
+                        <hr style="clear:both;border-bottom:3px solid red;margin-top:80px"/>
+                        <table  class="table table-bordered table-hover table-striped table-hover" id="searchable">
+                        <thead class="bordered-darkorange">
+                        <tr role="row" id="test">
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 100px;text-align: center;" >日期</th>
+                                    <!-- <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 100px;text-align: center;">广告渠道</th>
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 100px;text-align: center;">子渠道</th> -->
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 120px;text-align: center;">游戏</th>
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 88px;text-align: center;">月激活设备</th>
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 88px;text-align: center;">月新增设备</th>
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 88px;text-align: center;">月新增玩家</th>
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 88px;text-align: center;" >月活跃玩家（MAU）</th>
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 88px;text-align: center;">月有效活跃玩家</th>
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 88px;text-align: center;">月付费金额</th>
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 88px;text-align: center;">月付费玩家数量</th>
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 88px;text-align: center;">月付费率</th>
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 88px;text-align: center;">月ARPU</th>
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 88px;text-align: center;">月ARPPU</th>
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1"style="width: 88px;text-align: center;" >月次日留存率</th>
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 88px;text-align: center;">月流失玩家数量</th>
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 88px;text-align: center;">月流失率</th>
+                                    <th class="" tabindex="0" aria-controls="searchable" rowspan="1" colspan="1" style="width: 88px;text-align: center;" >月回流玩家数量</th>
+                        </tr>
+                        <tr id="odd"><!--{$str}--></tr> 
+                        </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="templates/js/datatable/jquery.dataTables.min.js"></script>
+    <script src="templates/js/datatable/ZeroClipboard.js"></script>
+    <script src="templates/js/datatable/dataTables.tableTools.min.js"></script>
+    <script src="templates/js/datatable/dataTables.bootstrap.min.js"></script>
+    <script src="templates/js/datatable/datatables-init.js"></script>
+    <script>
+        InitiateSimpleDataTable.init();
+        InitiateEditableDataTable.init();
+        InitiateExpandableDataTable.init();
+        function select_ad(){
+            //清空数据
+            $("#aid").find("option").remove();
+            $("#adsons").find("option").remove();
+            $("#adsons").append('<option value="0">子广告选择</option>');
+            $("#aid").append('<option value="0">广告选择</option>');
+            //获取子分类数据
+            var tids = $("#tid").val();
+            if(tids!=0){
+                 $.post("index.php?module=game_report&method=getadson",{tid:tids},
+                     function(data){
+                        data = eval("("+data+")");
+                        $.each(data,function(i,item){
+                            $("#aid").append('<option value="'+i+'" <!--{if $aid eq "'+i+'"}-->selected="selected"<!--{/if}-->>'+item+'</option>');
+                        });
+                     }
+                 ); 
+            }
+        }
+        function select_adsons(){
+            //清空数据
+            $("#adsons").find("option").remove();
+            //获取子分类数据
+            var ids  = $("#aid").val();
+             $.post("index.php?module=game_report&method=getadson",{aid: ids},
+                 function(data){
+                    data = eval("("+data+")");
+                    //处理子展示
+                    $("#adsons").append('<option value="0">子广告选择</option>');
+                    $.each(data,function(i,item){
+                        $("#adsons").append('<option value="'+i+'" <!--{if $aid eq "'+i+'"}-->selected="selected"<!--{/if}-->>'+item+'</option>');
+                    });
+                 }
+             );
+        }
+    </script>
+    <!--{/if}-->  <!--注册留存列表-->
+    <script>
+        $(function(){
+            if('<!--{$meg}-->' !=''){
+                $("#toast-container").show();
+            }else{
+                $("#toast-container").hide();
+            }
+            $("#toast-container").bind('click',function(){
+                $("#toast-container").hide();
+            });
+        });
+        function showhelp(){
+            $("#toast-container").show();
+        }
+        function update_url(){
+            var date1  = $("#starttime").val();
+            var date2  = $("#endtime").val();
+            if(date1 =='' || date1==null){
+                alert("更新日期不能为空!");
+                return false;
+            }
+            var uptype = $("#forceupdate").find("option:selected").val();
+            var updatephp = '<!--{$updatephp}-->';    //更新URL
+            location.href="updates.php?date1="+date1+"&date2="+date2+"&forceupdate="+uptype+"&updatephp="+updatephp;
+        }
+        function check_s(){
+            var gid = $("#gid").val();
+            //未选择游戏时给出提示
+            if(gid<=0){
+                alert('请选择游戏！');
+                return false;
+            }
+        }
+        function btn_export(){
+            var gid = $("#gid").val();
+            //未选择游戏时给出提示
+            if(gid<=0){
+                alert('请选择游戏！');
+                return false;
+            }
+            var starttime2  = $("#starttime2").val();
+            var endtime2    = $("#endtime2").val();
+            var gid         = $('#gid option:selected').val();
+            var aid         = $('#aid option:selected').val();
+            var adsons      = $('#adsons option:selected').val();
+            var tid         = $('#tid option:selected').val();
+            var method      = '<!--{$report}-->';
+            location.href="index.php?module=game_report&method="+method+"&export=1&starttime2="+starttime2+"&endtime2="+endtime2+"&gid="+gid+"&aid="+aid+"&adsons="+adsons+"&tid="+tid;
+        }
+    </script>
+    <div id="toast-container" class="toast-bottom-right"><div class="toast fa-check toast-blue" ><button class="toast-close-button">×</button><div class="toast-message"><!--{$meg}--></div></div></div>
+        <!--显示主页信息-->
+    <!-- /Main Container -->
+    <!--消息提示-->
+</body>
+<!--  /Body -->
+<script src="templates/js/bootstrap.min.js"></script>
+<!--Beyond Scripts-->
+<script src="templates/js/beyond.min.js"></script>
+<!--Page Related Scripts-->
+
+<!--Bootstrap Date Picker-->
+<script src="templates/js/datetime/bootstrap-datepicker.js"></script>
+<script type="text/javascript">        
+    //--Bootstrap Date Picker--
+    $('.date-picker').datepicker();
+</script>
+</html>

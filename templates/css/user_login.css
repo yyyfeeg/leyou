@@ -1,0 +1,179 @@
+/*用户中心登录 详细内容*/
+.user_content{ width: 1400px; height: 690px; margin: 24px auto; overflow: hidden;  }
+
+.user_content_pic{ width: 860px; height: 590px; float: left; margin-right: 24px; }
+
+.user_content_login{ width: 445px; min-height: 400px; float: left; margin-top: 80px; background: #fff;  }
+.user_ct_login_title{ width: 100%; height:71px; line-height: 71px; text-align: center; background: url(../images/usercenter_login_title.jpg) no-repeat center;  }
+.user_ct_login_title h4{ width: 100%; height: 100%; display: block; font-size: 30px; color: #fff; font-weight: normal;  }
+
+.user_ct_login_input{ width: 72%; min-height: 118px; margin: 15px auto 0px auto;   }
+.user_ct_login_input ul{ width: 100%; height: auto; overflow: hidden;}
+.user_ct_login_input ul li{ width: 100%; height: 40px; line-height: 40px;  margin-bottom: 24px; overflow: hidden; padding-left: 28px;  }
+.user_ct_login_input ul li p{ width: 60px; height: 100%; display: block; float: left; font-size: 20px;   }
+.user_ct_login_input ul li input{ width: 228px; height: 40px; line-height: 40px; *text-align: center; display: block; border: none; background: #b6b6b6; color: #fff; font-size: 18px; text-indent: 1em; }
+.user_ct_login_input ul li input.login_code{ width:78px;}
+.user_ct_login_input ul li.user_ct_account{ background: url(../images/icon_account_2.png) no-repeat ; background-position: 0 -11px;  }
+.user_ct_login_input ul li.user_ct_password{ background: url(../images/icon_account_2.png) no-repeat ; background-position: 0 -49px;  }
+
+.remember_me{width: 72%; min-height: 30px; margin: 0px auto 12px auto;}
+
+.user_ct_btn{ width: 72%; height: 66px; margin: 12px auto; }
+.user_ct_btn .user_btn{ width: 100%; height: 100%; display: block; background: #dd3e00; text-align: center; line-height: 66px; font-size: 34px; color: #fff;
+	-moz-border-radius: 12px;      
+    -webkit-border-radius: 12px;   
+    border-radius: 12px;   }
+.user_ct_btn a{ width: 100%; height: 100%; display: block; background: #dd3e00; text-align: center; line-height: 66px; font-size: 34px; color: #fff;
+	-moz-border-radius: 12px;      
+    -webkit-border-radius: 12px;   
+    border-radius: 12px;   }
+.user_ct_btn a:visited{ color: #fff; }
+
+.user_ct_prompt{ width: 100%; height: 40px; text-align: center; margin-top: 24px;  }
+.user_ct_prompt ul{ width: auto; height: 100%; display: inline-block; *width: 160px; *margin: 0 auto; }
+.user_ct_prompt ul li{ width: auto; height: 100%; float: left; font-size: 16px; padding: 0 8px;  }
+.user_ct_prompt ul li a{ width: 100%; height: 100%; display: block; color: #2c2c2c;  }
+.user_ct_prompt ul li a:hover{ color: #000; }
+
+
+
+/*用户中心脚部*/
+.user_foot{ width: 100%; height: 141px; background: url(../images/user_foot.jpg) repeat-x; overflow: hidden; }
+.user_foot_content{ width: 600px; height: 60px; margin: 40px auto; }
+.user_foot_content ul{ width: 100%; height: 100%; overflow: hidden; }
+.user_foot_content ul li{ width: 36%; height: 100%; margin: 0 7%; float: left;  }
+.user_foot_content ul li a{ width: 100%; height: 100%; display: block; text-align: center; font-size: 18px; line-height: 60px; color: #ffffff;  }
+.user_foot_content ul li.user_foot_password{ background: url(../images/usercenter_bottom.png) no-repeat left; background-position: 5px -18px; }
+.user_foot_content ul li.user_foot_service{ background: url(../images/usercenter_bottom.png) no-repeat left; background-position: 5px -109px; }
+
+
+
+
+
+
+
+
+
+/*--------------用户中心 注册-------------*/
+.useraccount_content{ width: 1140px; height: 636px; margin: 24px auto; background: #fff; }
+.ua_c_nav{ width: 100%; height: 56px; overflow: hidden; background: #2c2c2c;  }
+.ua_c_nav ul{ width: 600px; height: 100%; overflow: hidden;  }
+.ua_c_nav ul li{ width: 185px; height: 100%; float: left; background: url(../images/ua_c_nav.jpg) repeat-y right;}
+.ua_c_nav ul li a{ width: 100%; height: 100%; display: block; text-align: center; font-size: 22px; line-height: 56px; color: #fff; }
+.ua_c_nav ul li a:hover ,.ua_c_nav ul li.on a{ background: #4f4f4f; height: 53px; border-bottom: 3px solid #feb848; }
+
+.ua_c_content{ width: 520px; height: auto; margin: 60px auto 0 auto; }
+.ua_c_prompt { text-align: center; }
+.ua_c_content_input{ width: 100%; height: auto; overflow: hidden; margin-bottom: 20px; }
+.ua_c_content_input span{ width: 100%; height: 32px; display: block; line-height: 32px; text-align: center; font-size: 16px; color: #ff0000; }
+.ua_c_content_input ul{ width: 100%; height: auto; }
+.ua_c_content_input ul li{ width: 100%; height: 50px; line-height: 50px; overflow: hidden; margin-bottom: 30px; }
+.ua_c_content_input ul li p{ width: 120px; height: 100%; display: block; float: left; text-align: right; font-size: 18px; color: #2c2c2c; margin-right: 20px;  }
+.ua_c_content_input ul li input{ width: 360px; height: 100%; float: left; text-align: center; background: #b6b6b6; font-size: 18px; color: #fff;  }
+.ua_c_content_input ul li.ua_c_scode input{ width: 220px; }
+.ua_c_content_input ul li.ua_c_scode a{ width: 140px; height: 100%; display: block; float: left; text-align: center; color: #fff; font-size: 18px; ; background: #2c2c2c;  }
+.ua_c_content_input ul li.ua_c_scode .getcode_btn{ width: 140px; height: 100%; display: block; float: left; text-align: center; color: #fff; font-size: 18px; ; background: #2c2c2c; border:none;}
+
+.ua_c_content_btn { width: 480px; height: 60px; margin: 0 auto; }
+.ua_c_content_btn a{ width: 100%; height: 100%; display: block;  background: #aa1515; text-align: center; line-height: 60px; font-size: 36px; color: #fff;  }
+.ua_c_content_btn a:visited{ color: #fff; }
+.ua_c_content_btn .reg_btn{ width: 100%; height: 100%; display: block;  background: #aa1515; text-align: center; line-height: 60px; font-size: 36px; color: #fff;  }
+
+.ua_c_content_prompt{ height: auto; display: inline-block; margin-bottom: 60px; margin-top: 40px;  }
+.ua_c_content_prompt span{ width: 38px; height: 38px; float: left; display: block; background: url(../images/content_icon.png) no-repeat; margin: 0 30px 0 0; }
+.ua_c_content_prompt span.ua_c_p_right{ background-position: 0 -751px;  }
+.ua_c_content_prompt span.ua_c_p_left{ background-position: -45px -751px;  }
+.ua_c_content_prompt p{ max-width: 450px; height: auto; display: inline-block; font-size: 24px; color: #2c2c2c; line-height: 38px; text-align: left; }
+.ua_c_content_prompt2 { margin-left: 80px; } 
+.ua_c_content_prompt2 p{ max-width: 480px;}
+.ua_c_content_prompt p em{ font-size: 16px; }
+.ua_c_content_prompt p em a{ color: #0086db; }
+
+.ua_c_content_btn2 { width: 500px; height: 60px; margin: 0 auto; }
+.ua_c_content_btn2 ul{ width: 100%; height: 100%; overflow: hidden; }
+.ua_c_content_btn2 ul li{ width: 44%; height: 100%; float: left; margin: 0 3%;}
+.ua_c_content_btn2 ul li a{ width: 100%; height: 100%; display: block;  background: #aa1515; text-align: center; line-height: 60px; font-size: 36px; color: #fff;  }
+.ua_c_content_btn2 ul li.on a{ background: #7c7c7c; }
+.ua_c_content_btn2 a:visited{ color: #fff; }
+
+.reg_tips{ padding-top:10px; text-align:center; color:#ff0000; font-size:14px;}
+
+
+/*用户中心忘记密码*/
+.userforgetpassword_content{ width: 1140px; min-height: 636px; margin: 24px auto; background: #fff; }
+
+.uf_c_nav2{ width: 100%; height: 56px; border-bottom: 1px dashed #2c2c2c; }
+.uf_c_nav2 h5{ width: 100%; height: 100%; line-height: 56px; text-indent: 2em; font-size: 20px; color: #2c2c2c; font-weight: normal; }
+
+.uf_c_content{ width: 720px; min-height: 430px; margin: 60px auto 0 auto; overflow: hidden; }
+.uf_c_content_2 { width: 400px; }
+.uf_c_content_3 { width: 540px; }
+
+.uf_c_step{ width: 100%; height: 120px; overflow: hidden; margin-bottom: 10px; }
+.uf_c_step ul{ width: 100%; height: 100%; }
+.uf_c_step ul li{ width: 20%; height: 100%; float: left; text-align: center;}
+.uf_c_step ul li span{ width: 50%; height: 50px; margin: 0 25%; display: block; background: url(../images/content_icon.png) no-repeat; background-position: 11px -822px; line-height: 50px; font-size: 37px; font-weight: bolder; margin-bottom: 10px; }
+.uf_c_step ul li p{ width:100%; height: 50px; display: block; text-align: center; font-size: 24px; font-weight: bolder;    }
+.uf_c_step ul li.uf_c_step_on span{ background-position: -59px -822px; color: #fff; }
+.uf_c_step ul li.uf_c_step_on p{ color: #E78F14; }
+.uf_c_step ul li.uf_c_step_11 p { font-size: 16px; line-height: 150px; }
+
+.uf_content_btn{ width: 100%;  height: 124px; margin: 24px auto; }
+.uf_content_btn ul{ width: 100%; height: 100%; }
+.uf_content_btn ul li{ width: 300px; height: 124px; margin: 0 30px; background: #e4e4e4; float: left;  }
+.uf_content_btn ul li a{ width: 100%; height: 100%; display: block; background: url(../images/content_icon.png) no-repeat;  }
+.uf_content_btn ul li.uf_content_btn_1 a{ background-position: 26px -898px;  }
+.uf_content_btn ul li.uf_content_btn_2 a{ background-position: 26px -1029px; }
+.uf_content_btn ul li a em{ width: 180px; height: 62px; display: block; line-height: 90px; margin-left: 120px; float: left; font-size: 24px; color: #2c2c2c; }
+.uf_content_btn ul li a span{ width: 180px; height: 62px; display: block; line-height: 36px; margin-left: 120px; float: left; font-size: 18px; color: #2c2c2c; }
+
+
+
+.uf_f_content_prompt{ width: 1080px; height: 60px; line-height: 60px; margin: 0 auto; margin-top: 20px; border-top: 1px dashed #b7b7b7; }
+.uf_f_content_prompt p { width: 1040px; height: 100%; display: block; margin: 0 auto; color: #2c2c2c;  font-size: 18px; }
+.uf_f_content_prompt p a { color: #E78F14;  font-size: 18px; }
+
+
+.uf_c_content_prompt{ width: 520px; margin: 0px auto; padding-left: 92px;  }
+.uf_c_content_prompt p{ width: 100%; height: 100px; line-height: 24px; font-size: 14px; color: #2c2c2c; display: block; }
+.uf_c_content_prompt p a{ color: #E78F14; }
+
+
+.uf_c_content_input{ width: 520px; height: auto;  overflow: hidden; margin: 0 auto 20px auto ; }
+.uf_c_content_input span{ width: 100%; height: 32px; display: block; line-height: 32px; text-align: center; font-size: 16px; color: #ff0000; }
+.uf_c_content_input ul{ width: 100%; height: auto; }
+.uf_c_content_input ul li{ width: 100%; height: 50px; line-height: 50px; overflow: hidden; margin-bottom: 30px; }
+.uf_c_content_input ul li p{ width: 120px; height: 100%; display: block; float: left; text-align: right; font-size: 18px; color: #2c2c2c; margin-right: 20px;  }
+.uf_c_content_input ul li input{ width: 360px; height: 100%; *height: 50px; line-height: 50px;  float: left; text-align: center; background: #b6b6b6; font-size: 18px; color: #fff;  }
+.uf_c_content_input ul li.uf_c_scode input{ width: 220px; }
+.uf_c_content_input ul li.uf_c_scode a{ width: 140px; height: 100%; display: block; float: left; text-align: center; color: #fff; font-size: 18px; ; background: #2c2c2c;  }
+
+
+
+.uf_c_content_btn { width: 480px; height: 60px; margin: 0 auto; }
+.uf_c_content_btn a{ width: 100%; height: 100%; display: block;  background: #aa1515; text-align: center; line-height: 60px; font-size: 36px; color: #fff;  }
+.uf_c_content_btn a:visited{ color: #fff; }
+
+.uf_c_content_btn input{ width: 100%; height: 100%; display: block;  background: #aa1515; text-align: center; line-height: 60px; font-size: 36px; color: #fff; border:none;}
+
+
+.uf_c_content_input ul li.uf_c_telephone{ height:59px; background: url(../images/content_icon.png) no-repeat left; background-position: 26px -1182px; margin-bottom: 10px; }
+.uf_c_content_input ul li.uf_c_telephone p{ width: 280px; margin-left: 100px; text-align: left;  font-size: 24px; color: #2c2c2c; margin-right: 0;   }
+.uf_c_content_input ul li.uf_c_telephone p span{ width: 140px; height: auto; text-align: center; display: inline; font-size: 18px; color: #2c2c2c; }
+.uf_c_content_input ul li.uf_c_telephone a{ width: 104px; height: 30px; display: block; background: url(../images/password_security_btn.png) no-repeat; margin: 12px 0;  color:#fff; text-align:center; line-height:30px;}
+.uf_c_content_input ul li.uf_c_telephone .getcode_btn{ width: 104px; height: 30px; display: block; background: url(../images/password_security_btn.png) no-repeat; margin: 12px 0; border:none; color:#fff; cursor:pointer;}
+
+.uf_c_content_input ul li.uf_c_scode2{ margin-bottom: 10px; }
+.uf_c_content_input ul li.uf_c_scode2 input{ width: 385px; margin: 0 0 0 101px; }
+
+.uf_c_content_btn1 { width: 386px; height: 60px; margin: 0 0 0 201px; }
+.uf_c_content_btn1 a{ width: 100%; height: 100%; display: block;  background: #aa1515; text-align: center; line-height: 60px; font-size: 36px; color: #fff;  }
+.uf_c_content_btn1 a:visited{ color: #fff; }
+.getpass_btn{ width: 100%; height: 100%; display: block;  background: #aa1515; text-align: center; line-height: 60px; font-size: 36px; color: #fff; border:none; cursor:pointer;}
+
+.uf_c_content_btn2{ width: 386px; height: 30px; text-align: center; margin: 20px 0 0 201px; }
+.uf_c_content_btn2 a { width: 100%; height: 100%; display: block; color: #2c2c2c; font-size: 16px;  }
+
+
+.tips {margin: 10px 65px 4px;height: 22px;}
+.form_tip {background: #f4ff74 none repeat scroll 0 0;color: red;font-size: 12px;line-height: 22px;padding: 2px 9px 2px 14px;}

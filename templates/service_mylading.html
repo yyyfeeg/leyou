@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta charset="utf-8" />
+		<meta http-equiv = "X-UA-Compatible" content ="IE=edge,chrome=1" />
+		<meta name="renderer" content="webkit"/>
+		<title>我的提单列表 - <!--{$webname}--></title>
+        <meta name="keywords" content="<!--{$keywords}-->" />
+		<meta name="description" content="<!--{$desc}-->" />
+	<link href="<!--{$web_url}-->/templates/css/base.css" rel="stylesheet" type="text/css">
+	<link href="<!--{$web_url}-->/templates/css/mian.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<div class="wrap">
+			<!--{include file="service_header.html"}-->
+			<div class="mian">
+            	<ul class="td_type">
+                	<!--{if $time eq 0}-->
+                	<li class="on">处理中的问题</li>
+                    <li><a href="<!--{$web_url}-->/index.php?mo=service&me=mylading&time=1">已处理的问题</a></li>
+                    <!--{else}-->
+                    <li><a href="<!--{$web_url}-->/index.php?mo=service&me=mylading">处理中的问题</a></li>
+                    <li class="on">已处理的问题</li>
+                    <!--{/if}-->
+                </ul>
+                <!--{if $time neq 0}-->
+                <div class="td_time">选择要查询的时间：
+                	<!--{if $time eq 1}-->
+                    <span>最近三天</span>　
+                    <a href="<!--{$web_url}-->/index.php?mo=service&me=mylading&time=2">最近一周</a>　
+                    <a href="<!--{$web_url}-->/index.php?mo=service&me=mylading&time=3">最近半个月</a>
+                    <!--{elseif $time eq 2}-->
+                    <a href="<!--{$web_url}-->/index.php?mo=service&me=mylading&time=1">最近三天</a>　
+                    <span>最近一周</span>　
+                    <a href="<!--{$web_url}-->/index.php?mo=service&me=mylading&time=3">最近半个月</a>
+                    <!--{else}-->
+                    <a href="<!--{$web_url}-->/index.php?mo=service&me=mylading&time=1">最近三天</a>　
+                    <a href="<!--{$web_url}-->/index.php?mo=service&me=mylading&time=2">最近一周</a>　
+                    <span>最近半个月</span>
+                    <!--{/if}-->
+                </div>
+            	<!--{/if}-->
+				<div class="td_box">
+					<ul class="wtlb_head">
+						<li>
+							问题ID
+						</li>
+						<li>
+							问题标题
+						</li>
+                        <li>
+							游戏
+						</li>
+						<li>
+							提交时间
+						</li>
+						<li class="no_bg">
+							是否解决
+						</li>
+					</ul>
+                    <!--{if $totalrecord >0 }-->
+					<ul class="wtlb_txt" id="wtlb_txt">
+                        <!--{foreach from=$mylist key=list item=value }-->
+                        <li class="two_li">
+							<div class="wtlb_txt_li_top">
+								<em><!--{$value.id}--></em>
+								<em><!--{$value.title}--><i></i></em>
+                                <em><!--{$value.gname}--></em>
+								<em><!--{$value.addtime2}--></em>
+								<em class="oem_red"><!--{$value.statustr}--></em>
+							</div>
+							<div class="wtlb_txt_li_bottom" style="display:none;">
+								<p>
+									<i>
+										
+									</i>
+								</p>
+								<div class="wtlb_txt_li_bottom_in">
+									<div class="wtlb_list1" style="margin-bottom: 25px;">
+										<em>
+											问题描述
+										</em>
+										<textarea class="fl" cols="125" rows="8" id="wt_desc" name="wt_desc" disabled="disabled"><!--{$value.content}--></textarea>
+									</div>
+                                    <!--{if $value.status eq 3}-->
+									<div class="wtlb_list1">
+										<em>
+											客服回复
+										</em>
+										<textarea class="fl" cols="125" rows="8" id="kf_answser" name="kf_answser" disabled="disabled"><!--{$value.answser}--></textarea>
+									</div>
+									<div class="wtlb_list1">
+										<em>评价</em>
+										<div class="fl dx_btn" id="award_<!--{$value.id}-->">
+                                        	<!--{if $value.award eq 6}-->
+											<label><input name="Fruit<!--{$value.id}-->" type="radio" value="2" />满意 </label> 
+                                            <label><input name="Fruit<!--{$value.id}-->" type="radio" value="4" />一般 </label> 
+                                            <label><input name="Fruit<!--{$value.id}-->" type="radio" value="5" />不满意 </label>
+                                            <label><button onclick="award_send_func('<!--{$value.tid}-->','<!--{$value.gid}-->','<!--{$uid}-->','<!--{$value.id}-->')">提交</button></label> 
+                                            <!--{else}-->
+                                            <label><!--{$value.awardstr}--></label>
+                                            <!--{/if}-->
+										</div>
+									</div>
+                                    <!--{/if}-->
+								</div>
+							</div>
+						</li>
+                        <!--{/foreach}-->
+					</ul>
+                    <div class="next">
+                        <ul class="pagelist" id="ladinglist">
+                        	<!--{if $totalpage > 1}-->
+                            <!--{if $currpage eq 1}-->
+                            <li><span>首页</span></li>
+                            <!--{else}-->
+                            <li><a href="<!--{$web_url}-->/index.php?mo=service&me=mylading<!--{$timeStr}-->&page=1">首页</a></li>
+                            <li style="width:60px"><a href="<!--{$web_url}-->/index.php?mo=service&me=mylading<!--{$timeStr}-->&page=<!--{$currpage-1}-->">上一页</a></li>
+                            <!--{/if}-->
+                            <!--{section name="page" loop=$totalpage}-->
+                            <li>
+                            <!--{if ($smarty.section.page.index+1) neq $currpage}-->
+                            <a href="<!--{$web_url}-->/index.php?mo=service&me=mylading<!--{$timeStr}-->&page=<!--{$smarty.section.page.index+1}-->"><!--{$smarty.section.page.index+1}--></a>
+                            <!--{else}-->
+                            <span><!--{$smarty.section.page.index+1}--></span>
+                            <!--{/if}-->
+                            </li>
+                            <!--{/section}-->
+                            <!--{if $currpage eq $totalpage}-->
+                            <li><span>末页</span></li>
+                            <!--{else}-->
+                            <li><a href="<!--{$web_url}-->/index.php?mo=service&me=mylading<!--{$timeStr}-->&page=<!--{$currpage+1}-->">下一页</a></li><li><a href="<!--{$web_url}-->/index.php?mo=service&me=mylading<!--{$timeStr}-->&page=<!--{$totalpage}-->">末页</a></li>
+                            <!--{/if}-->
+                            <!--{/if}-->
+                            <li><span>共 <strong><!--{$totalpage}--></strong>页<strong><!--{$totalrecord}--></strong>条</span></li>
+                        </ul>
+                    </div>
+                    <!--{else}-->
+                    <div style="text-align:center; padding:20px; font-size:18px;">暂无相关记录！</div>
+                    <!--{/if}-->
+				</div>
+			</div>
+			</div>
+		</div>
+
+		<!-- 脚部 -->
+		<!--{include file="service_footer.html"}-->
+		<!-- 脚部 end -->
+
+	</body>
+</html>

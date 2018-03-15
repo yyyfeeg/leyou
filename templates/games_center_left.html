@@ -1,0 +1,33 @@
+<div class="gl_hotoffers">
+	<div class="gl_hotoffers_title">
+		<em></em>
+		<h4>热门动态</h4>
+	</div>
+	<div class="gl_hotoffers_list">
+		<ul>
+		<!--{section name=index loop=$games_list_left}-->
+			<li>
+				<div class="gl_hotoffers_icon">
+					<a href="<!--{$games_list_left[index].url}-->" title="<!--{$games_list_left[index].gname}-->" target="_blank" >
+						<img src="<!--{$web_url}--><!--{$games_list_left[index].icon}-->" width="50" height="50" alt="<!--{$games_list_left[index].gname}-->" >
+					</a>
+				</div>
+				<div class="gl_hotoffers_content">
+					<a href="<!--{$games_list_left[index].url}-->" title="<!--{$games_list_left[index].gname}-->" target="_blank">
+						<h5><!--{$games_list_left[index].gname}--></h5>
+					</a>
+					<div class="gl_hotoffers_star">
+						<ul>
+							<li <!--{if $games_list_left[index].rating >= 1}-->class="on"<!--{/if}-->><a></a></li>
+							<li <!--{if $games_list_left[index].rating >= 2}-->class="on"<!--{/if}-->><a></a></li>
+							<li <!--{if $games_list_left[index].rating >= 3}-->class="on"<!--{/if}-->><a></a></li>
+							<li <!--{if $games_list_left[index].rating >= 4}-->class="on"<!--{/if}-->><a></a></li>
+							<li <!--{if $games_list_left[index].rating >= 5}-->class="on"<!--{/if}-->><a></a></li>
+						</ul>
+					</div>
+				</div>
+			</li>
+		<!--{/section}-->	
+		</ul>
+	</div>
+</div>
